@@ -1,13 +1,13 @@
 import '@progress/kendo-ui/js/kendo.button';
 import '@progress/kendo-ui/js/kendo.calendar';
 
-function loginController ($scope,loginService) {
+function forgotpasswordController ($scope,forgotpasswordService) {
   const vm = this;
-  vm.title = loginService.title();
+  vm.title = forgotpasswordService.title();
   console.log($scope);
   $('#abc').kendoButton();
   $('#calendar').kendoCalendar();
 }
 
 /* @ngInject */
-export default loginController;
+export default forgotpasswordController;

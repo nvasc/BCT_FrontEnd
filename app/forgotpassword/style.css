@@ -47,6 +47,7 @@ body{
     float: left;
 }
 #Tieude h5{
+    font-weight: 700;
     color: #3b5998;
     margin-top: 30px;
     font-size: 19px;
@@ -103,7 +104,7 @@ body{
 
 .btn.btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
+    background-color:#3b5998;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
@@ -122,15 +123,18 @@ body{
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+    background-color:#003c94;
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    color:#6c7592;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
-    color: rgb(12, 97, 33);
+    color: #003c94;
+}
+#remember{
+    color: #6c7592;
 }
