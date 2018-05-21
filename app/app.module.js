@@ -9,9 +9,10 @@ import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import example from './example/example.module';
 import example2 from './example2/example2.module';
+import login from './login/login.module';
 import 'angular-confirm1';
 
 
 angular.module('app', [
-  uirouter, 'cp.ngConfirm', 'example', 'example2'
+  uirouter, 'cp.ngConfirm', 'example', 'example2', 'login'
 ]);
