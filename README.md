@@ -9,7 +9,7 @@
 
 ![Angular, ES6 and Webpack Starter](http://i.imgur.com/U6ueigg.jpg)
 
-angular-es6-webpack-starter
+angular-es6-webpack-bct-project
 =============================
 
 An Angular 1 Starter kit featuring Angular 1, ES6, Webpack, UI-Router, SCSS, HMR, Protractor and multi environments.
