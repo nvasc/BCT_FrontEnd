@@ -35,7 +35,7 @@ Make sure you have Node version >= 6.0 and NPM >= 3
 git clone --depth 1 https://github.com/nvasc/bct_layout.git
 
 # change directory to repo
-cd angular-es6-webpack-starter
+cd bct_layout
 
 # install the repo with npm
 npm install
