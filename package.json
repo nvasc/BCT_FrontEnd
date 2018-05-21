@@ -13,7 +13,7 @@
   "dependencies": {
     "@progress/kendo-ui": "^2018.1.503",
     "@uirouter/angularjs": "^1.0.17",
-    "admin-lte": "^3.0.0-alpha.2",
+    "admin-lte": "^2.4.3",
     "angular": "^1.7.0",
     "angular-confirm1": "^1.1.0",
     "angular-ui-router": "^1.0.3",
