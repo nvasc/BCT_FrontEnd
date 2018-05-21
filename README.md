@@ -32,7 +32,7 @@ Make sure you have Node version >= 6.0 and NPM >= 3
 ```
 # clone our repo
 # --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/KarlDoyle/angular-es6-webpack-starter.git
+git clone --depth 1 https://github.com/nvasc/bct_layout.git
 
 # change directory to repo
 cd angular-es6-webpack-starter
