@@ -13,6 +13,12 @@ module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').
   devtool: '#eval',
   entry: {
     bundle: path.join(__dirname,'/app/app.module.js'),
+    // module: {
+    //   loaders: [{
+    //     test: /\.(eot|woff|woff2|svg|ttf|png|gif|jpg)([\?]?.*)$/, 
+    //     loader: "file-loader?name=[hash].[ext]", 
+    //   }]
+    // },
     vendor: ['angular','angular-ui-router'],
   },
   plugins: [

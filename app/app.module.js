@@ -26,13 +26,15 @@ import 'jquery-slimscroll';
 import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 
 
-import example from './controllers/example/example.module';
-import example2 from './controllers/example2/example2.module';
+//import example from './controllers/example/example.module';
+//import example2 from './controllers/example2/example2.module';
 import dangnhap from './controllers/dangnhap/dangnhap.module';
 import giaodien from './controllers/giaodien/giaodien.module';
 import quenmatkhau from './controllers/quenmatkhau/quenmatkhau.module';
 import thongbao from './controllers/thongbao/thongbao.module';
+
+//'example', 'example2', 
 angular.module('app', [
-  uirouter, 'cp.ngConfirm', 'example', 'example2', 
-  'dangnhap', 'giaodien','quenmatkhau','thongbao'
+  uirouter, 'cp.ngConfirm', 'dangnhap', 'giaodien', 
+  'quenmatkhau','thongbao'
 ]);
