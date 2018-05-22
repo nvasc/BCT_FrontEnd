@@ -1,4 +1,4 @@
-function giaodienRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
+function giaodienRoutes($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
   $stateProvider
     .state('giaodien', {
       url: '/giaodien',

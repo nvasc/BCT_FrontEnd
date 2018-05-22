@@ -1,4 +1,6 @@
-
+body{
+    background: #e7e8ea;
+}
 .glyphicon{
     color: #333;
     line-height: 33px;
