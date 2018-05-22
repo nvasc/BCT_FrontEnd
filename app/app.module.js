@@ -20,16 +20,15 @@ import 'admin-lte/dist/js/adminlte.js';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'fastclick/lib/fastclick.js';
-import 'admin-lte/dist/js/adminlte.min.js';
 import 'jquery-sparkline/jquery.sparkline.min.js';
 
 
-import example from './example/example.module';
-import example2 from './example2/example2.module';
-import dangnhap from './dangnhap/dangnhap.module';
-import giaodien from './giaodien/giaodien.module';
-import quenmatkhau from './quenmatkhau/quenmatkhau.module';
-import thongbao from './thongbao/thongbao.module';
+import example from './controllers/example/example.module';
+import example2 from './controllers/example2/example2.module';
+import dangnhap from './controllers/dangnhap/dangnhap.module';
+import giaodien from './controllers/giaodien/giaodien.module';
+import quenmatkhau from './controllers/quenmatkhau/quenmatkhau.module';
+import thongbao from './controllers/thongbao/thongbao.module';
 angular.module('app', [
   uirouter, 'cp.ngConfirm', 'example', 'example2', 
   'dangnhap', 'giaodien','quenmatkhau','thongbao'
