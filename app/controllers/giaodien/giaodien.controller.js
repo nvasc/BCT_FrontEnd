@@ -12,10 +12,10 @@ function giaodienController ($scope, giaodienService) {
     function resizeFooter() {      
       if ($(document).width() > 767) {        
         if ($('body').hasClass('sidebar-collapse')) {         
-          $('.main-footer').width($(document).width() - 80);                      
+          $('.main-footer').width($(document).width() - 64);                      
         }  
         else {
-          $('.main-footer').width($(window).width() - 260);
+          $('.main-footer').width($(window).width() - 244);
         }
       }
       else {
@@ -28,7 +28,6 @@ function giaodienController ($scope, giaodienService) {
     });
     resizeFooter();     
     $('#header-thong-bao').slimScroll();
-    console.log($.AdminLTE)
   });
   
 }
