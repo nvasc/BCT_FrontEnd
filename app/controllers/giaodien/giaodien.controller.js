@@ -9,20 +9,28 @@ function giaodienController ($scope, giaodienService) {
   $('#calendar').kendoCalendar();
 
   $(document).ready(function () {
-    function resizeFooter() {
-      if ($('body').hasClass('sidebar-collapse')) {      
-        $('.main-footer').width($(document).width() - 80);
-      }  
+    function resizeFooter() {      
+      if ($(document).width() > 767) {        
+        if ($('body').hasClass('sidebar-collapse')) {         
+          $('.main-footer').width($(document).width() - 80);                      
+        }  
+        else {
+          $('.main-footer').width($(window).width() - 260);
+        }
+      }
       else {
-        $('.main-footer').width($(window).width() - 260);
-      }  
+        $('.main-footer').width($(document).width());   
+      }
     };  
+
     $(document).on('click', '[data-toggle="push-menu"]', function (e) {
       resizeFooter();
     });
     resizeFooter();     
     $('#header-thong-bao').slimScroll();
+    
   });
+  
 }
 
 /* @ngInject */
