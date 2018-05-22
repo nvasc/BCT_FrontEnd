@@ -11,19 +11,17 @@
         
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <span id="">Lấy lại mât khẩu</span>
-            <p>Vui lòng nhập email</p>
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Tên Đăng Nhập" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Mật Khẩu" required>
             <div id="remember" class="checkbox">
                 <label>
-                    
+                    <input type="checkbox" value="remember-me"> Nhớ Mật Khẩu
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Gửi</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng Nhập</button>
         </form><!-- /form -->
-        <!-- <a href="#" class="forgot-password">
+        <a ui-sref="quenmatkhau" class="forgot-password">
             Quên Mật Khẩu
-        </a> -->
+        </a>
     </div><!-- /card-container -->
 </div><!-- /container -->

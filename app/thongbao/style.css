@@ -1,0 +1,34 @@
+body{
+    background: #e7e8ea;
+    color: #9b757d;
+}
+.glyphicon{
+    color: #333;
+    line-height: 33px;
+    font-size: 25px;
+}
+h2{
+    color: #333333;
+    float: right;
+    margin: 0;
+    padding-left: 10px;
+}
+#mk
+{
+    color: #333333;
+    padding-top: 10px;
+    font-size: 15px;
+}
+#cad{
+    max-width: 500px;
+    min-height: 200px;
+}
+#dn{
+    font-size: 15px;
+    float: right;
+    padding-top: 50px;
+    
+}
+#dn a{
+    color: #333333;
+}

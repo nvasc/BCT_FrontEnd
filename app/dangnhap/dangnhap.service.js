@@ -1,4 +1,4 @@
-function layoutService($state) {
+function dangnhapService($state) {
 
   return {
     title: () => $state.current.name
@@ -6,4 +6,4 @@ function layoutService($state) {
 
 }
 /* @ngInject */
-export default layoutService;
+export default dangnhapService;

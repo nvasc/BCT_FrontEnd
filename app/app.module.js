@@ -4,21 +4,33 @@ import '@progress/kendo-ui/css/web/kendo.bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.mobile.css';
 import 'angular-confirm1/css/angular-confirm.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'admin-lte/dist/css/adminlte.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'ionicons/dist/css/ionicons.min.css';
+import 'jvectormap/jquery-jvectormap.css';
 
+import 'admin-lte/dist/css/adminlte.css';
+import 'admin-lte/dist/css/adminLTE.min.css';
+import 'admin-lte/dist/css/skins/_all-skins.min.css';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import 'angular-confirm1';
 import 'admin-lte/dist/js/adminlte.js';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'fastclick/lib/fastclick.js';
+import 'admin-lte/dist/js/adminlte.min.js';
+import 'jquery-sparkline/jquery.sparkline.min.js';
+
 
 import example from './example/example.module';
 import example2 from './example2/example2.module';
-import login from './login/login.module';
-import layout from './layout/layout.module';
-import forgotpassword from './forgotpassword/forgotpassword.module';
-
+import dangnhap from './dangnhap/dangnhap.module';
+import giaodien from './giaodien/giaodien.module';
+import quenmatkhau from './quenmatkhau/quenmatkhau.module';
+import thongbao from './thongbao/thongbao.module';
 angular.module('app', [
   uirouter, 'cp.ngConfirm', 'example', 'example2', 
-  'login', 'layout','forgotpassword'
+  'dangnhap', 'giaodien','quenmatkhau','thongbao'
 ]);

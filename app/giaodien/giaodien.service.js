@@ -1,4 +1,4 @@
-function loginService($state) {
+function giaodienService($state) {
 
   return {
     title: () => $state.current.name
@@ -6,4 +6,4 @@ function loginService($state) {
 
 }
 /* @ngInject */
-export default loginService;
+export default giaodienService;
