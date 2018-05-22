@@ -6,7 +6,8 @@ import '@progress/kendo-ui/css/web/kendo.bootstrap.mobile.css';
 import 'angular-confirm1/css/angular-confirm.css';
 
 import 'font-awesome/css/font-awesome.css';
-
+import 'ionicons/dist/css/ionicons.css';
+import 'jvectormap/jquery-jvectormap.css';
 
 import 'admin-lte/dist/css/AdminLTE.css';
 
@@ -15,10 +16,12 @@ import 'admin-lte/dist/css/skins/_all-skins.css';
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import 'angular-confirm1';
-import 'admin-lte/dist/js/adminlte.js';
+
 import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
 import 'jquery-sparkline/jquery.sparkline.js';
+import 'jquery-slimscroll';
+import 'admin-lte/dist/js/adminlte.js';
 
 
 import example from './controllers/example/example.module';

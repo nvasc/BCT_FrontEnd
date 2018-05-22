@@ -1,7 +1,21 @@
-
-body {
-    background-color: #fff;
-    color: #555;
-    font: 400 11px Arial, Helvetica, sans-serif;
-    position: relative;
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 800;
+}
+.content {
+    padding-bottom: 50px;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #367fa9;
+}
+.skin-blue .sidebar-menu > li.header {
+    background: #367fa9;
+    color: #ffffff;
+}
+.skin-blue .sidebar-menu > li > .treeview-menu {
+    background: #367fa9;
+}
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li.menu-open > a {
+    background: #367fa9;
 }
