@@ -1,14 +1,15 @@
 
+import 'bootstrap/dist/css/bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.common.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.mobile.css';
 import 'angular-confirm1/css/angular-confirm.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.css';
-import 'ionicons/dist/css/ionicons.css';
-import 'jvectormap/jquery-jvectormap.css';
 
-import 'admin-lte/dist/css/adminLTE.css';
+import 'font-awesome/css/font-awesome.css';
+
+
+import 'admin-lte/dist/css/AdminLTE.css';
+
 import 'admin-lte/dist/css/skins/_all-skins.css';
 
 import angular from 'angular';
