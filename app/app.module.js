@@ -4,23 +4,20 @@ import '@progress/kendo-ui/css/web/kendo.bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.mobile.css';
 import 'angular-confirm1/css/angular-confirm.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import 'ionicons/dist/css/ionicons.min.css';
+import 'font-awesome/css/font-awesome.css';
+import 'ionicons/dist/css/ionicons.css';
 import 'jvectormap/jquery-jvectormap.css';
 
-import 'admin-lte/dist/css/adminlte.css';
-import 'admin-lte/dist/css/adminLTE.min.css';
-import 'admin-lte/dist/css/skins/_all-skins.min.css';
+import 'admin-lte/dist/css/adminLTE.css';
+import 'admin-lte/dist/css/skins/_all-skins.css';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import 'angular-confirm1';
 import 'admin-lte/dist/js/adminlte.js';
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
-import 'jquery-sparkline/jquery.sparkline.min.js';
+import 'jquery-sparkline/jquery.sparkline.js';
 
 
 import example from './controllers/example/example.module';
