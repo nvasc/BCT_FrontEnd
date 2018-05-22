@@ -28,7 +28,7 @@ function giaodienController ($scope, giaodienService) {
     });
     resizeFooter();     
     $('#header-thong-bao').slimScroll();
-    
+    console.log($.AdminLTE)
   });
   
 }

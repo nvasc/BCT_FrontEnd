@@ -21,6 +21,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
 import 'jquery-sparkline/jquery.sparkline.js';
 import 'jquery-slimscroll';
+
+//import 'admin-lte/dist/js/adminlte.js';
 import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 
 
