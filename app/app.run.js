@@ -1,5 +1,4 @@
 function appRun($rootScope) {
-  console.log($rootScope)
 }
   
 /* @ngInject */

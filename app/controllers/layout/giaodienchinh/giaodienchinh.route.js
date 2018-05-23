@@ -5,6 +5,5 @@ function giaodienchinhRoutes($stateProvider, $urlRouterProvider, $locationProvid
       component: 'giaodienchinh'
     })
 }
-
 /* @ngInject */
 export default giaodienchinhRoutes;

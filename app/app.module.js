@@ -28,23 +28,24 @@ import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 import appConfig from './app.config';
 import appRun from './app.run';
 
+
 //import example from './controllers/example/example.module';
 //import example2 from './controllers/example2/example2.module';
+
 // single page
 import dangnhap from './controllers/dangnhap/dangnhap.module';
-import giaodien from './controllers/giaodien/giaodien.module';
 import quenmatkhau from './controllers/quenmatkhau/quenmatkhau.module';
 import thongbao from './controllers/thongbao/thongbao.module';
 
 //multi pages
 import giaodienchinh from './controllers/layout/giaodienchinh/giaodienchinh.module';
-
+import kiemsoatchung from './controllers/kiemsoatchung/kiemsoatchung.module';
 
 //'example', 'example2', 
 angular
   .module('app', [
-    uirouter, 'cp.ngConfirm', 'dangnhap', 'giaodien', 
-    'quenmatkhau','thongbao', 'giaodienchinh'
+    uirouter, 'cp.ngConfirm', 'dangnhap', 'quenmatkhau','thongbao' , 
+    'giaodienchinh', 'kiemsoatchung'
   ])
  .config(appConfig)
  .run(appRun);

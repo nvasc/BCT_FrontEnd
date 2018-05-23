@@ -1,14 +1,8 @@
-import '@progress/kendo-ui/js/kendo.button';
-import '@progress/kendo-ui/js/kendo.calendar';
 
 function giaodienchinhController ($scope, giaodienchinhService, $timeout) {
   const vm = this;
   vm.title = giaodienchinhService.title();
-  console.log($scope);
-  $('#abc').kendoButton();
-  $('#calendar').kendoCalendar();
-
-  function init() {
+  vm.init = function () {
     function resizeFooter() {      
       if ($(document).width() > 767) {    
         if ($('body').hasClass('sidebar-collapse')) {         
@@ -16,7 +10,6 @@ function giaodienchinhController ($scope, giaodienchinhService, $timeout) {
         }  
         else {
           $('.main-footer').width($(window).width() - 244);
-          console.log('zo')
         }
       }
       else {
@@ -28,10 +21,14 @@ function giaodienchinhController ($scope, giaodienchinhService, $timeout) {
       resizeFooter();
     });
     resizeFooter();  
+
     $('#header-thong-bao').slimScroll();
     $.AdminLTE.init();
   }
-  init();  
+
+  $timeout(function () {
+    vm.init();
+  });  
 }
 
 /* @ngInject */
