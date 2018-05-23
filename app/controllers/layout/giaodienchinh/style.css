@@ -34,10 +34,22 @@
 .skin-blue .sidebar-menu .treeview-menu > li > a {
     white-space: normal;
 }
-
-
-
 .skin-blue .sidebar-menu .treeview-menu>li:hover>a,
 .skin-blue .sidebar-menu .treeview-menu>li.active>a {
     color: #fff;  
+}
+#loading-bar {
+    
+}
+#loading-bar .bar {
+    left: 0;
+    bottom: 0;
+    top: auto;
+    background-color: #367fa9;
+}
+#loading-bar-spinner {
+    bottom: 35px;
+    right: 10px;
+    top: auto;
+    left: auto;
 }
