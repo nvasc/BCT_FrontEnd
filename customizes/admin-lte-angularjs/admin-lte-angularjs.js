@@ -758,6 +758,23 @@ function _init() {
         });
       }
     });
+  };  
+}(jQuery));
+/*
+ * LOCK SCREEN
+ */
+(function ($) {
+  
+  'use strict';
+  var htmlLockScreenStatich = '<div id="lock-screen" style="position: absolute;top: 0;left: 0;right:0;bottom: 0;background-color: #000;opacity: 0.1;z-index: 10002;"></div>';
+  $.AdminLTE.clockScreen = {
+    show: function (){
+      $('#lock-screen').remove();
+      $('body').append(htmlLockScreenStatich);
+    },
+    hide: function (){
+      $('#lock-screen').remove();
+    }
   };
 }(jQuery));
 /*eslint-enable */
