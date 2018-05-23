@@ -1,9 +1,9 @@
 import '@progress/kendo-ui/js/kendo.button';
 import '@progress/kendo-ui/js/kendo.calendar';
 
-function giaodienController ($scope, giaodienService, $timeout) {
+function giaodienchinhController ($scope, giaodienchinhService, $timeout) {
   const vm = this;
-  vm.title = giaodienService.title();
+  vm.title = giaodienchinhService.title();
   console.log($scope);
   $('#abc').kendoButton();
   $('#calendar').kendoCalendar();
@@ -31,10 +31,8 @@ function giaodienController ($scope, giaodienService, $timeout) {
     $('#header-thong-bao').slimScroll();
     $.AdminLTE.init();
   }
-  $timeout(function () {
-    init();
-  }, 200);  
+  init();  
 }
 
 /* @ngInject */
-export default giaodienController;
+export default giaodienchinhController;
