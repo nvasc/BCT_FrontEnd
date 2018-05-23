@@ -33,13 +33,13 @@ import appRun from './app.run';
 //import example2 from './controllers/example2/example2.module';
 
 // single page
-import dangnhap from './controllers/dangnhap/dangnhap.module';
-import quenmatkhau from './controllers/quenmatkhau/quenmatkhau.module';
-import thongbao from './controllers/thongbao/thongbao.module';
+import dangnhap from './controllers/khonggiaodien/dangnhap/dangnhap.module';
+import quenmatkhau from './controllers/khonggiaodien/quenmatkhau/quenmatkhau.module';
+import thongbao from './controllers/khonggiaodien/thongbao/thongbao.module';
 
 //multi pages
 import giaodienchinh from './controllers/layout/giaodienchinh/giaodienchinh.module';
-import kiemsoatchung from './controllers/kiemsoatchung/kiemsoatchung.module';
+import kiemsoatchung from './controllers/giaodienchinh/kiemsoatchung/kiemsoatchung.module';
 
 //'example', 'example2', 
 angular
