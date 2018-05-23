@@ -40,12 +40,13 @@ import thongbao from './controllers/khonggiaodien/thongbao/thongbao.module';
 //multi pages
 import giaodienchinh from './controllers/layout/giaodienchinh/giaodienchinh.module';
 import kiemsoatchung from './controllers/giaodienchinh/kiemsoatchung/kiemsoatchung.module';
+import nhapkhaubaocao from './controllers/giaodienchinh/nhapkhaubaocao/nhapkhaubaocao.module';
 
 //'example', 'example2', 
 angular
   .module('app', [
     uirouter, 'cp.ngConfirm', 'dangnhap', 'quenmatkhau','thongbao' , 
-    'giaodienchinh', 'kiemsoatchung'
+    'giaodienchinh', 'kiemsoatchung', 'nhapkhaubaocao'
   ])
  .config(appConfig)
  .run(appRun);
