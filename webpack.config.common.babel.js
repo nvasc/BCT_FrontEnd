@@ -16,10 +16,7 @@ module.exports = new WebpackConfig().merge({
     ],
     loaders: [{
       test: /\.css$/,
-      loader: 'style!css!'
-    }, { 
-      test: /\.(eot|woff|woff2|svg|ttf|png|gif|jpg)([\?]?.*)$/, 
-      loader: "file-loader?name=[hash].[ext]",      
+      loader: 'style!css!'    
     },{
         test: /\.json$/,
         loader: 'json-loader'
