@@ -8,14 +8,16 @@ import 'angular-confirm1/css/angular-confirm.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ionicons/dist/css/ionicons.css';
 import 'jvectormap/jquery-jvectormap.css';
+import 'angular-loading-bar/build/loading-bar.css';
 
 import 'admin-lte/dist/css/AdminLTE.css';
-
 import 'admin-lte/dist/css/skins/_all-skins.css';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
+import animate from 'angular-animate';
 import 'angular-confirm1';
+import 'angular-loading-bar';
 
 import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
@@ -45,7 +47,8 @@ import nhapkhaubaocao from './controllers/giaodienchinh/nhapkhaubaocao/nhapkhaub
 //'example', 'example2', 
 angular
   .module('app', [
-    uirouter, 'cp.ngConfirm', 'dangnhap', 'quenmatkhau','thongbao' , 
+    uirouter, animate, 'angular-loading-bar', 'cp.ngConfirm', 
+    'dangnhap', 'quenmatkhau','thongbao' , 
     'giaodienchinh', 'kiemsoatchung', 'nhapkhaubaocao'
   ])
  .config(appConfig)
