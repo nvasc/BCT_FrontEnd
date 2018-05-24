@@ -1,11 +1,11 @@
 function appConfig($stateProvider, $urlRouterProvider, $locationProvider, 
-  cfpLoadingBarProvider) {
+  cfpLoadingBarProvider, $httpProvider) {
   $locationProvider.hashPrefix('');
   $urlRouterProvider.when('', '/dangnhap');
   $urlRouterProvider.when('/', '/dangnhap');
-  $urlRouterProvider.otherwise('/dangnhap');  
+  $urlRouterProvider.otherwise('/dangnhap');
+  $httpProvider.interceptors.push('oauthInterceptorFactory');
 }
-
 /* @ngInject */
 export default appConfig;
   

@@ -7,7 +7,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').merge({
   output: {
     pathinfo: true,
-    filename: "[name].entry.js"
+    filename: '[name].entry.js'
   },
   debug: true,
   devtool: '#eval',
@@ -16,13 +16,13 @@ module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').
     vendor: ['angular','angular-ui-router'],
   },
   module: {
-    loaders: [{
+    loaders: [ {
       test: /\.(eot|woff|woff2|svg|ttf|png|gif|jpg)([\?]?.*)$/, 
-      loader: "file-loader?name=[hash].[ext]", 
-    }]
+      loader: 'file-loader?name=[name].[ext]', 
+    } ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
+    new CleanWebpackPlugin([ 'dist' ], {
       root: __dirname,
       verbose: true,
       dry: false
@@ -35,4 +35,3 @@ module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ]
 });
-

@@ -18,15 +18,15 @@ module.exports = new WebpackConfig().merge({
       test: /\.css$/,
       loader: 'style!css!'    
     },{
-        test: /\.json$/,
-        loader: 'json-loader'
+      test: /\.json$/,
+      loader: 'json-loader'
     }, {
-        test: /\.html$/,
-        loader: 'ng-cache?prefix=[dir]/[dir]'
+      test: /\.html$/,
+      loader: 'ng-cache?prefix=[dir]/[dir]'
     }, {
-        test: /\.js$/,
-        loader: 'babel?presets[]=es2015&plugins[]=angularjs-annotate',
-        exclude: /node_modules/
+      test: /\.js$/,
+      loader: 'babel?presets[]=es2015&plugins[]=angularjs-annotate',
+      exclude: /node_modules/
     }]
   },
   plugins: [
@@ -36,9 +36,9 @@ module.exports = new WebpackConfig().merge({
     //}),
    
     new webpack.ProvidePlugin({
-      "$": "jquery",
-      "jQuery": "jquery",
-      "window.jQuery": "jquery"
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'window.jQuery': 'jquery'
     })
   ]
 })
