@@ -12,23 +12,33 @@ import 'angular-loading-bar/build/loading-bar.css';
 
 import 'admin-lte/dist/css/AdminLTE.css';
 import 'admin-lte/dist/css/skins/_all-skins.css';
+import 'toastr/build/toastr.css';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import animate from 'angular-animate';
+import resource from 'angular-resource';
+
 import 'angular-confirm1';
 import 'angular-loading-bar';
+import 'angular-local-storage/dist/angular-local-storage'
 
 import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
 import 'jquery-sparkline/jquery.sparkline.js';
 import 'jquery-slimscroll';
 
-//import 'admin-lte/dist/js/adminlte.js';
 import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 
-import appConfig from './app.config';
-import appRun from './app.run';
+
+import oauthData from './commons/authentication/oauthDataFactory';
+import oauth from './commons/authentication/oauthFactory';
+import oauthInterceptor from './commons/authentication/oauthInterceptorFactory';
+import dataprovider from './commons/dataprovider/dataprovider';
+
+
+import appconfig from './app.config';
+import apprun from './app.run';
 
 
 //import example from './controllers/example/example.module';
@@ -47,9 +57,15 @@ import nhapkhaubaocao from './controllers/giaodienchinh/nhapkhaubaocao/nhapkhaub
 //'example', 'example2', 
 angular
   .module('app', [
-    uirouter, animate, 'angular-loading-bar', 'cp.ngConfirm', 
+    uirouter, animate, resource,
+    'LocalStorageModule', 'angular-loading-bar',
+    'cp.ngConfirm',
     'dangnhap', 'quenmatkhau','thongbao' , 
     'giaodienchinh', 'kiemsoatchung', 'nhapkhaubaocao'
-  ])
- .config(appConfig)
- .run(appRun);
+  ]) 
+ .factory('oauthDataFactory', oauthData)
+ .factory('oauthFactory', oauth)
+ .factory('oauthInterceptorFactory', oauthInterceptor)
+ .factory('dataprovider', dataprovider)
+ .config(appconfig)
+ .run(apprun);

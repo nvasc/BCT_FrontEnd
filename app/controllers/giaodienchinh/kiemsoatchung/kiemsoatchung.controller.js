@@ -1,7 +1,6 @@
 function kiemsoatchungController ($scope, kiemsoatchungService) {
   const vm = this;
   vm.title = kiemsoatchungService.title();
-  console.log($scope);
   if ($scope.cfpLoadingBarLoading) {
     $scope.cfpLoadingBarLoading();
   }
