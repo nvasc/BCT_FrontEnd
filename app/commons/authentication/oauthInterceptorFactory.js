@@ -47,7 +47,7 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
         for (i = 0; i < rejection.data.Errors.length; i++) {
           error += '<li>' + rejection.data.Errors[i] + '</li>';
         }
-        $rootScope.toastrerror('<ul>' + error + '</ul>', { allowHtml: true });
+        $rootScope.toastr.error('<ul>' + error + '</ul>', { allowHtml: true });
       }
     } else if (rejection.status === 500) {
       if ($rootScope.modalObjects && $rootScope.modalObjects.length > 0) {
@@ -70,13 +70,13 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
         var msg = $injector.get('msg');
         switch (response.data.ActionState) {
           case 1:
-            $rootScope.toastrsuccess(msg.createSuccess, { allowHtml: true });
+            $rootScope.toastr.success(msg.createSuccess, { allowHtml: true });
             break;
           case 2:
-            $rootScope.toastrsuccess(msg.updateSuccess, { allowHtml: true });
+            $rootScope.toastr.success(msg.updateSuccess, { allowHtml: true });
             break;
           case 3:
-            $rootScope.toastrsuccess(msg.deleteSuccess, { allowHtml: true });
+            $rootScope.toastr.success(msg.deleteSuccess, { allowHtml: true });
             break;
           case 4:
           case 5:
@@ -85,9 +85,9 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
               msg += '<li>' + response.data.Messages[i] + '</li>';
             }
             if (response.data.ActionState === 4) {
-              $rootScope.toastrsuccess('<ul>' + msg + '</ul>', { allowHtml: true });
+              $rootScope.toastr.success('<ul>' + msg + '</ul>', { allowHtml: true });
             } else {
-              $rootScope.toastrerror('<ul>' + msg + '</ul>', { allowHtml: true });
+              $rootScope.toastr.error('<ul>' + msg + '</ul>', { allowHtml: true });
             }
             break;
         }
