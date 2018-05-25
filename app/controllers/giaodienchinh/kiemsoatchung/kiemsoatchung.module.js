@@ -7,7 +7,7 @@ import service from './kiemsoatchung.service';
 /* @ngInject */
 angular
   .module('kiemsoatchung', [])
-  .component('kiemsoatchung', component)  
+  .component('kiemsoatchung', component) 
   //.controller('kiemsoatchungController', controller)
   .factory('kiemsoatchungService', service)
   .config(routing);
