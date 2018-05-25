@@ -57,19 +57,26 @@
 .skin-blue .sidebar-menu .treeview-menu>li:hover>a {
     color: #fff;
 }
-.skin-blue .sidebar-menu .treeview-menu>li.active>a,
-.skin-blue .sidebar-menu > li > a.active {
+.skin-blue .sidebar-menu > li > a.active,
+.skin-blue .sidebar-menu .treeview-menu > li.active>a {
     color: #fff;  
     border-left: 3px solid #f39c12;
     margin-left: -5px;
     padding-left: 17px;
+}
+
+.skin-blue .sidebar-menu .treeview-menu .treeview-menu > li.active>a {
+    color: #fff;  
+    border-left: 3px solid #f39c12;
+    margin-left: -20px;
+    padding-left: 32px;
 }
 .skin-blue .sidebar-menu > li > .treeview-menu {
     margin: 0;
 }
 .skin-blue .sidebar-menu > li.active > a,
 .skin-blue .sidebar-menu li.treeview > a.active  {
-    border-left-color: #f39c12;
+    border-left: 3px solid #f39c12;
     margin-left: 0;
     padding-left: 10px;
 }
