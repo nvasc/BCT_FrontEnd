@@ -48,22 +48,38 @@
                     </ul>
                 </li>
                 <li class="treeview">    
-                    <a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đội ngủ giảng viên 
+                    <a href="javascript:void(0);"><i class="fa fa-circle-o"  ui-sref-active="{'active': 'giaodienchinh.cacbaocao.doingu.**'}"></i>Đội ngũ
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đội ngũ giang viên theo khoa</span></a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đội ngũ lãnh đạo</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đội ngủ tiến sĩ</a></li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.doingu.giangvientheokhoa">
+                                <i class="fa fa-circle-o"></i>Giang viên theo khoa</span></a>
+                         </li>
+                        <li ui-sref-active="active">
+                            <a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Lãnh đạo</a></li>
+                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Tiến sĩ</a></li>
                         <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Giáo viên, nhân viên cán bộ</span></a></li>
                     </ul>
                 </li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đào tạo bồi dưỡng</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Đề tài nghiên cứu khoa học </a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Thu chi tài chính </a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Cơ sở vật chất </a></li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.daotaoboiduong">
+                        <i class="fa fa-circle-o"></i>Đào tạo bồi dưỡng</a>
+                </li>
+                <li  ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.nghiencuukhoahoc">
+                        <i class="fa fa-circle-o"></i>Đề tài nghiên cứu khoa học </a>
+                    </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.thuchitaichinh">
+                        <i class="fa fa-circle-o"></i>Thu chi tài chính </a>
+                    </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.cosovatchat">
+                        <i class="fa fa-circle-o"></i>Cơ sở vật chất </a>
+                 </li>
             </ul>
             </li>
         <li class="treeview" ui-sref-active="active">
