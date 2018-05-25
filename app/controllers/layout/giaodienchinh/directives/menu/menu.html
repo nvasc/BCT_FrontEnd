@@ -24,16 +24,22 @@
                 <li  ui-sref-active="active">
                     <a ui-sref="giaodienchinh.cacbaocao.daihoc"><i class="fa fa-circle-o"></i>Đại học</a>
                 </li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp theo ngành</span> </a></li>
-                <li class="treeview">
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.sinhvientotnghiep"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.cacbaocao.totnghieptheonganh"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp theo ngành</span> </a>
+                </li>
+                <li class="treeview" ui-sref-active="active" >
                     <a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Hợp tác quốc tế
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> Báo cáo chung</a></li>
+                    <ul class="treeview-menu" >
+                        <li ui-sref-active="active">
+                            <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.baocaochung"><i class="fa fa-circle-o"></i> Báo cáo chung</a>
+                        </li>
                         <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> Lưu học sinh</a></li>
                         <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> Sinh viên nước ngoài đang học</a></li>
                     </ul>

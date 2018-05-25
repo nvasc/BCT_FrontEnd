@@ -1,7 +1,7 @@
-function baocaolanhdaoController ($scope, baocaolanhdaoService) {
+function tuyensinhController ($scope, tuyensinhService) {
   const vm = this;
-  vm.title = baocaolanhdaoService.title();
+  vm.title = tuyensinhService.title();
 }
 
 /* @ngInject */
-export default baocaolanhdaoController;
+export default tuyensinhController;
