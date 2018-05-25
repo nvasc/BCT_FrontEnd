@@ -1,13 +1,13 @@
 import angular from 'angular';
 import routing from './hoptacquocte.route';
 import component from './hoptacquocte.component';
-import service from './hoptacquocte.service';
+import baocaochung from './baocaochung/baocaochung.module'
 
 /* @ngInject */
 angular
-  .module('hoptacquocte', [])
-  .component('hoptacquocte', component)  
-  //.controller('kiemsoatchungController', controller)
-  .factory('hoptacquocteService', service)
+  .module('hoptacquocte', [
+    'baocaochung'
+  ])
+  .component('hoptacquocte', component)
   .config(routing);
   

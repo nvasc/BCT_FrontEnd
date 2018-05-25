@@ -8,10 +8,12 @@ import sinhvientotnghiep from './sinhvientotnghiep/sinhvientotnghiep.module';
 import totnghieptheonganh from './totnghieptheonganh/totnghieptheonganh.module';
 import hoptacquocte from './hoptacquocte/hoptacquocte.module';
 
+
 /* @ngInject */
 angular
   .module('cacbaocao', [ 
-    'baocaolanhdao', 'tuyensinh','daihoc','sinhvientotnghiep','totnghieptheonganh','hoptacquocte'
+    'baocaolanhdao', 'tuyensinh','daihoc','sinhvientotnghiep','totnghieptheonganh', 
+    'hoptacquocte'
   ])
   .component('cacbaocao', component) 
   .config(routing);

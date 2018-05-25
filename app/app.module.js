@@ -65,7 +65,7 @@ angular
     'dangnhap', 'quenmatkhau','thongbao' , 
     'giaodienchinh', 'kiemsoatchung', 
     'cacbaocao',
-    'nhapkhaubaocao'
+    'nhapkhaubaocao',
   ]) 
  .factory('oauthDataFactory', oauthData)
  .factory('oauthFactory', oauth)
