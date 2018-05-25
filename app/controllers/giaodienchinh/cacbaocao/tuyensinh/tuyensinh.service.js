@@ -1,4 +1,4 @@
-function baocaolanhdaoService($state) {
+function tuyensinhService($state) {
 
   return {
     title: () => $state.current.name
@@ -6,4 +6,4 @@ function baocaolanhdaoService($state) {
 
 }
 /* @ngInject */
-export default baocaolanhdaoService;
+export default tuyensinhService;
