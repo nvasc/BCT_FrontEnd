@@ -66,7 +66,7 @@ angular
     'cp.ngConfirm',
     'dangnhap', 'quenmatkhau','thongbao' , 
     'giaodienchinh', 'kiemsoatchung', 
-    'cacbaocao','quanly', 'quantri',
+    'cacbaocao','doingu','quanly', 'quantri',
     'cacbaocao',
     'nhapkhaubaocao',
   ]) 

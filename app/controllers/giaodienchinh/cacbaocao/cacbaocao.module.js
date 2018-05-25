@@ -13,12 +13,10 @@ import nghiencuukhoahoc from './nghiencuukhoahoc/nghiencuukhoahoc.module';
 import thuchitaichinh from './thuchitaichinh/thuchitaichinh.module';
 import cosovatchatc from './cosovatchat/cosovatchat.module';
 
-
-
 /* @ngInject */
 angular
   .module('cacbaocao', [ 
-    'baocaolanhdao', 'tuyensinh','daihoc','sinhvientotnghiep','totnghieptheonganh', 
+    'baocaolanhdao', 'tuyensinh','daihoc','sinhvientotnghiep','totnghieptheonganh',
     'hoptacquocte','doingu','daotaoboiduong','nghiencuukhoahoc','thuchitaichinh','cosovatchat'
   ])
   .component('cacbaocao', component) 

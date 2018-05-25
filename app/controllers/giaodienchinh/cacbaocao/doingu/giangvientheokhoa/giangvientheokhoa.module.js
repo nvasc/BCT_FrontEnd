@@ -7,6 +7,7 @@ import service from './giangvientheokhoa.service';
 angular
   .module('giangvientheokhoa', [])
   .component('giangvientheokhoa', component)  
+  //.controller('kiemsoatchungController', controller)
   .factory('giangvientheokhoaService', service)
   .config(routing);
   
