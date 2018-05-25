@@ -54,6 +54,8 @@ import giaodienchinh from './controllers/layout/giaodienchinh/giaodienchinh.modu
 import kiemsoatchung from './controllers/giaodienchinh/kiemsoatchung/kiemsoatchung.module';
 import nhapkhaubaocao from './controllers/giaodienchinh/nhapkhaubaocao/nhapkhaubaocao.module';
 
+import cacbaocao from './controllers/giaodienchinh/cacbaocao/cacbaocao.module';
+
 //'example', 'example2', 
 angular
   .module('app', [
@@ -61,7 +63,9 @@ angular
     'LocalStorageModule', 'angular-loading-bar',
     'cp.ngConfirm',
     'dangnhap', 'quenmatkhau','thongbao' , 
-    'giaodienchinh', 'kiemsoatchung', 'nhapkhaubaocao'
+    'giaodienchinh', 'kiemsoatchung', 
+    'cacbaocao',
+    'nhapkhaubaocao'
   ]) 
  .factory('oauthDataFactory', oauthData)
  .factory('oauthFactory', oauth)
