@@ -1,4 +1,4 @@
-function daihocService($state) {
+function phanquyenService($state) {
 
   return {
     title: () => $state.current.name
@@ -6,4 +6,4 @@ function daihocService($state) {
 
 }
 /* @ngInject */
-export default daihocService;
+export default phanquyenService;

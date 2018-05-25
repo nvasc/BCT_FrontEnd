@@ -55,6 +55,8 @@ import kiemsoatchung from './controllers/giaodienchinh/kiemsoatchung/kiemsoatchu
 import nhapkhaubaocao from './controllers/giaodienchinh/nhapkhaubaocao/nhapkhaubaocao.module';
 
 import cacbaocao from './controllers/giaodienchinh/cacbaocao/cacbaocao.module';
+import quanly from './controllers/giaodienchinh/quanly/quanly.module';
+import quantri from './controllers/giaodienchinh/quantri/quantri.module';
 
 //'example', 'example2', 
 angular
@@ -64,7 +66,7 @@ angular
     'cp.ngConfirm',
     'dangnhap', 'quenmatkhau','thongbao' , 
     'giaodienchinh', 'kiemsoatchung', 
-    'cacbaocao',
+    'cacbaocao','quanly', 'quantri',
     'nhapkhaubaocao'
   ]) 
  .factory('oauthDataFactory', oauthData)

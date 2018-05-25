@@ -8,13 +8,13 @@
         </li>
 
         <li class="treeview">
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.**'}">
                 <i class="fa fa-table"></i> <span>Các báo cáo</span>
                 <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
-            <ul class="treeview-menu" ui-sref-active="menu-open">
+            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.**'}">
                 <li ui-sref-active="active">
                     <a ui-sref="giaodienchinh.cacbaocao.baocaolanhdao"><i class="fa fa-circle-o"></i>Báo cáo lãnh đạo</a>
                 </li>
@@ -22,7 +22,7 @@
                     <a ui-sref="giaodienchinh.cacbaocao.tuyensinh"><i class="fa fa-circle-o"></i>Tuyển sinh</a>
                 </li>
                 <li  ui-sref-active="active">
-                    <a  ui-sref="giaodienchinh.cacbaocao.daihoc"><i class="fa fa-circle-o"></i>Đại học</a>
+                    <a ui-sref="giaodienchinh.cacbaocao.daihoc"><i class="fa fa-circle-o"></i>Đại học</a>
                 </li>
                 <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp</a></li>
                 <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp theo ngành</span> </a></li>
@@ -63,31 +63,45 @@
             </a>            
         </li>
         <li class="treeview">
-            <a href="javascript:void(0);">
-            <i class="fa fa-table"></i> <span>Quản lý </span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quanly.**'}">
+                <i class="fa fa-table"></i> <span>Quản lý </span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
-            <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i>Biểu mẫu</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Trường</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Tài khoản</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Phân quyền</a></li>
+            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quanly.**'}">
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quanly.bieumau"><i class="fa fa-circle-o"></i>Biểu mẫu</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quanly.danhsachtruong"><i class="fa fa-circle-o"></i>Danh sách trường</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quanly.taikhoan"><i class="fa fa-circle-o"></i>Tài khoản</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quanly.phanquyen"><i class="fa fa-circle-o"></i>Phân quyền</a>
+                </li>
             </ul>
         </li>
         <li>
             <li class="treeview">
-            <a href="javascript:void(0);">
-            <i class="fa fa-table"></i> <span>Quản trị </span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quantri.**'}">
+                <i class="fa fa-table"></i> <span>Quản trị </span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
-            <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i>Api</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Đăng nhập</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Nhật ký và lỗi hệ thống</a></li>            
+            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quantri.**'}">
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quantri.api"><i class="fa fa-circle-o"></i>Api</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quantri.dangnhap"><i class="fa fa-circle-o"></i>Đăng nhập</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="giaodienchinh.quantri.nhatkyvaloi"><i class="fa fa-circle-o"></i>Nhật ký và lỗi hệ thống</a>
+                </li>            
             </ul>
         </li>
         </ul>
