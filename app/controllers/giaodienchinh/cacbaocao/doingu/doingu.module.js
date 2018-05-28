@@ -4,11 +4,11 @@ import component from './doingu.component';
 import lanhdao from './lanhdao/lanhdao.module'
 import giangvientheokhoa from './giangvientheokhoa/giangvientheokhoa.module'
 import tiensi from './tiensi/tiensi.module'
-import giaoviennhanvien from './giaoviennhanvien/giaoviennhanvien.module'
+import giangviennhanvien from './giangviennhanvien/giangviennhanvien.module'
 
 /* @ngInject */
 angular
-.module('doingu',['lanhdao','giangvientheokhoa','tiensi','giaoviennhanvien'
+.module('doingu',['lanhdao','giangvientheokhoa','tiensi','giangviennhanvien'
 ])
 .component('doingu', component)
 .config(routing);
