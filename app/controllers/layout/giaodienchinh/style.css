@@ -45,11 +45,7 @@
     color: #ddd;
 }
 
-@media (max-width: 767px) {
-    .skin-blue .main-header .navbar .dropdown-menu li a {
-        color: #ddd;
-    }
-}
+
 
 .skin-blue .main-header .logo {
   background-color: #3c8dbc;
@@ -106,4 +102,44 @@
     padding: 7px;
     color: #fff;
     font-weight: 600;
+}
+.has-feedback .form-control {
+    padding-right: 0; 
+}
+.box-header.with-border {
+    border-bottom: 1px solid #ccc;
+}
+.btn-box-tool {
+    padding: 5px;
+    font-size: 15px;
+}
+.text-primary {
+    color: #3c8dbc;
+}
+.btn{
+    cursor: pointer;
+}
+.box-header .box-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+@media (max-width: 767px) {
+    .skin-blue .main-header .navbar .dropdown-menu li a {
+        color: #ddd;
+    }
+    .header-left {
+        padding: 4px;
+        color: #fff;
+        font-weight: 600;
+        width: 175px;
+        word-wrap: break-word;
+        font-size: 10px;
+    }
+    .skin-blue .main-header .navbar .dropdown-menu li a {
+        color: #444;
+    }  
+    .content-header > .breadcrumb {
+        position: absolute;
+        background: transparent;
+    }  
 }
