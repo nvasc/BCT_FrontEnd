@@ -13,7 +13,16 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
-  <body class="skin-blue sidebar-mini wysihtml5-supported fixed">    
+  <body class="skin-blue sidebar-mini wysihtml5-supported fixed">
+    <% if (htmlWebpackPlugin.options.contentTo) { %>
+      <input type="hidden" id="connect-to-server" value="<%= htmlWebpackPlugin.options.contentTo %>">
+    <% } %>
+    <% if (htmlWebpackPlugin.options.audience) { %>
+      <input type="hidden" id="audience" value="<%= htmlWebpackPlugin.options.audience %>">
+    <% } %>
+    <% if (htmlWebpackPlugin.options.secret) { %>
+      <input type="hidden" id="secret" value="<%= htmlWebpackPlugin.options.secret %>">
+    <% } %>
     <div id="app-wrapper" ui-view></div>      
   </body>
 </html>

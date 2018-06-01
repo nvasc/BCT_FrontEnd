@@ -1,4 +1,4 @@
-function dangnhapService($state) {
+function dangnhapService($state, oauthFactory) {
 
   return {
     title: () => $state.current.name

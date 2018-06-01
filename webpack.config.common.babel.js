@@ -38,7 +38,7 @@ module.exports = new WebpackConfig().merge({
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery',
-      'window.jQuery': 'jquery'
+      'window.jQuery': 'jquery',
     })
   ]
 })

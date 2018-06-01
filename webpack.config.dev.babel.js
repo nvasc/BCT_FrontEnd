@@ -30,7 +30,10 @@ module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').
     new HtmlWebpackPlugin({
       title: 'Dev BCT',
       template: 'index.ejs',
-      inject: 'body'
+      inject: 'body',
+      contentTo: 'aHR0cDovL2xvY2FsaG9zdDo1MjA4MS8=', //= 'http://localhost:52081/',
+      audience: 'f75a3bfeb3c64f489fc80ae155287918',
+      secret: 'Kj5isbpJ9pgs9RWJKqOzPdtDrmkpteIWSdM3pAKB_8g',
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ]

@@ -4,17 +4,23 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
   
   var _login = function (loginData) {
 
-    var data = 'grant_type=password';
-    data += '&username=' + loginData.userName;
-    data += '&password=' + loginData.password;
-    data += '&client_id=' + oauthDataFactory.clientId;
-
+    var data = '';
+    data += 'UserName=' + loginData.userName;
+    data += '&Password=' + loginData.password;
+    var audience = oauthDataFactory.audience();
+    var secret = oauthDataFactory.secret()
+    if (audience !== '' && secret !== '') {
+      data += 'Audience=' + audience;
+      data += '&Secret=' + secret;
+    }
+    
     var deferred = $q.defer();
-    $http.post(oauthDataFactory.urlMain + 'token', data, 
+    $http.post(oauthDataFactory.urlMain + 'token' , data, 
       { 
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
       }).then(function (response) {
         var resultData = response.data;
+        console.log(resultData);
         deferred.resolve(true);
       },function (err, status) {
         deferred.reject(err);
