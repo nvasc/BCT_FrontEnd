@@ -5,23 +5,28 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
   var _login = function (loginData) {
 
     var data = '';
-    data += 'UserName=' + loginData.userName;
-    data += '&Password=' + loginData.password;
+    data += 'UserName=' + loginData.UserName;
+    data += '&Password=' + loginData.Password;
     var audience = oauthDataFactory.audience();
     var secret = oauthDataFactory.secret()
     if (audience !== '' && secret !== '') {
-      data += 'Audience=' + audience;
+      data += '&Audience=' + audience;
       data += '&Secret=' + secret;
     }
-    
     var deferred = $q.defer();
-    $http.post(oauthDataFactory.urlMain + 'token' , data, 
+    $http.post(oauthDataFactory.urlLogin() , data, 
       { 
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
       }).then(function (response) {
         var resultData = response.data;
-        console.log(resultData);
-        deferred.resolve(true);
+        if (resultData.IsOk) {
+          oauthDataFactory.setToken(resultData.ResultData.Token)
+          oauthDataFactory.setRememberMe(loginData.RememberMe);
+          deferred.resolve(resultData);
+        }
+        else {
+          deferred.reject(resultData.Message);
+        }        
       },function (err, status) {
         deferred.reject(err);
       });
@@ -56,7 +61,6 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
       }).success(function (response) {
         var resultData = response.data;          
         deferred.resolve(true);
-
       }).error(function (err, status) {
         _logOut();
         deferred.reject(err);

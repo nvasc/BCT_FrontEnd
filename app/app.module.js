@@ -32,10 +32,12 @@ import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 
 
 import oauthData from './commons/authentication/oauthDataFactory';
+import loginInfo from './commons/authentication/loginInfoFactory';
 import oauth from './commons/authentication/oauthFactory';
 import oauthInterceptor from './commons/authentication/oauthInterceptorFactory';
-import dataprovider from './commons/dataprovider/dataprovider';
-
+import nonceProvider from './commons/dataprovider/nonceProvider';
+import dataProvider from './commons/dataprovider/dataProvider';
+import httpProvider from './commons/dataprovider/httpProvider';
 
 import appconfig from './app.config';
 import apprun from './app.run';
@@ -71,8 +73,11 @@ angular
     'nhapkhaubaocao',
   ]) 
  .factory('oauthDataFactory', oauthData)
+ .factory('loginInfoFactory', loginInfo)
  .factory('oauthFactory', oauth)
  .factory('oauthInterceptorFactory', oauthInterceptor)
- .factory('dataprovider', dataprovider)
+ .factory('nonceProvider', nonceProvider)
+ .factory('dataProvider', dataProvider)
+ .factory('httpProvider', httpProvider)
  .config(appconfig)
  .run(apprun);

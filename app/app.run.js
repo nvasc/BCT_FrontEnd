@@ -1,8 +1,7 @@
 import toastr from 'toastr';
-var jwtDecode = require('jwt-decode');
 var base64 = require('base-64');
 
-function appRun($rootScope, cfpLoadingBar, $timeout, $window) {
+function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location) {
 
   if ($rootScope.cfpLoadingBarStarted) {
     $rootScope.cfpLoadingBarStarted();
@@ -45,7 +44,16 @@ function appRun($rootScope, cfpLoadingBar, $timeout, $window) {
   }
   //$rootScope.toastr.info('<strong>Bộ Công Thương</strong>', {allowHtml: true});
   $rootScope.base64 = base64;
-  console.log(base64);
+  //console.log($location.port())
+
+  function init() {
+    $('#header-thong-bao').slimScroll();
+    $.AdminLTE.init();
+  }
+
+  $timeout(function () {
+    init();
+  });
 
 }
   

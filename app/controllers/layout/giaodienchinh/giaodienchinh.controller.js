@@ -1,33 +1,26 @@
 
-function giaodienchinhController ($scope, giaodienchinhService, $timeout) {
+function giaodienchinhController ($rootScope, $scope, $timeout) {
   const vm = this;
-  vm.title = giaodienchinhService.title();
-  vm.init = function () {
-    function resizeFooter() {      
-      if ($(document).width() > 767) {    
-        if ($('body').hasClass('sidebar-collapse')) {         
-          $('.main-footer').width($(document).width() - 64);                      
-        }  
-        else {
-          $('.main-footer').width($(window).width() - 244);
-        }
-      }
+  var _resizeFooter = function() {
+    if ($(document).width() > 767) {    
+      if ($('body').hasClass('sidebar-collapse')) {        
+        $('.main-footer').width($(document).width() - 64);                      
+      }  
       else {
-        $('.main-footer').width($(document).width());   
+        $('.main-footer').width($(window).width() - 244);
       }
-    };  
-
-    $(document).on('click', '[data-toggle="push-menu"]', function (e) {
-      resizeFooter();
-    });
-    resizeFooter();  
-
-    $('#header-thong-bao').slimScroll();
-    $.AdminLTE.init();
-  }
-
+    }
+    else {
+      $('.main-footer').width($(document).width());   
+    }
+  };
+  $(document).on('click', '[data-toggle="push-menu"]', function (e) {
+    $timeout(function () {
+      _resizeFooter();
+    })    
+  }); 
   $timeout(function () {
-    vm.init();
+    _resizeFooter();
   });  
 }
 

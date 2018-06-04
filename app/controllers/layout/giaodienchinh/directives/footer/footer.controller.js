@@ -1,6 +1,6 @@
-function footerController ($scope) {
+function footerController ($scope, giaodienchinhService) {
   const vm = this;
-  vm.version = '1.0.0';
+  vm.version = giaodienchinhService.getAppVersion();
 }
 
 /* @ngInject */

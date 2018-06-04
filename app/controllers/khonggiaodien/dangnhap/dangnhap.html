@@ -11,14 +11,14 @@
         
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="inputEmail" class="form-control" placeholder="Tên Đăng Nhập" required autofocus autocomplete="username">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Mật Khẩu" required autocomplete="current-password">
+            <input type="text" id="inputEmail" class="form-control" placeholder="Tên Đăng Nhập" ng-model="dangnhap.DangNhapModel.UserName" required autofocus autocomplete="username">
+            <input type="password" id="inputPassword" class="form-control" placeholder="Mật Khẩu" ng-model="dangnhap.DangNhapModel.Password" required autocomplete="current-password">
             <div id="remember" class="checkbox">
                 <label>
-                    <input type="checkbox" value="remember-me"> Nhớ Mật Khẩu
+                    <input type="checkbox" ng-model="dangnhap.DangNhapModel.RememberMe"> Nhớ Mật Khẩu
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="dangnhap.dangnhap">Đăng Nhập</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="dangnhap.dangnhap()">Đăng Nhập</button>
         </form><!-- /form -->
         <a ui-sref="quenmatkhau" class="forgot-password">
             Quên Mật Khẩu

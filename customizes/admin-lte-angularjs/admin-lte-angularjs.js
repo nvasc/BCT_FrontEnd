@@ -218,7 +218,6 @@ $(function () {
       $(this).addClass("active");
       e.preventDefault();
     });
-
   });
   /* ----------------------------------
   * - Initialize the AdminLTE Object -

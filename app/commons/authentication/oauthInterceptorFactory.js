@@ -4,9 +4,9 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
 
   var _request = function (config) {
     config.headers = config.headers || {};
-    var authData = oauthDataFactory.token;
+    var authData = oauthDataFactory.getToken();
     if (authData) {
-      if (oauthDataFactory.compareVersion()) {
+      if (oauthDataFactory.checkValidToken()) {
         return config;
       }
       config.headers.Authorization = 'Bearer ' + authData;
@@ -15,7 +15,6 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
   }
   /*eslint-disable */
   var _responseError = function (rejection) {
-    //var state = $injector.get('$state');
     var error = '';
     var i = 0;
     if (rejection.status === 401) {
@@ -64,33 +63,18 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
   
 
   var _response = function (response) {
-    var toastr = $injector.get('toastr');
     if (response.status === 200) {
       if (angular.isDefined(response.data)) {               
-        var msg = $injector.get('msg');
-        switch (response.data.ActionState) {
-          case 1:
-            $rootScope.toastr.success(msg.createSuccess, { allowHtml: true });
-            break;
-          case 2:
-            $rootScope.toastr.success(msg.updateSuccess, { allowHtml: true });
-            break;
-          case 3:
-            $rootScope.toastr.success(msg.deleteSuccess, { allowHtml: true });
-            break;
-          case 4:
-          case 5:
-            var msg = '';
-            for (var i = 0; i < response.data.Messages.length; i++) {
-              msg += '<li>' + response.data.Messages[i] + '</li>';
+        if (angular.isObject(response.data)) {
+          if (angular.isDefined(response.data.IsOk)) {
+            if (response.data.IsOk === true) {              
+              $rootScope.toastr.success(response.data.Message);
             }
-            if (response.data.ActionState === 4) {
-              $rootScope.toastr.success('<ul>' + msg + '</ul>', { allowHtml: true });
-            } else {
-              $rootScope.toastr.error('<ul>' + msg + '</ul>', { allowHtml: true });
-            }
-            break;
-        }
+            else {
+              $rootScope.toastr.error(response.data.Message);
+            }            
+          }              
+        }        
       }
     }
     return response;

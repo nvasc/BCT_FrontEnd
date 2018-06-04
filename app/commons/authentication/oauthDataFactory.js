@@ -1,4 +1,5 @@
-function oauthDataFactory(localStorageService, $rootScope) {
+var jwtDecode = require('jwt-decode');
+function oauthDataFactory(localStorageService, $rootScope, $location) {
   var dataFactory = {};
 
   var _urlMain = function () {
@@ -25,17 +26,69 @@ function oauthDataFactory(localStorageService, $rootScope) {
   };
   dataFactory.secret = _secret;
 
-  var _token = ''; //todo: implement get value.
-  dataFactory.token = _token;
+  var _urlLogin = function () {
+    if (_audience() !== '' && _secret() !== '') {
+      return $rootScope.base64.decode($('#connect-to-server').val()) + 'token'
+    }
+    var urlSelf = $location.protocol() + '://' + $location.host();
+    if ($location.port() !== 80) {
+      urlSelf += ':' + $location.port()
+    }      
+    urlSelf += '/home/login'
+    return urlSelf;
+  };
+  dataFactory.urlLogin = _urlLogin;
+
+  var _ascToken = 'asc-token';
+  var _setToken =  function (token) {
+    localStorageService.set(_ascToken, token)
+  }; 
+  dataFactory.setToken = _setToken;
+
+  var _getToken = function () {
+    return localStorageService.get(_ascToken);
+  }; 
+  dataFactory.getToken = _getToken;
+
+  var _removeToken = function () {
+    return localStorageService.remove(_ascToken);
+  }; 
+  dataFactory.removeToken = _removeToken;
+
+  var _checkValidToken = function () {
+    var obj = _getTokenDetail();
+    if  (obj) {
+      var expDate = new Date(obj.exp * 1000);
+      var currentDate = Date();
+      return expDate > currentDate
+    }
+  }; 
+
+  dataFactory.checkValidToken = _checkValidToken;  
+
+  var _getTokenDetail = function () {
+    return jwtDecode(_getToken());
+  };
+  dataFactory.getTokenDetail = _getTokenDetail;
 
   var _refreshToken = ''; //todo: implement get value.
-  dataFactory.refreshToken = _refreshToken;  
+  dataFactory.refreshToken = _refreshToken;   
 
-  var _remove = function () {    
-  }
-  dataFactory.remove = _remove;
+  var _ascRemember = 'asc-remember';
+  var _setRememberMe =  function (isRemember) {
+    localStorageService.set(_ascRemember, isRemember)
+  }; 
+  dataFactory.setRememberMe = _setRememberMe;
 
-  var _loadSystem
+  var _getRememberMe = function () {
+    return localStorageService.get(_ascRemember);
+  }; 
+  dataFactory.getRememberMe = _getRememberMe;
+
+  var _removeRememberMe = function () {
+    return localStorageService.remove(_ascRemember);
+  };   
+  dataFactory.removeRememberMe = _removeRememberMe;
 
   return dataFactory;
 }
