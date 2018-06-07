@@ -166,7 +166,7 @@ $(function () {
     //Enable control sidebar
     if (o.enableControlSidebar) {
       $.AdminLTE.controlSidebar.activate();
-    }
+    }   
 
     //Add slimscroll to navbar dropdown
     if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
@@ -205,7 +205,8 @@ $(function () {
         var box = $(this).parents('.direct-chat').first();
         box.toggleClass('direct-chat-contacts-open');
       });
-    }  
+    } 
+    
   }
   /*
    * INITIALIZE BUTTON TOGGLE
@@ -281,6 +282,12 @@ function _init() {
             $(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
         }
       }
+      //Nghiep fix content layout
+      $.AdminLTE.pushMenu._fixFooter();
+      var fixOfContentHeight = this.getFixOfContentHeight();
+      if (fixOfContentHeight != 0) {
+        $('.auto-of-content .box-body').css('min-height', fixOfContentHeight); 
+      }
     },
     fixSidebar: function () {
       //Make sure the body tag has the .fixed class
@@ -303,6 +310,22 @@ function _init() {
           });
         }
       }
+    },
+    getFixOfContentHeight: function () {
+      var window_height = $(window).height();
+      if ($('.fix-of-content').length > 0 && $('.auto-of-content').length > 0) {
+        var window_height = $(window).height();
+        var windowWidth = $(document).width();
+        if (windowWidth > 767) {
+          var heightFixOfContent = 0;    
+          for (var i = 0; i< $('.fix-of-content').length; i++) {
+            heightFixOfContent += $($('.fix-of-content')[0]).height();
+          }        
+          var contentWrapper = window_height - $('.main-footer').outerHeight();
+          return contentWrapper - (heightFixOfContent + 112);         
+        }    
+      }
+      return 0;
     }
   };
 
@@ -317,11 +340,11 @@ function _init() {
     activate: function (toggleBtn) {
       //Get the screen sizes
       var screenSizes = $.AdminLTE.options.screenSizes;
-
+      var _this = this;
       //Enable sidebar toggle
       $(document).on('click', toggleBtn, function (e) {
         e.preventDefault();
-
+        
         //Enable sidebar push menu
         if ($(window).width() > (screenSizes.sm - 1)) {
           if ($("body").hasClass('sidebar-collapse')) {
@@ -329,7 +352,7 @@ function _init() {
           } else {
             $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
           }
-        }
+        }        
         //Handle sidebar push menu for small screens
         else {
           if ($("body").hasClass('sidebar-open')) {
@@ -338,6 +361,9 @@ function _init() {
             $("body").addClass('sidebar-open').trigger('expanded.pushMenu');
           }
         }
+
+        //Fixed footer
+        _this._fixFooter();
       });
 
       $(".content-wrapper").click(function () {
@@ -353,6 +379,9 @@ function _init() {
           && $('body').hasClass('sidebar-mini'))) {
         this.expandOnHover();
       }
+
+      //Fixed footer
+      _this._fixFooter();
     },
     expandOnHover: function () {
       var _this = this;
@@ -374,11 +403,27 @@ function _init() {
     },
     expand: function () {
       $("body").removeClass('sidebar-collapse').addClass('sidebar-expanded-on-hover');
+      
     },
     collapse: function () {
       if ($('body').hasClass('sidebar-expanded-on-hover')) {
         $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
       }
+    },    
+    //Nghiep: fixed footer
+    _fixFooter: function () {
+      var windowWidth = $(document).width();
+      if (windowWidth > 767) {
+        if ($('body').hasClass('sidebar-collapse')) {
+          $('.main-footer').width(windowWidth - 64);          
+        }
+        else {
+          $('.main-footer').width(windowWidth - 244);
+        }        
+      }
+      else {
+        $('.main-footer').width(windowWidth);   
+      } 
     }
   };
 
@@ -464,6 +509,7 @@ function _init() {
         } else {
           _this.close(sidebar, o.slide);
         }
+        console.log('zo')
       });
 
       //If the body has a boxed layout, fix the sidebar bg position
@@ -498,7 +544,7 @@ function _init() {
       } else {
         $('body').removeClass('control-sidebar-open');
       }
-    },
+    },    
     _fix: function (sidebar) {
       var _this = this;
       if ($("body").hasClass('layout-boxed')) {

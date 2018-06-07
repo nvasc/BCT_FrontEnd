@@ -1,7 +1,7 @@
 import toastr from 'toastr';
 var base64 = require('base-64');
 
-function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location) {
+function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location, loginInfoFactory) {
 
   if ($rootScope.cfpLoadingBarStarted) {
     $rootScope.cfpLoadingBarStarted();
@@ -53,8 +53,8 @@ function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location) {
 
   $timeout(function () {
     init();
+    loginInfoFactory.checkLogin();
   });
-
 }
   
 /* @ngInject */

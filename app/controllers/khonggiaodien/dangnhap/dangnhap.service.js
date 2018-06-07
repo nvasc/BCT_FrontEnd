@@ -1,4 +1,4 @@
-function dangnhapService($q, $state, oauthFactory) {
+function dangnhapService($q, $state, oauthFactory, loginInfoFactory) {
   var service = {};
 
   var _dangnhap = function (dangNhapModel) {
@@ -8,8 +8,9 @@ function dangnhapService($q, $state, oauthFactory) {
     });
     return deferred.promise;
   };
-  service.dangnhap = _dangnhap;
+  service.dangnhap = _dangnhap;  
   return service
 }
+
 /* @ngInject */
 export default dangnhapService;

@@ -1,8 +1,11 @@
-function baocaolanhdaoService($state) {
+function baocaolanhdaoService($rootScope, $timeout) {
 
-  return {
-    title: () => $state.current.name
-  }
+  var service = {};
+  var _init = function () {
+       
+  };
+  service.init = _init;
+  return service
 
 }
 /* @ngInject */

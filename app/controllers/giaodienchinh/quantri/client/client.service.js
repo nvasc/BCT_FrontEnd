@@ -1,4 +1,4 @@
-function apiService($timeout, $rootScope) {
+function clientService($timeout, $rootScope) {
 
   var service = {};
   var _init = function () {
@@ -12,4 +12,4 @@ function apiService($timeout, $rootScope) {
 
 }
 /* @ngInject */
-export default apiService;
+export default clientService;

@@ -1,6 +1,6 @@
 function baocaolanhdaoController ($scope, baocaolanhdaoService) {
   const vm = this;
-  vm.title = baocaolanhdaoService.title();
+  baocaolanhdaoService.init();
 }
 
 /* @ngInject */

@@ -1,6 +1,6 @@
 function nhatkyvaloiController ($scope, nhatkyvaloiService) {
   const vm = this;
-  vm.title = nhatkyvaloiService.title();
+  nhatkyvaloiService.init();
 }
 
 /* @ngInject */

@@ -1,8 +1,8 @@
-
 import 'bootstrap/dist/css/bootstrap.css';
-import '@progress/kendo-ui/css/web/kendo.common.css';
+import '@progress/kendo-ui/css/web/kendo.common-bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.css';
 import '@progress/kendo-ui/css/web/kendo.bootstrap.mobile.css';
+
 import 'angular-confirm1/css/angular-confirm.css';
 
 import 'font-awesome/css/font-awesome.css';
@@ -39,6 +39,10 @@ import nonceProvider from './commons/dataprovider/nonceProvider';
 import dataProvider from './commons/dataprovider/dataProvider';
 import httpProvider from './commons/dataprovider/httpProvider';
 
+//Component -------------------
+import grid from './commons/components/grid/grid.directive'
+
+//--------------------------------------------------------------
 import appconfig from './app.config';
 import apprun from './app.run';
 
@@ -60,6 +64,7 @@ import cacbaocao from './controllers/giaodienchinh/cacbaocao/cacbaocao.module';
 import quanly from './controllers/giaodienchinh/quanly/quanly.module';
 import quantri from './controllers/giaodienchinh/quantri/quantri.module';
 
+
 //'example', 'example2', 
 angular
   .module('app', [
@@ -72,6 +77,7 @@ angular
     'cacbaocao',
     'nhapkhaubaocao',
   ]) 
+  //Register data access layer
  .factory('oauthDataFactory', oauthData)
  .factory('loginInfoFactory', loginInfo)
  .factory('oauthFactory', oauth)
@@ -79,5 +85,9 @@ angular
  .factory('nonceProvider', nonceProvider)
  .factory('dataProvider', dataProvider)
  .factory('httpProvider', httpProvider)
+
+ //Register Module
+ .directive('ciGrid', grid)
+
  .config(appconfig)
  .run(apprun);

@@ -1,6 +1,6 @@
 
 function dangnhapController ($scope, dangnhapService, $state, httpProvider, dataProvider, 
-  $resource) {
+  $resource, loginInfoFactory) {
   const vm = this;
   
   vm.DangNhapModel = {
@@ -9,19 +9,11 @@ function dangnhapController ($scope, dangnhapService, $state, httpProvider, data
     RememberMe: false
   };
   vm.dangnhap = function () {
-    dangnhapService.dangnhap(vm.DangNhapModel).then(function (data) {
-      // var taiKhoan = dataProvider.provider('TaiKhoan');
-      
-      // var data = taiKhoan.get({id: 123}, function () {
-      //   console.log(data);
-      // });
-
-      // httpProvider.get('api/TaiKhoan?id=241188', true).then(function (rep) {
-      //   console.log(rep);
-      // });
+    dangnhapService.dangnhap(vm.DangNhapModel).then(function (data) {     
       $state.go('giaodienchinh.kiemsoatchung');
     });
   }
+  loginInfoFactory.checkLogin();
 }
 
 /* @ngInject */

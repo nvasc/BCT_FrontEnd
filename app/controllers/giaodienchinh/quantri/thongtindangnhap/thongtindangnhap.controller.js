@@ -1,6 +1,6 @@
 function thongtindangnhapController ($scope, thongtindangnhapService) {
   const vm = this;
-  vm.title = thongtindangnhapService.title();
+  thongtindangnhapService.init();
 }
 
 /* @ngInject */

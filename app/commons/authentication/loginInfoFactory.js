@@ -1,4 +1,4 @@
-function loginInfoFactory(oauthDataFactory) {
+function loginInfoFactory(oauthDataFactory, $state) {
   var dataFactory = {};
 
   var _getAppVersion = function () {
@@ -6,6 +6,7 @@ function loginInfoFactory(oauthDataFactory) {
     if (obj) {
       return obj.av;
     }
+    return '';
   };   
   dataFactory.getAppVersion = _getAppVersion;
 
@@ -14,6 +15,7 @@ function loginInfoFactory(oauthDataFactory) {
     if (obj) {
       return obj.ninf;
     }
+    return '';
   };   
   
   dataFactory.getLoginName = _getLoginName;
@@ -23,6 +25,7 @@ function loginInfoFactory(oauthDataFactory) {
     if (obj) {
       return obj.sub;
     }
+    return '';
   };   
   
   dataFactory.getUserName = _getUserName;
@@ -32,10 +35,24 @@ function loginInfoFactory(oauthDataFactory) {
     if (obj) {
       return obj.tninf;
     }
+    return '';
   };   
   dataFactory.getTenantName = _getTenantName;
 
-  dataFactory.getUserName = _getUserName; 
+  dataFactory.getUserName = _getUserName;
+
+  var _checkLogin = function () {
+    var obj = oauthDataFactory.getTokenDetail();  
+    if (!obj) {
+      $state.go('dangnhap');
+    }
+    else {
+      if ($state.current.name.indexOf('.') === -1) {
+        $state.go('giaodienchinh.kiemsoatchung');
+      }      
+    }
+  };   
+  dataFactory.checkLogin = _checkLogin; 
 
   return dataFactory;
 }

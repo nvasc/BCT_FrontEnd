@@ -6,7 +6,7 @@
         <i class="fa fa-cogs" aria-hidden="true"></i> Quản trị</a>
     </li>
     <li>
-      <a href="javascript:void(0);"> Các Api</a>
+      <a href="javascript:void(0);"> Các Client</a>
     </li>
   </ol>
 </section>
@@ -30,8 +30,8 @@
                 <button class="btn btn-xs btn-primary" title="Tạo mới" data-toggle="tooltip" data-placement="top">
                     <span class="k-icon k-i-plus"></span>
                   </button>
-                <button class="btn btn-xs btn-primary" title="Lọc dữ liệu" data-toggle="tooltip" data-placement="top">
-                  <span class="k-icon k-i-filter"></span>
+                <button class="btn btn-xs btn-primary" ng-click="client.filter()" title="Lọc dữ liệu" data-toggle="tooltip" data-placement="top">
+                  <span class="k-icon" ng-class="{'k-i-filter': !client.isFilter, 'k-i-filter-clear': client.isFilter}"></span>
                 </button>
               </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-grid ci-id="grid-main" col-list="api.colList"></ci-grid>
+              <ci-grid ci-id="grid-main" col-list="client.colList" g-sort="true" g-filter="client.isFilter"></ci-grid>
             </div>
           </div>
           <!-- /.row -->

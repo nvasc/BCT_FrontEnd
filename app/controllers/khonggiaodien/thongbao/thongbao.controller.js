@@ -1,11 +1,8 @@
-import '@progress/kendo-ui/js/kendo.button';
-import '@progress/kendo-ui/js/kendo.calendar';
 
-function thongbaoController ($scope,thongbaoService) {
+
+function thongbaoController ($scope,thongbaoService, loginInfoFactory) {
   const vm = this;
-  vm.title = thongbaoService.title();
-  $('#abc').kendoButton();
-  $('#calendar').kendoCalendar();
+  loginInfoFactory.checkLogin();
 }
 
 /* @ngInject */

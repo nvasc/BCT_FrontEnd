@@ -9,6 +9,7 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory, $stat
     oauthDataFactory.removeRememberMe();
     $state.go('dangnhap');
   }
+
 }
 
 /* @ngInject */

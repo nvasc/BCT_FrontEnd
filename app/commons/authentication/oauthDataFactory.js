@@ -67,7 +67,11 @@ function oauthDataFactory(localStorageService, $rootScope, $location) {
   dataFactory.checkValidToken = _checkValidToken;  
 
   var _getTokenDetail = function () {
-    return jwtDecode(_getToken());
+    var tokenObj = _getToken();
+    if (tokenObj) {
+      return jwtDecode(_getToken());
+    }    
+    return null;
   };
   dataFactory.getTokenDetail = _getTokenDetail;
 
