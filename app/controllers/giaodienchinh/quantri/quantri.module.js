@@ -6,13 +6,11 @@ import api from './api/api.module';
 import client from './client/client.module';
 import thongtindangnhap from './thongtindangnhap/thongtindangnhap.module';
 import nhatkyvaloi from './nhatkyvaloi/nhatkyvaloi.module';
-import test from './test/test.module';
 
 /* @ngInject */
 angular
   .module('quantri', [ 
-    'api', 'nhatkyvaloi','thongtindangnhap', 'client', 
-    'test'
+    'api', 'nhatkyvaloi','thongtindangnhap', 'client'
   ])
   .component('quantri', component) 
   .config(routing);

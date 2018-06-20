@@ -1,14 +1,15 @@
-function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthDataFactory) {
+function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthDataFactory, $state) {
 
   var resultFactory = {};
 
   var _request = function (config) {
     config.headers = config.headers || {};
     var authData = oauthDataFactory.getToken();
+   
     if (authData) {
-      if (oauthDataFactory.checkValidToken()) {
+      if (!oauthDataFactory.checkValidToken()) {
         return config;
-      }
+      }      
       config.headers.Authorization = 'Bearer ' + authData;
     }
     return config;
@@ -17,9 +18,18 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
   var _responseError = function (rejection) {
     var error = '';
     var i = 0;
+    
     if (rejection.status === 401) {
       if (angular.isDefined(rejection.data) && angular.isDefined(rejection.data.Message)) {
-        $rootScope.toastr.error(rejection.data.Message, { allowHtml: true });
+        //$rootScope.toastr.error(rejection.data.Message, { allowHtml: true });        
+        if (!oauthDataFactory.checkValidToken()) {
+          oauthDataFactory.removeToken();          
+          $state.go('dangnhap');
+        }
+        else {
+          $state.go('page401');
+        }
+        
       }
     }
     else if (rejection.status === 400) {
@@ -71,7 +81,20 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
               $rootScope.toastr.success(response.data.Message);
             }
             else {
-              $rootScope.toastr.error(response.data.Message);
+              if (response.data.Errors && response.data.Errors.length > 0) {
+                var html = 
+                '<strong style="margin-bottom: 10px">' + response.data.Message + '</strong>';
+                html+= '<ol>'
+                for (var i = 0; i< response.data.Errors.length; i++) {
+                  html+= '<li>' + response.data.Errors[i] + '</li>'
+                }
+                html+= '</ol>'
+                $rootScope.toastr.error(html, null, {timeOut: 15000});
+              }
+              else { 
+                $rootScope.toastr.error(response.data.Message, null, { timeOut: 15000});
+              }    
+              return $q.reject(response);          
             }            
           }              
         }        

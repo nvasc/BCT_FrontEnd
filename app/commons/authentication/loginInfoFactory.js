@@ -44,12 +44,14 @@ function loginInfoFactory(oauthDataFactory, $state) {
   var _checkLogin = function () {
     var obj = oauthDataFactory.getTokenDetail();  
     if (!obj) {
-      $state.go('dangnhap');
+      if ($state.current.name.indexOf('.') !== -1) {
+        $state.go('dangnhap');
+      }           
     }
     else {
-      if ($state.current.name.indexOf('.') === -1) {
+      if ('dangnhap' === $state.current.name) {
         $state.go('giaodienchinh.kiemsoatchung');
-      }      
+      }
     }
   };   
   dataFactory.checkLogin = _checkLogin; 

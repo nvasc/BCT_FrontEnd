@@ -1,7 +1,10 @@
 
 function giaodienchinhController ($rootScope, $scope, $timeout, loginInfoFactory) {
-  const vm = this;  
-  loginInfoFactory.checkLogin();  
+  const vm = this;    
+  
+  $timeout(function () {   
+    loginInfoFactory.checkLogin();  
+  });
 }
 
 /* @ngInject */

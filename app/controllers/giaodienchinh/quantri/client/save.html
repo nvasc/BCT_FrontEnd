@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Mã bảo mật</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="ClientKey">Client key</label>
+            <input type="text" class="form-control" id="clientKey" placeholder="" readonly="readonly" ng-model="client.saveObj.Audience">
+          </div>
+          <div class="form-group">
+            <label for="SecretKey">Secret key</label>
+            <input type="text" class="form-control" id="SecretKey" readonly="readonly" ng-model="client.saveObj.Secret">
+          </div>
+          <div class="form-group">
+            <div class="icheck-primary">
+              <input type="checkbox" id="IsActive" name="IsActive" ng-model="client.saveObj.IsActive"/>
+              <label for="IsActive">Hoạt động</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ApplicationType">Loại ứng dụng</label>
+            <div class="icheck-primary">
+              <input type="radio" id="ApplicationType-1" name="ApplicationType" value="0" ng-model="client.saveObj.ApplicationType"/>
+              <label for="ApplicationType-1">JavaScript</label>
+            </div>
+            <div class="icheck-primary">
+              <input type="radio" id="ApplicationType-2" name="ApplicationType" value="1" ng-model="client.saveObj.ApplicationType"/>
+              <label for="ApplicationType-1">Native Confidential</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="RefreshTokenLifeTime">Thời gian khi một tài khoản đăng nhập</label>
+            <input type="number" class="form-control" id="RefreshTokenLifeTime" ng-model="client.saveObj.RefreshTokenLifeTime">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Quyền kết nối</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="IssuerFrom">Kết nối từ server</label>
+            <input type="text" class="form-control" id="IssuerFrom" placeholder="" ng-model="client.saveObj.IssuerFrom">
+          </div>
+          <div class="form-group">
+            <label for="Issue">Domain kết nối</label>
+            <input type="text" class="form-control" id="Issue" ng-model="client.saveObj.Issuer">
+          </div>
+          <div class="form-group">            
+            <label for="AllowedOrigin">Cho phép kết nối vào những tài nguyên</label>
+            <textarea class="form-control" id="AllowedOrigin" rows="5" ng-model="client.saveObj.AllowedOrigin"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Diễn tả thông tin của client này</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <textarea class="form-control" id="Description" rows="3" ng-model="client.saveObj.Description"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

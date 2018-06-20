@@ -283,7 +283,7 @@ function _init() {
         }
       }
       //Nghiep fix content layout
-      $.AdminLTE.pushMenu._fixFooter();
+      $.AdminLTE.pushMenu.fixFooter();
       var fixOfContentHeight = this.getFixOfContentHeight();
       if (fixOfContentHeight != 0) {
         $('.auto-of-content .box-body').css('min-height', fixOfContentHeight); 
@@ -336,6 +336,7 @@ function _init() {
    * @type Function
    * @usage: $.AdminLTE.pushMenu("[data-toggle='offcanvas']")
    */
+  $.AdminLTE.callbackPushMenu = null;
   $.AdminLTE.pushMenu = {
     activate: function (toggleBtn) {
       //Get the screen sizes
@@ -363,7 +364,10 @@ function _init() {
         }
 
         //Fixed footer
-        _this._fixFooter();
+        _this.fixFooter();
+        if ($.AdminLTE.callbackPushMenu) {
+          $.AdminLTE.callbackPushMenu();
+        }
       });
 
       $(".content-wrapper").click(function () {
@@ -381,7 +385,8 @@ function _init() {
       }
 
       //Fixed footer
-      _this._fixFooter();
+      _this.fixFooter();
+
     },
     expandOnHover: function () {
       var _this = this;
@@ -411,7 +416,7 @@ function _init() {
       }
     },    
     //Nghiep: fixed footer
-    _fixFooter: function () {
+    fixFooter: function () {
       var windowWidth = $(document).width();
       if (windowWidth > 767) {
         if ($('body').hasClass('sidebar-collapse')) {

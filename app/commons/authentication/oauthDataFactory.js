@@ -57,9 +57,10 @@ function oauthDataFactory(localStorageService, $rootScope, $location) {
 
   var _checkValidToken = function () {
     var obj = _getTokenDetail();
+    
     if  (obj) {
-      var expDate = new Date(obj.exp * 1000);
-      var currentDate = Date();
+      var expDate = new Date(obj.exp * 1000);      
+      var currentDate = new Date();
       return expDate > currentDate
     }
   }; 

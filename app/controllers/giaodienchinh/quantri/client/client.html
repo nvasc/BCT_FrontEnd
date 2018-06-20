@@ -20,18 +20,12 @@
         <div class="box-body header">
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
-              <div class="navbar-form navbar-right search-filter">
-                <!-- <div class="form-group">
-                  <div class="has-feedback">
-                    <input type="text" class="form-control input-sm" placeholder="Search ...">
-                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                  </div>
-                </div> -->
-                <button class="btn btn-xs btn-primary" title="Tạo mới" data-toggle="tooltip" data-placement="top">
-                    <span class="k-icon k-i-plus"></span>
+              <div class="navbar-form navbar-right search-filter">                
+                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="client.create()">
+                    <span class="fa fa-plus"></span>
                   </button>
-                <button class="btn btn-xs btn-primary" ng-click="client.filter()" title="Lọc dữ liệu" data-toggle="tooltip" data-placement="top">
-                  <span class="k-icon" ng-class="{'k-i-filter': !client.isFilter, 'k-i-filter-clear': client.isFilter}"></span>
+                <button class="btn btn-xs" ng-class="{'btn-success': !client.isFilter, 'btn-danger': client.isFilter}" ng-click="client.filter()" title="Lọc dữ liệu">
+                  <span class="fa" ng-class="{'fa-filter': !client.isFilter, 'fa-times': client.isFilter}"></span>
                 </button>
               </div>
             </div>
@@ -49,7 +43,9 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-grid ci-id="grid-main" col-list="client.colList" g-sort="true" g-filter="client.isFilter"></ci-grid>
+              <ci-grid ci-id="client-grid" url="api/client/getdata" 
+              col-defs="client.colDefs" ci-filter="client.isFilter" 
+              ci-set-scope="client.setScopeGrid"></ci-grid>
             </div>
           </div>
           <!-- /.row -->

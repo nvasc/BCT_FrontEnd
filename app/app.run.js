@@ -1,7 +1,7 @@
 import toastr from 'toastr';
 var base64 = require('base-64');
 
-function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location, loginInfoFactory) {
+function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location, loginInfoFactory, $state) {
 
   if ($rootScope.cfpLoadingBarStarted) {
     $rootScope.cfpLoadingBarStarted();
@@ -50,9 +50,10 @@ function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location, loginIn
     $('#header-thong-bao').slimScroll();
     $.AdminLTE.init();
   }
-
+  
   $timeout(function () {
     init();
+   
     loginInfoFactory.checkLogin();
   });
 }

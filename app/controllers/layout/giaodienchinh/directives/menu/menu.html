@@ -1,147 +1,174 @@
 <aside class="main-sidebar">
-    <section class="sidebar">
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu" data-widget="tree">         
-        <li class="treeview" ui-sref-active="active">
-            <a ui-sref="giaodienchinh.kiemsoatchung">
-            <i class="fa fa-dashboard"></i> <span>Kiểm soát chung</span></a>            
-        </li>
+  <section class="sidebar">
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="treeview" ui-sref-active="active">
+        <a ui-sref="giaodienchinh.kiemsoatchung">
+          <i class="fa fa-dashboard"></i>
+          <span>Kiểm soát chung</span>
+        </a>
+      </li>
 
-        <li class="treeview">
-            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.**'}">
-                <i class="fa fa-table"></i> <span>Các báo cáo</span>
-                <span class="pull-right-container">
+      <li class="treeview">
+        <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.**'}">
+          <i class="fa fa-table"></i>
+          <span>Các báo cáo</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.**'}">
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.baocaolanhdao">
+              <i class="fa fa-circle-o"></i>Báo cáo lãnh đạo</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.tuyensinh">
+              <i class="fa fa-circle-o"></i>Tuyển sinh</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.daihoc">
+              <i class="fa fa-circle-o"></i>Đại học</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.sinhvientotnghiep">
+              <i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.totnghieptheonganh">
+              <i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp theo ngành</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.hoptacquocte.**'}">
+              <i class="fa fa-circle-o"></i>Hợp tác quốc tế
+              <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
-                </span>
+              </span>
             </a>
-            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.**'}">
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.baocaolanhdao"><i class="fa fa-circle-o"></i>Báo cáo lãnh đạo</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.tuyensinh"><i class="fa fa-circle-o"></i>Tuyển sinh</a>
-                </li>
-                <li  ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.daihoc"><i class="fa fa-circle-o"></i>Đại học</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.sinhvientotnghiep"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.totnghieptheonganh"><i class="fa fa-circle-o"></i>Sinh viên tốt nghiệp theo ngành</span> </a>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.hoptacquocte.**'}"><i class="fa fa-circle-o"></i>Hợp tác quốc tế
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.hoptacquocte.**'}">
-                        <li ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.baocaochung"><i class="fa fa-circle-o"></i> Báo cáo chung</a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a  ui-sref="giaodienchinh.cacbaocao.hoptacquocte.luuhocsinh"><i class="fa fa-circle-o"></i> Lưu học sinh</a>
-                        </li>
-                        <li  ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.sinhviennuocngoaidanghoc"><i class="fa fa-circle-o"></i> Sinh viên nước ngoài đang học</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">    
-                    <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.doingu.**'}"> <i class="fa fa-circle-o"></i>Đội ngũ
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.doingu.**'}">
-                        <li ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.doingu.giangvientheokhoa">
-                                <i class="fa fa-circle-o"></i>Giang viên theo khoa</span></a>
-                         </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.doingu.lanhdao"><i class="fa fa-circle-o"></i>Lãnh đạo</a>
-                        </li>
-                      
-                        <li ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.doingu.tiensi"><i class="fa fa-circle-o"></i>Tiến sĩ</a>
-                        </li >
-                        <li ui-sref-active="active">
-                            <a ui-sref="giaodienchinh.cacbaocao.doingu.giangviennhanvien"><i class="fa fa-circle-o"></i>Giảng viên, nhân viên cán bộ</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.daotaoboiduong">
-                        <i class="fa fa-circle-o"></i> Đào tạo bồi dưỡng</a>
-                </li>
-                <li  ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.nghiencuukhoahoc">
-                        <i class="fa fa-circle-o"></i> Đề tài nghiên cứu khoa học</a>
-                    </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.thuchitaichinh">
-                        <i class="fa fa-circle-o"></i> Thu chi tài chính</a>
-                    </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.cacbaocao.cosovatchat">
-                        <i class="fa fa-circle-o"></i> Cơ sở vật chất</a>
-                 </li>
+            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.hoptacquocte.**'}">
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.baocaochung">
+                  <i class="fa fa-circle-o"></i> Báo cáo chung</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.luuhocsinh">
+                  <i class="fa fa-circle-o"></i> Lưu học sinh</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.hoptacquocte.sinhviennuocngoaidanghoc">
+                  <i class="fa fa-circle-o"></i> Sinh viên nước ngoài đang học</a>
+              </li>
             </ul>
-            </li>
-        <li class="treeview" ui-sref-active="active">
-            <a href="javascript:void(0);"  ui-sref="giaodienchinh.nhapkhaubaocao">
-            <i class="fa fa-edit"></i> <span>Nhập khẩu báo cáo</span>            
-            </a>            
-        </li>
-        <li class="treeview">
-            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quanly.**'}">
-                <i class="fa fa-table"></i> <span>Quản lý </span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
+          </li>
+          <li class="treeview">
+            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.cacbaocao.doingu.**'}">
+              <i class="fa fa-circle-o"></i>Đội ngũ
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
             </a>
-            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quanly.**'}">
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quanly.bieumau"><i class="fa fa-circle-o"></i>Biểu mẫu</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quanly.danhsachtruong"><i class="fa fa-circle-o"></i>Danh sách trường</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quanly.taikhoan"><i class="fa fa-circle-o"></i>Tài khoản</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quanly.phanquyen"><i class="fa fa-circle-o"></i>Phân quyền</a>
-                </li>
+            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.cacbaocao.doingu.**'}">
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.doingu.giangvientheokhoa">
+                  <i class="fa fa-circle-o"></i>Giang viên theo khoa</span>
+                </a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.doingu.lanhdao">
+                  <i class="fa fa-circle-o"></i>Lãnh đạo</a>
+              </li>
+
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.doingu.tiensi">
+                  <i class="fa fa-circle-o"></i>Tiến sĩ</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="giaodienchinh.cacbaocao.doingu.giangviennhanvien">
+                  <i class="fa fa-circle-o"></i>Giảng viên, nhân viên cán bộ</span>
+                </a>
+              </li>
             </ul>
-        </li>
-        <li>
-            <li class="treeview">
-            <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quantri.**'}">
-                <i class="fa fa-table"></i> <span>Quản trị </span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quantri.**'}">
-                <li ui-sref-active="active">
-                        <a ui-sref="giaodienchinh.quantri.client"><i class="fa fa-circle-o"></i>Các Client</a>
-                    </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quantri.test"><i class="fa fa-circle-o"></i>test</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quantri.api"><i class="fa fa-circle-o"></i>Các Api</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quantri.thongtindangnhap"><i class="fa fa-circle-o"></i>Thông tin đăng nhập</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="giaodienchinh.quantri.nhatkyvaloi"><i class="fa fa-circle-o"></i>Nhật ký và lỗi hệ thống</a>
-                </li>            
-            </ul>
-        </li>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.daotaoboiduong">
+              <i class="fa fa-circle-o"></i> Đào tạo bồi dưỡng</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.nghiencuukhoahoc">
+              <i class="fa fa-circle-o"></i> Đề tài nghiên cứu khoa học</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.thuchitaichinh">
+              <i class="fa fa-circle-o"></i> Thu chi tài chính</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.cacbaocao.cosovatchat">
+              <i class="fa fa-circle-o"></i> Cơ sở vật chất</a>
+          </li>
         </ul>
-    </section>
-    </aside>
+      </li>
+      <li class="treeview" ui-sref-active="active">
+        <a href="javascript:void(0);" ui-sref="giaodienchinh.nhapkhaubaocao">
+          <i class="fa fa-edit"></i>
+          <span>Nhập khẩu báo cáo</span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quanly.**'}">
+          <i class="fa fa-table"></i>
+          <span>Quản lý </span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quanly.**'}">
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.quanly.bieumau">
+              <i class="fa fa-circle-o"></i>Biểu mẫu</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.quanly.danhsachtruong">
+              <i class="fa fa-circle-o"></i>Danh sách trường</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.quanly.taikhoan">
+              <i class="fa fa-circle-o"></i>Tài khoản</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="giaodienchinh.quanly.phanquyen">
+              <i class="fa fa-circle-o"></i>Phân quyền</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <li class="treeview">
+          <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quantri.**'}">
+            <i class="fa fa-table"></i>
+            <span>Quản trị </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quantri.**'}">
+            <li ui-sref-active="active">
+              <a ui-sref="giaodienchinh.quantri.client">
+                <i class="fa fa-circle-o"></i>Các Client</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="giaodienchinh.quantri.api">
+                <i class="fa fa-circle-o"></i>Các Api</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="giaodienchinh.quantri.thongtindangnhap">
+                <i class="fa fa-circle-o"></i>Thông tin đăng nhập</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="giaodienchinh.quantri.nhatkyvaloi">
+                <i class="fa fa-circle-o"></i>Nhật ký và lỗi hệ thống</a>
+            </li>
+          </ul>
+        </li>
+    </ul>
+  </section>
+</aside>

@@ -16,6 +16,19 @@ function nonceProvider($q, $http, oauthDataFactory) {
     return deferred.promise;
   }
   service.get  = _get;
+
+  var _getForVAFT = function () {    
+    var deferred = $q.defer();
+    $http.get(_urlNonce + '/vaft').then(function (response) {
+      deferred.resolve(response.data);
+    },function (err, status) {
+      deferred.reject(err);
+    })
+
+    return deferred.promise;
+  }
+  service.getForVAFT = _getForVAFT;
+  
   return service;
 }
 
