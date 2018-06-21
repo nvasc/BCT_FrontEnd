@@ -40,5 +40,8 @@ module.exports = new WebpackConfig().merge({
       'jQuery': 'jquery',
       'window.jQuery': 'jquery',
     })
-  ]
+  ],
+  externals: {
+    google: 'google'
+  }
 })
