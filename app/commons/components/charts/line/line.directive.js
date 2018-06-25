@@ -1,6 +1,6 @@
-import controller from './pie.controller';
+import controller from './line.controller';
 
-function pieDirective () {
+function lineDirective () {
   return {
     restrict: 'E',
     scope: {
@@ -13,9 +13,9 @@ function pieDirective () {
     template: function (element, attrs) {
       return `<div id='${attrs.ciId}'></div>`;
     },
-    controllerAs: 'pie',
+    controllerAs: 'line',
     controller: controller
   }
 }
 
-export default pieDirective;
+export default lineDirective;

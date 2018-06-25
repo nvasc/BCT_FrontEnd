@@ -1,6 +1,6 @@
 import google from 'google';
 
-function pieController($scope, $element, $attrs, $timeout, oauthDataFactory) {
+function lineController($scope, $element, $attrs, $timeout, oauthDataFactory) {
   var vm = this;
   vm.url = oauthDataFactory.urlMain() + $scope.url;
 
@@ -43,4 +43,4 @@ function pieController($scope, $element, $attrs, $timeout, oauthDataFactory) {
   init();
 }
 /* @ngInject */
-export default pieController;
+export default lineController;
