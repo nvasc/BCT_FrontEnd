@@ -1,6 +1,6 @@
 import google from 'google';
 
-function coboController($scope, $attrs) {
+function comboController($scope, $attrs) {
   google.charts.load('current', {
     'packages': [ 'corechart' ]
   });
@@ -67,4 +67,4 @@ function coboController($scope, $attrs) {
   init();
 }
 /* @ngInject */
-export default coboController;
+export default comboController;
