@@ -1,0 +1,10 @@
+<div style="height:300px;">
+  <div style="height: 35px; padding-right: 5px;">
+    <button class="btn btn-xs btn-primary pull-right" style="margin-top: 5px;" title="Tạo mới" ng-click="row.entity.expandObject.action.create(row.entity.Id, 3);">
+      <span class="fa fa-plus"></span>
+    </button>
+  </div>
+  <div>
+    <ci-grid url="api/loaihinhdaotao/getdata" ci-grid-command="row.entity.expandObject.action" col-defs="row.entity.expandOptions.colDefs" ci-height="265" ng-if="row.isExpanded"></ci-grid-expand>
+  </div>
+</div>

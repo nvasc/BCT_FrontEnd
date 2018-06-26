@@ -29,6 +29,7 @@ function clientController($q, $scope, clientService, popupFactory) {
   vm.setScopeGrid = function (s) {
     _scopeGrid = s;
   };
+  
 
   function refreshGrid() {
     if (_scopeGrid) {
@@ -74,9 +75,12 @@ function clientController($q, $scope, clientService, popupFactory) {
   }
   
   // CRUD for this function ------------------
+  vm.action = {
+    
+  };
   vm.saveObj = {};
 
-  vm.create = function () {
+  vm.create = function (id, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.CreateTitle,
@@ -92,7 +96,9 @@ function clientController($q, $scope, clientService, popupFactory) {
         var deferred = $q.defer();
         clientService.create(vm.saveObj).then(function () {
           deferred.resolve(true); 
-          refreshGrid(); 
+          if (refreshGridCallBack) {
+            refreshGridCallBack();
+          } 
         }, function () {
           deferred.resolve(false);  
         })    
@@ -101,7 +107,7 @@ function clientController($q, $scope, clientService, popupFactory) {
     });
     
   }
-  vm.update = function (row) {
+  vm.update = function (row, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.UpdateTitle,
@@ -115,8 +121,10 @@ function clientController($q, $scope, clientService, popupFactory) {
       popupFactory.update(function () { 
         var deferred = $q.defer();
         clientService.update(row.entity.Id, vm.saveObj).then(function () {
-          deferred.resolve(true);  
-          refreshGrid();
+          deferred.resolve(true); 
+          if (refreshGridCallBack) {
+            refreshGridCallBack();
+          } 
         }, function () {
           deferred.resolve(false);  
         })              
@@ -124,8 +132,9 @@ function clientController($q, $scope, clientService, popupFactory) {
       }, function () { vm.saveObj = {}; });
     });
   };
+  vm.action.update = vm.update;
 
-  vm.delete = function (row) {
+  vm.delete = function (row, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.DeleteTitle,
@@ -138,14 +147,16 @@ function clientController($q, $scope, clientService, popupFactory) {
       var deferred = $q.defer();
       clientService.delete(row.entity.Id).then(function () {
         deferred.resolve(true);
-        refreshGrid();
+        if (refreshGridCallBack) {
+          refreshGridCallBack();
+        }
       }, function () {
         deferred.resolve(false);  
       })    
       return deferred.promise;
     }, function () { vm.saveObj = {} });
   };
-
+  vm.action.delete = vm.delete;
 }
 
 /* @ngInject */
