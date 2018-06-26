@@ -4,67 +4,84 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
   const vm = this;
   baocaolanhdaoService.init();
 
-  $scope.chartTitle = 'navan';
-  $scope.chartWidth = 500;
-  $scope.chartHeight = 320;
-  $scope.chartData = [
-        ['Ad Flyers', 11],
-        ['Web (Organic)', 4],
-        ['Web (PPC)', 4],
-        ['Yellow Pages', 7],
-        ['Showroom', 3]
+  //Theo trình độ đào tạo
+  //$scope.chartWidth_DaoTao = 1000;
+  $scope.chartHeight_DaoTao = 400;
+  $scope.chartData_DaoTao = [
+    ['Tên','Tổng số','Tr.đó: Nữ'],
+    ['Dân tộc ít người',10,6],
+    ['Giáo sư',3,1],
+    ['Phó giáo sư',10,0],
+    ['TSKH và Tiến sĩ',110,20],
+    ['Thạc sĩ',765,339],
+    ['CK Y cấp I, II',0,0],
+    ['Đại học',419,210],
+    ['Cao đẳng',40,13],
+    ['Khác',206,91],
   ];
 
-  $scope.charDataT = [
-    ['Year', 'Sales', 'Expenses'],
-    ['2004',  1000,      400],
-    ['2005',  1170,      460],
-    ['2006',  660,       1120],
-    ['2007',  1030,      540]
+  //Theo độ tuổi
+  $scope.chartWidth_DoTuoi = 500;
+  $scope.chartHeight_DoTuoi = 320;
+  $scope.chartData_DoTuoi = [
+    ['Độ tuổi','Tổng số'],
+    ['Dưới 30 tuổi',201],
+    ['Từ 30 đến 35',316],
+    ['Từ 36 đến 40',224],
+    ['Từ 41 đến 45',110],
+    ['Từ 46 đến 50',82],
+    ['Từ 51 đến 55',72],
+    ['Từ 56 đến 60',27],
+    ['Trên 60 tuổi',2]
   ];
-
-  $scope.chartDataC = [
-        ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-        ['2004/05',  165,      938,         522,             998,           450,      614.6],
-        ['2005/06',  135,      1120,        599,             1268,          288,      682],
-        ['2006/07',  157,      1167,        587,             807,           397,      623],
-        ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-        ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+  //Theo cán bộ
+  $scope.chartWidth_CanBo = 500;
+  $scope.chartHeight_CanBo = 320;
+  $scope.chartData_CanBo = [
+    ['Cán bộ','Tổng số'],
+    ['Cán bộ nhân viên',506],
+    ['Giảng viên',1034],
+    ['Giảng viên thỉnh giảng',0]
   ];
+  //Theo nhân viên
+  $scope.chartWidth_NhanVien = 500;
+  $scope.chartHeight_NhanVien = 320;
+  $scope.chartData_NhanVien = [
+    ['Cán bộ nhân viên','Tổng số'],
+    ['Cán bộ quản lý',127],
+    ['Trong đó: Kiêm nhiệm giảng dạy',113],
+    ['Cán bộ hành chính, nghiệp vụ, phục vụ (không bao gồm giảng viên )',232],
+    ['Trong đó: Kiêm nhiệm giảng dạy',0],
+    ['Nhân viên phục vụ',147]
+  ];
+  //Theo giảng viên
+  $scope.chartWidth_NhanVien = 500;
+  $scope.chartHeight_NhanVien = 320;
+  $scope.chartData_NhanVien = [
+    ['Cán bộ nhân viên','Tổng số'],
+    ['Cán bộ quản lý',506],
+    ['Giảng viên',1034],
+    ['Giảng viên thỉnh giảng',0]
+  ];
+  //Theo giảng viên
+  $scope.chartWidth_GiangVien = 500;
+  $scope.chartHeight_GiangVien = 320;
+  $scope.chartData_GiangVien = [
+    ['Giảng viên','Tổng số'],
+    ['Cơ hữu',956],
+    ['Hợp đồng có thời hạn',72],
+    ['Thử việc',6]
+  ];
+  //Tab
+  $scope.tab = 1;
 
-  // google.charts.load('current', {'packages':[ 'corechart' ]});
+  $scope.setTab = function(newTab) {
+    $scope.tab = newTab;
+  };
 
-  // // Set a callback to run when the Google Visualization API is loaded.
-  // google.charts.setOnLoadCallback(drawChart);
-
-  // // Callback that creates and populates a data table,
-  // // instantiates the pie chart, passes in the data and
-  // // draws it.
-  // function drawChart() {
-
-  //   // Create the data table.
-  //   var data = new google.visualization.DataTable();
-  //   data.addColumn('string', 'Topping');
-  //   data.addColumn('number', 'Slices');
-  //   data.addRows([
-  //     ['Mushrooms', 3],
-  //     ['Onions', 1],
-  //     ['Olives', 1],
-  //     ['Zucchini', 1],
-  //     ['Pepperoni', 2]
-  //   ]);
-
-  //   // Set chart options
-  //   var options = {
-  //     'title':'How Much Pizza I Ate Last Night',
-  //     'width':400,
-  //     'height':300
-  //   };
-
-  //   // Instantiate and draw our chart, passing in some options.
-  //   var chart = new google.visualization.PieChart($('#chart_div')[0]);
-  //   chart.draw(data, options);
-  // }
+  $scope.isSet = function(tabNum) {
+    return $scope.tab === tabNum;
+  };
 }
 
 /* @ngInject */

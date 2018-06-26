@@ -8,6 +8,8 @@ function comboDirective() {
       title: '=',
       width: '=',
       height: '=',
+      vAxisTitle: '=',
+      hAxisTitle: '=',
       data: '='
     },
     template: function (element,attrs) {
