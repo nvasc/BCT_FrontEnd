@@ -17,5 +17,5 @@ function lineDirective () {
     controller: controller
   }
 }
-
+/* @ngInject */
 export default lineDirective;

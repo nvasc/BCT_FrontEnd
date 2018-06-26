@@ -1,5 +1,5 @@
 import google from 'google';
-
+//line chart
 function lineController($scope, $element, $attrs, $timeout, oauthDataFactory) {
   var vm = this;
   vm.url = oauthDataFactory.urlMain() + $scope.url;
