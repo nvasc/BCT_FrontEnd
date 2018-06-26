@@ -104,8 +104,7 @@ function clientController($q, $scope, clientService, popupFactory) {
         })    
         return deferred.promise;
       }, function () { vm.saveObj = {}; });
-    });
-    
+    });    
   }
   vm.update = function (row, type, refreshGridCallBack) {
     popupFactory.setOptions({
