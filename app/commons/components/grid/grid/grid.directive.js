@@ -8,6 +8,7 @@ function gridDirective ()  {
       url: '@',      
       colDefs: '=',
       ciGridCommand: '=',
+      ciSortDefault: '=',
       ciHeight: '@',
       ciFilter: '=',
       ciFilterDefault: '=',

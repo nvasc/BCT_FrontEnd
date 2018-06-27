@@ -45,7 +45,8 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
 
   vm.action = {};
   vm.saveObj = {};
-  vm.create = function (parentId, type, refreshGridCallBack) {
+  vm.create = function (parentId, type, refreshGridCallBack) {  
+   
     var title = '';
     switch (type) {
       case 1:
@@ -66,8 +67,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       icon: 'fa fa-plus',
       content: saveTemplate,
       scope: $scope,
-    });
-
+    });    
     loaihinhdaotaoService.get(0, parentId, type).then(function (obj) {
       vm.saveObj = obj;
       popupFactory.create(function () {
@@ -76,6 +76,11 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
           deferred.resolve(true);
           if (refreshGridCallBack) {
             refreshGridCallBack();
+          }
+          else {            
+            if (_scopeGrid.gridExpand) {
+              _scopeGrid.gridExpand.refresh();  
+            }    
           }
         }, function () {
           deferred.resolve(false);
@@ -145,7 +150,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       create: vm.create,
       update: vm.update,
       delete: vm.delete
-    },
+    },    
     rowTemplate: hedaotaoTemplete,
     height: 300,
     rowExpandedStateChanged: function (row, event) {
@@ -156,10 +161,6 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
     },
     Options: {
       colDefs: [{
-        name: 'SoThuTu',
-        width: 90,
-        displayName: rss.Grid['SoThuTu'],
-      }, {
         name: 'Ten',
         displayName: rss.Grid['Ten'],
       }, {
@@ -191,6 +192,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
         update: vm.update,
         delete: vm.delete
       },
+     
       rowTemplate: loaidaotaoTemplete,
       height: 300,
       rowExpandedStateChanged: function (row, event) {
@@ -198,10 +200,6 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       },
       Options: {
         colDefs: [{
-          name: 'SoThuTu',
-          width: 90,
-          displayName: rss.Grid['SoThuTu'],
-        }, {
           name: 'Ten',
           displayName: rss.Grid['Ten'],
         }, {
@@ -228,10 +226,6 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
   }
 
   vm.colDefs = [{
-    name: 'SoThuTu',
-    width: 90,
-    displayName: rss.Grid['SoThuTu'],
-  }, {
     name: 'Ten',
     displayName: rss.Grid['Ten'],
   }, {

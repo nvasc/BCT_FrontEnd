@@ -4,6 +4,7 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
   $http, oauthDataFactory) {
   var vm = this;  
   if ($scope.ciQueryId) {
+    console.log($scope.ciFilterDefault);
     $scope.ciFilterDefault.QueryId = $scope.ciQueryId;
   }
   var uiGrid = new UiGrid($scope, $timeout, uiGridConstants, $http, oauthDataFactory, 'data', 
@@ -11,12 +12,29 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
   vm.gridOptions = uiGrid.gridOptions;
   vm.uiGrid = uiGrid;
   vm.refresh = function () {
-    vm.uiGrid.init();
+    uiGrid.init();
   }
 
+  vm.scopeGridChirent = null;
+  vm.setItemScope = function (s) {    
+    vm.scopeGridChirent = s;
+  };
+  
   vm.create = function (id, type) {
     if ($scope.ciGridCommand && $scope.ciGridCommand.create) {
-      $scope.ciGridCommand.create(id, type, vm.refresh);      
+      var refresh = null;
+      if (vm.scopeGridChirent && vm.scopeGridChirent.gridExpand) {
+        refresh = vm.scopeGridChirent.gridExpand.refresh;
+      }
+      if (vm.scopeGridChirent && vm.scopeGridChirent.grid) {
+        refresh = vm.scopeGridChirent.grid.refresh;
+      }     
+      if (refresh === null) {        
+        $scope.ciGridCommand.create(id, type);    
+      }
+      else {
+        $scope.ciGridCommand.create(id, type, refresh);
+      }          
     }
   }
 
