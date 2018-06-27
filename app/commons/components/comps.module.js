@@ -15,10 +15,13 @@ import bar from './charts/bar/bar.directive';
 import column from './charts/column/column.directive';
 import line from './charts/line/line.directive';
 
+import table from './table/table.directive';
+
 /* @ngInject */
 angular
   .module('comps', [
-    'ui.grid', 'ui.grid.infiniteScroll', 'ui.grid.resizeColumns', 'ui.grid.autoResize'
+    'ui.grid', 'ui.grid.infiniteScroll', 'ui.grid.resizeColumns', 'ui.grid.autoResize',
+    'ngSanitize'
   ])
   .directive('ciGrid', grid)
   .directive('ciPie', pie)
@@ -26,5 +29,6 @@ angular
   .directive('ciBar', bar)
   .directive('ciColumn', column)
   .directive('ciLine', line)
+  .directive('ciTable',table)
   .factory('popupFactory', popupFactory)
   

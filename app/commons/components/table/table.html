@@ -1,0 +1,55 @@
+<table class="blueTable">
+  <thead>
+        <tr>
+                <th rowspan="3" style="width: 150px"></th>
+                <th rowspan="3" style="width: 50px">Tổng số</th>
+                <th colspan="7">Trong đó</th>
+                <th colspan="12">Chia theo trình độ đào tạo</th>
+              </tr>
+              <tr>
+                <th rowspan="2" style="width: 50px">Nữ</th>
+                <th colspan="2">Dân tộc ít người</th>
+          
+                <th rowspan="2" style="width: 50px">Giáo sư</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">Phó giáo sư</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">TSKH và Tiến sĩ</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">Thạc sĩ</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">CK Y cấp I, II</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">Đại học</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">Cao đẳng</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+          
+                <th rowspan="2" style="width: 50px">Khác</th>
+                <th rowspan="2" style="width: 50px">Tr.đó: Nữ</th>
+              </tr>
+              <tr>
+                <th style="width: 50px">Tổng số</th>
+                <th style="width: 50px">Tr.đó: Nữ</th>
+              </tr>
+    <!-- <tr>
+      <th ng-repeat="col in columns">{{col}}</th>
+    </tr>  -->
+  </thead> 
+  <tbody>
+    <tr ng-repeat="row in tableData track by $index" index={{index}}>
+      <td ng-if="col=='Ten'" ng-repeat="col in columns" style="text-align: left;vertical-align: middle">
+        <span>{{ row[col] }}</span>
+      </td>
+      <td ng-if="col!='Ten'" ng-repeat="col in columns" style="text-align: right;vertical-align: middle">
+        <span>{{ row[col] }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

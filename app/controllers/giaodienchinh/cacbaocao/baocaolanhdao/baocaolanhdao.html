@@ -54,7 +54,8 @@
                 </ul>
                 <div class="tab-content">
                   <div ng-show="isSet(1)">
-                    <ci-combo ci-id="comboChart" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle" width="chartWidth_DaoTao" height="chartHeight_DaoTao">
+                    <ci-combo ci-id="comboChart" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle"
+                      width="chartWidth_DaoTao" height="chartHeight_DaoTao">
                     </ci-combo>
                   </div>
                   <div ng-show="isSet(2)">
@@ -91,7 +92,11 @@
         </div>
         <div class="box-body">
           <div class="row">
-
+            <div class="col-md-12">
+              <ci-table columns="cols" table-data="data2" thead-template="headTable">
+                <!-- <grid-print section="2" columns="cols" table-data="data2"></grid-print> -->
+              </ci-table>
+            </div>
           </div>
           <!-- /.row -->
         </div>
