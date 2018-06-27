@@ -1,5 +1,6 @@
 function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {  
   var service = {};
+  var _providerName = 'client';
   var _init = function () {
     $timeout(function () {
       $.AdminLTE.layout.fix();
@@ -16,7 +17,7 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
     var deferred = $q.defer();
     nonceProvider.getForVAFT().then(function (key) {
       _setKey(key);
-      var clientProvider = dataProvider.provider('client');
+      var clientProvider = dataProvider.provider(_providerName);
       var obj = clientProvider.get({id: id}, function () {
         obj.ApplicationType = obj.ApplicationType + '';
         deferred.resolve(obj);
@@ -28,7 +29,7 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
 
   var _create = function (obj) {
     var deferred = $q.defer();
-    var clientProvider = dataProvider.provider('client', _getKey());
+    var clientProvider = dataProvider.provider(_providerName, _getKey());
     clientProvider.create({}, obj, function (res) {
       deferred.resolve(res);
     });    
@@ -39,7 +40,7 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
 
   var _update = function (id, obj) {
     var deferred = $q.defer();
-    var clientProvider = dataProvider.provider('client', _getKey());
+    var clientProvider = dataProvider.provider(_providerName, _getKey());
     clientProvider.update({ id: id }, obj, function (res) {
       deferred.resolve(res);
     });    
@@ -51,7 +52,7 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
     var deferred = $q.defer();    
     nonceProvider.getForVAFT().then(function (key) {
       _setKey(key);
-      var clientProvider = dataProvider.provider('client', _getKey());
+      var clientProvider = dataProvider.provider(_providerName, _getKey());
       clientProvider.delete({ id: id }, function (res) {
         deferred.resolve(res);
       });

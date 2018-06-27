@@ -1,7 +1,7 @@
 <div class="ui-grid-filter-container ng-scope" ng-style="col.extraStyle" ng-repeat="colFilter in col.filters" ng-class="{'ui-grid-filter-cancel-button-hidden' : colFilter.disableCancelFilterButton === true }">
   <div ng-if="colFilter.type !== 'select'" class="ng-scope">
     <input type="text" class="ui-grid-filter-input ui-grid-filter-input-0" 
-    ng-keypress="grid.appScope.grid.mapEnter($event, {field: col.field, filterContent: colFilter.term});"
+    ng-keypress="grid.appScope.grid.uiGrid.mapEnter($event, {field: col.field, filterContent: colFilter.term});"
     ng-model="colFilter.term" 
     ng-attr-placeholder="{{colFilter.placeholder || ''}}"
       aria-label="Filter for column" placeholder="">

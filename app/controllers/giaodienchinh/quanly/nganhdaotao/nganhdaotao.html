@@ -3,23 +3,30 @@
   <ol class="breadcrumb">
     <li>
       <a href="javascript:void(0);">
-        <i class="fa fa-table"></i> Quản lý</a>
+        <i class="fa fa-cogs" aria-hidden="true"></i> Quản lý</a>
     </li>
-    <li class="active">Ngành đào tạo</li>
+    <li>
+      <a href="javascript:void(0);"> Ngành đào tạo</a>
+    </li>
   </ol>
 </section>
+<!--content here-->
 <section class="content">
+
   <div class="row">
-    <div class="col-md-12">
+    <!--header of content, Note: must be have height style-->
+    <div class="col-md-12 fix-of-content">
       <div class="box box-primary">
-        <div class="box-body">
+        <div class="box-body header">
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
-              <div class="box-tools">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search ...">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
+              <div class="navbar-form navbar-right search-filter">                
+                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="nganhdaotao.create()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                <button class="btn btn-xs" ng-class="{'btn-success': !nganhdaotao.isFilter, 'btn-danger': nganhdaotao.isFilter}" ng-click="nganhdaotao.filter()" title="Lọc dữ liệu">
+                  <span class="fa" ng-class="{'fa-filter': !nganhdaotao.isFilter, 'fa-times': nganhdaotao.isFilter}"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -30,11 +37,16 @@
       <!-- /.box -->
     </div>
     <!-- /.col -->
-    <div class="col-md-12">
+    <!--body of content -->
+    <div class="col-md-12 auto-of-content">
       <div class="box box-primary">
         <div class="box-body">
           <div class="row">
-            
+            <div class="col-md-12">
+              <ci-grid ci-id="client-grid" url="api/nganhdaotao/getdata" 
+              col-defs="nganhdaotao.colDefs" ci-filter="nganhdaotao.isFilter" 
+              ci-grid-command="nganhdaotao.action" ci-set-scope="nganhdaotao.setScopeGrid" ></ci-grid>
+            </div>
           </div>
           <!-- /.row -->
         </div>
@@ -42,6 +54,6 @@
       </div>
       <!-- /.box -->
     </div>
-    <!-- /.col -->    
+    <!-- /.col -->
   </div>
 </section>
