@@ -10,21 +10,8 @@ function barController($scope, $element, $attrs, $timeout, oauthDataFactory) {
   
   function drawChart() {
 
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Label');
-    data.addColumn('number', 'Value');
-    
-    
-    var label, value;
-    data.removeRows(0, data.getNumberOfRows());
-    angular.forEach($scope.data, function (row) {
-      label = row[0];
-      value = parseFloat(row[1], 10);
-      if (!isNaN(value)) {
-        data.addRow([row[0], value]);
-      }
-    });
-
+    var jsonData = angular.toJson($scope.data);
+    var data = new google.visualization.DataTable(jsonData);
     var options = {
       title: $scope.title,
       width: $scope.width,

@@ -18,25 +18,10 @@ function comboController($scope, $attrs) {
   });
       
   function drawChart() {
-
-    var data = new google.visualization.DataTable();
-    if (angular.isDefined($scope.data) && $scope.data.length > 0) {   
-      var rowData = $scope.data[0];
-      angular.forEach(rowData, function (item, $index) {
-        if ($index === 0) {
-          data.addColumn('string', item);
-        }
-        else {
-          data.addColumn('number', item);
-        }
-      });
-      data.removeRows(0, data.getNumberOfRows());
-      angular.forEach($scope.data, function (row, $index) {
-        if ($index > 0) {
-          data.addRow(row);
-        }
-      });
-    }
+  
+    var jsonData = angular.toJson($scope.data);
+    var data = new google.visualization.DataTable(jsonData);
+    
     var options = {
       title : $scope.title,
       vAxis: {title: $scope.vAxisTitle},

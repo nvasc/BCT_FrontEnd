@@ -48,22 +48,38 @@
                   <li ng-class="{ active: isSet(2) }">
                     <a href ng-click="setTab(2)">Theo độ tuổi</a>
                   </li>
-                  <!-- <li ng-class="{ active: isSet(3) }">
-                    <a href ng-click="setTab(3)">Messages</a>
-                  </li> -->
+                  <li ng-class="{ active: isSet(3) }">
+                    <a href ng-click="setTab(3)">Số cán bộ, giảng viên, nhân viên</a>
+                  </li>
+                  <li ng-class="{ active: isSet(4) }">
+                    <a href ng-click="setTab(4)">Theo cán bộ nhân viên</a>
+                  </li>
+                  <li ng-class="{ active: isSet(5) }">
+                    <a href ng-click="setTab(5)">Theo giảng viên</a>
+                  </li>
                 </ul>
                 <div class="tab-content">
                   <div ng-show="isSet(1)">
-                    <ci-combo ci-id="comboChart" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle"
-                      width="chartWidth_DaoTao" height="chartHeight_DaoTao">
+                    <ci-combo ci-id="daotao" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle"
+                      height="400">
                     </ci-combo>
                   </div>
                   <div ng-show="isSet(2)">
-                    <ci-pie ci-id="pienavan" data="chartData_DoTuoi" title="" width="chartWidth_DoTuoi" height="chartHeight_DoTuoi">
+                    <ci-pie ci-id="dotuoi" data="chartData_DoTuoi" title="" width="900" height="400">
                     </ci-pie>
                   </div>
-                  <!-- <div ng-show="isSet(3)">
-                  </div> -->
+                  <div ng-show="isSet(3)">
+                    <ci-pie ci-id="canbo" data="chartData_CanBo" title="" width="900" height="400">
+                    </ci-pie>
+                  </div>
+                  <div ng-show="isSet(4)">
+                    <ci-combo ci-id="nhanvien" data="chartData_NhanVien" title="" width="1000" height="400">
+                    </ci-combo>
+                  </div>
+                  <div ng-show="isSet(5)">
+                    <ci-combo ci-id="giangvien" data="chartData_GiangVien" title="" width="900" height="400">
+                    </ci-combo>
+                  </div>
                 </div>
                 <!-- /.tab-content -->
               </div>
@@ -93,8 +109,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-table columns="cols" table-data="data2" thead-template="headTable">
-                <!-- <grid-print section="2" columns="cols" table-data="data2"></grid-print> -->
+              <ci-table columns="cols" table-data="reportData" thead-template="headTable">
               </ci-table>
             </div>
           </div>
