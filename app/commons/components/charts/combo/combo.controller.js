@@ -2,17 +2,6 @@ import google from 'google';
 
 function comboController($scope, $attrs) {
 
-  //example
-  // <ci-combo ci-id="comboChart" data="chartData">
-  // url: '@',
-  // title: '=',
-  // width: '=',
-  // height: '=',
-  // vAxisTitle: '=',
-  // hAxisTitle: '=',
-  // data: '='
-  // </ci-combo>
-
   google.charts.load('current', {
     'packages': [ 'corechart' ]
   });
