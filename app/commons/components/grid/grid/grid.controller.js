@@ -5,6 +5,7 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
   var vm = this;
 
   if ($scope.ciQueryId) {
+    console.log($scope.ciFilterDefault);
     $scope.ciFilterDefault.QueryId = $scope.ciQueryId;
   }
 
@@ -17,10 +18,28 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
   vm.refresh = function () {
     vm.uiGrid.init();
   }
+  vm.scopeGridChirent = null;
+  vm.setItemScope = function (s) {  
+    console.log(s);  
+    vm.scopeGridChirent = s;
+  };
 
-  vm.create = function (id, type) {
+  vm.create = function (id, type) {    
     if ($scope.ciGridCommand && $scope.ciGridCommand.create) {
-      $scope.ciGridCommand.create(id, type, vm.refresh);
+      var refresh = null;
+      if (vm.scopeGridChirent && vm.scopeGridChirent.gridExpand) {
+        refresh = vm.scopeGridChirent.gridExpand.refresh();
+      }
+      if (vm.scopeGridChirent && vm.scopeGridChirent.grid) {
+        refresh = vm.scopeGridChirent.grid.refresh();
+      }
+     
+      if (refresh === null) {        
+        $scope.ciGridCommand.create(id, type);    
+      }
+      else {
+        $scope.ciGridCommand.create(id, type, refresh);
+      }
     }
   }
 
