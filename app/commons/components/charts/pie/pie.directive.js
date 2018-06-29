@@ -17,5 +17,5 @@ function pieDirective () {
     controller: controller
   }
 }
-
+/* @ngInject */
 export default pieDirective;
