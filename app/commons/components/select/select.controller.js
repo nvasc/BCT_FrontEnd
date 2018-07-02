@@ -1,8 +1,10 @@
 import 'select2';
+import _ from 'lodash';
+
 function selectController($q, $scope, $element, $attrs, $timeout,
   $http, oauthDataFactory) {
-  var vm = this;  
-  var msg  = {
+  var vm = this;
+  var msg = {
     SelectTextStart: '--- Chọn ---',
   }
   var url = oauthDataFactory.urlMain() + $scope.url;
@@ -44,21 +46,58 @@ function selectController($q, $scope, $element, $attrs, $timeout,
     console.log(nval, oval);
   });
 
-  function initControl() {    
-    $timeout(function() {
+  function formatResult(item) {
+    var $result = $('<span style="padding-left:' + (10 * parseInt(item.level)) +
+      'px;">' + item.text + '</span>');
+    return $result;
+  };
+
+  function initSelection() {
+    if ($scope.ngModel) {
+      var filter = {};
+      filter.Skip = 0;
+      filter.Take = 50;
+      filter.OrderBys = [];
+      filter.Filters = [];
+      if (_.isArray($scope.ngModel)) {
+        var result = [];
+        for (var i = 0; i < $scope.ngModel.length; i++) {
+          result.push($scope.ngModel[i] + '');
+        }
+        filter.QueryIds = result;
+      } else {
+        filter.QueryId = $scope.ngModel;
+      }
+      $http.post(url, filter).then(function (resp) {
+        var data = resp.data.Data[0];
+        var option = new Option(data.Text, data.Id + '', true, true);
+        $('#' + $scope.ciId).append(option).trigger('change');
+        // manually trigger the `select2:select` event
+        $('#' + $scope.ciId).trigger({
+          type: 'select2:select',
+          params: {
+            data: data
+          }
+        });
+      });
+    }
+  }
+
+  function initControl() {
+    $timeout(function () {
       $('#' + $scope.ciId).select2({
         language: {
           noResults: function (params) {
             return 'Không có dữ liệu.';
           }
         },
-        
-        ajax:{
+        ajax: {
+          delay: 250,
           url: $scope.url,
           data: function (params) {
             var queryParameters = {
               q: params.term
-            }        
+            }
             return queryParameters;
           },
           processResults: function (data, params) {
@@ -66,91 +105,142 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             var dataResult = data.Data;
             for (var i = 0; i < dataResult.length; i++) {
               results.push({
-                id: dataResult[i].Id, text: dataResult[i].Text, level: dataResult[i].Level
+                id: dataResult[i].Id,
+                text: dataResult[i].Text,
+                level: dataResult[i].Level
               });
             }
             return {
               results: results
             };
           },
-          transport: function (params, success, failure) {            
+          transport: function (params, success, failure) {
             var filter = {};
             filter.Skip = 0;
             filter.Take = 50;
             filter.OrderBys = [];
             filter.Filters = _getCondition(params.data.q);
-            console.log(filter);
-            var request = $http.get(url, filter).then(function (resp) {              
+            var request = $http.post(url, filter).then(function (resp) {
               success(resp.data);
             });
             return request;
+          },
+        },
+        templateResult: formatResult,
+        templateSelection: function (item) {
+          return item.text;
+        },
+        escapeMarkup: function (m) {
+          return m;
+        },
+      }).on('change', function (e) {
+        if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
+          if ($(this).select2('data').length > 1) {
+            var vals = [];
+            for (var j = 0; j < $(this).select2('data').length; j++) {
+              vals.push($(this).select2('data')[j].id)
+            }
+            $scope.ngModel = vals;
+          } else {
+            $scope.ngModel = $(this).select2('data')[0].id;
+          }
+        } else {
+          if ($(this).select2('data').length > 1) {
+            var vals = [];
+            for (var j = 0; j < $(this).select2('data').length; j++) {
+              vals.push($(this).select2('data')[j])
+            }
+            $scope.ngModel = vals;
+          } else {
+            $scope.ngModel = $(this).select2('data')[0];
           }
         }
+        $timeout(function () {
+          $scope.$apply();
+        })
       });
-    });    
+      initSelection();
+    });
   }
-  function formatResult(item) {
-    var $result = $('<span style="padding-left:' + (10 * parseInt(item.level)) + 
-    'px;">' + item.text + '</span>');
-    return $result;
-  };
+
 
   function initControlOneLoad() {
-    $timeout(function() {
+    $timeout(function () {
       $http.get(url).then(function (rep) {
-        var results = [ {id: 0, text: msg.SelectTextStart, level: '1'} ];
+        var results = [ {
+          id: 0,
+          text: msg.SelectTextStart,
+          level: '1'
+        } ];
         var dataResult = rep.data.Data;
         for (var i = 0; i < dataResult.length; i++) {
-          results.push({
-            id: dataResult[i].Id, text: dataResult[i].Text, level: dataResult[i].Level
-          });
+          var item = {
+            id: dataResult[i].Id + '',
+            text: dataResult[i].Text,
+            level: dataResult[i].Level
+          };
+
+          if (_.isArray($scope.ngModel)) {
+            var itemModel = _.find($scope.ngModel, function(val) {
+              return item.id === val;
+            });
+            item.selected = angular.isDefined(itemModel);  
+
+          } else if ($scope.ngModel && $scope.ngModel !== '') {
+            item.selected = true;
+          }
+          
+          results.push(item);
         }
+        
+        
         _control.select2({
           language: {
             noResults: function (params) {
               return 'Không có dữ liệu.';
             }
-          },          
+          },
           templateResult: formatResult,
-          data:   results
-        }).on('change', function (e) {          
-          if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
-            if ($(this).select2('data').length > 1) {
-              var vals = [];
-              for (var j = 0; j < $(this).select2('data').length; j++) {
-                vals.push($(this).select2('data')[j].id)
-              }
-              $scope.ngModel = vals;
-            }
-            else {
-              $scope.ngModel = $(this).select2('data')[0].id;
-            }            
+          data: results
+        }).on('change', function (e) {
+          onChangeSelect(this);
+        });       
+      });
+    });
+  }
+
+  function onChangeSelect(eleThis) {
+    $timeout(function () {
+      if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
+
+        if ($(eleThis).select2('data').length > 1) {
+          var vals = [];
+          for (var j = 0; j < $(eleThis).select2('data').length; j++) {
+            vals.push($(eleThis).select2('data')[j].id)
           }
-          else {
-            if ($(this).select2('data').length > 1) {
-              var vals = [];
-              for (var j = 0; j < $(this).select2('data').length; j++) {
-                vals.push($(this).select2('data')[j])
-              }
-              $scope.ngModel = vals;
-            }
-            else {
-              $scope.ngModel = $(this).select2('data')[0];
-            }
+          $scope.ngModel = vals;
+        } else {
+          $scope.ngModel = $(eleThis).select2('data')[0].id;
+        }
+      } else {
+        if ($(eleThis).select2('data').length > 1) {
+          var vals = [];
+          for (var j = 0; j < $(eleThis).select2('data').length; j++) {
+            vals.push($(eleThis).select2('data')[j])
           }
-          $timeout(function () {
-            $scope.$apply();
-          })          
-        });   
-        _control.select2('val', [ $scope.ngModel + '' ])     
-      });      
-    });  
+          $scope.ngModel = vals;
+        } else {
+          $scope.ngModel = $(eleThis).select2('data')[0];
+        }
+      }
+
+      $scope.$apply();
+    });
   }
 
   if ($scope.ciOneLoad === 'true') {
     initControlOneLoad();
-  }
-  else {
+  } else {
     initControl();
   }
 }

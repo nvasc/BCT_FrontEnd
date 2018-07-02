@@ -11,7 +11,7 @@ function bieumauController ($scope, bieumauService) {
   $scope.$watch('bieumau.CountrySelected', function (nval, oval) { 
     console.log(nval, oval)
   });
-  vm.selectData =  1;
+  vm.selectData =  ['1', '2'];
   $scope.$watch('bieumau.selectData', function (nval, oval) { 
     console.log(nval, oval)
   });
