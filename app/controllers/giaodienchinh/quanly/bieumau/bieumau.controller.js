@@ -15,6 +15,9 @@ function bieumauController ($scope, bieumauService) {
   $scope.$watch('bieumau.selectData', function (nval, oval) { 
     console.log(nval, oval)
   });
+  vm.defaultFilter = {
+    Abc: '123'
+  }
 }
 
 /* @ngInject */

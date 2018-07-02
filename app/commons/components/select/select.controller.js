@@ -59,6 +59,13 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       filter.Take = 50;
       filter.OrderBys = [];
       filter.Filters = [];
+      if (angular.isDefined($scope.ciFilterDefaultObj) && 
+            angular.isObject($scope.ciFilterDefaultObj)) {
+        filter = angular.copy($scope.ciFilterDefaultObj);              
+      }
+      if (angular.isDefined($scope.ciFilterDefault) && $scope.ciFilterDefault !== '') {
+        filter.QueryString = $scope.ciFilterDefault;
+      }
       if (_.isArray($scope.ngModel)) {
         var result = [];
         for (var i = 0; i < $scope.ngModel.length; i++) {
@@ -68,6 +75,8 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       } else {
         filter.QueryId = $scope.ngModel;
       }
+
+     
       $http.post(url, filter).then(function (resp) {
         var data = resp.data.Data[0];
         var option = new Option(data.Text, data.Id + '', true, true);
@@ -115,10 +124,19 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             };
           },
           transport: function (params, success, failure) {
-            var filter = {};
+            var filter = {};          
+
+            if (angular.isDefined($scope.ciFilterDefaultObj) && 
+            angular.isObject($scope.ciFilterDefaultObj)) {
+              filter = angular.copy($scope.ciFilterDefaultObj);              
+            }
             filter.Skip = 0;
             filter.Take = 50;
             filter.OrderBys = [];
+           
+            if (angular.isDefined($scope.ciFilterDefault) && $scope.ciFilterDefault !== '') {
+              filter.QueryString = $scope.ciFilterDefault;
+            }
             filter.Filters = _getCondition(params.data.q);
             var request = $http.post(url, filter).then(function (resp) {
               success(resp.data);

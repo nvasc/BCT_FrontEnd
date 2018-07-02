@@ -4,7 +4,6 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
   self.getFirstData = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult) {
     var filter = {};
     if (filterDefault) {
-      console.log(filterDefault);
       filter = angular.copy(filterDefault)
     }
     filter.Skip = pagingGrid.skip;

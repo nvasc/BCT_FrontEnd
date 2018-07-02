@@ -8,10 +8,11 @@ function selectDirective ()  {
       url: '@',
       ciOneLoad: '@',
       ciIsMultiple: '@',
-      ciFilterDefault: '=', 
+      ciFilterDefault: '@', 
+      ciFilterDefaultObj: '=',
       ciSetScope: '=',
       ngModel: '=',
-      ciValueType: '@'
+      ciValueType: '@',      
     },
     require: '^ngModel',
     template: function (element, attrs) {
