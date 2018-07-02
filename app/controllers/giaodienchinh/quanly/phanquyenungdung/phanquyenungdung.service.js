@@ -1,10 +1,10 @@
-function nhomquyenService($q, $rootScope, $timeout, httpProvider, 
+function phanquyenungdungService($q, $rootScope, $timeout, httpProvider, 
   dataProvider, nonceProvider) {
   var service = {};
-  var _apiNhomQuyen = 'api/role';
-  var _apiQuyentrongChuongTrinh = 'api/roleDocumentFunction';
-  var _providerNhomQuyen = 'role';
-  var _providerQuyenTrongChuongTrinh = 'roleDocumentFunction';
+  var _apiphanquyenungdung = 'api/role';
+  var _apiQuyentrongChuongTrinh = 'api/roledocumentfunction';
+  var _providerphanquyenungdung = 'role';
+  var _providerQuyenTrongChuongTrinh = 'roledocumentfunction';
 
   var _init = function () {
     $timeout(function () {
@@ -29,7 +29,7 @@ function nhomquyenService($q, $rootScope, $timeout, httpProvider,
     var url = '';
     switch (level) {
       case 1:
-        url = _apiNhomQuyen + `?id=${id}`;
+        url = _apiphanquyenungdung + `?id=${id}`;
         break;
       case 2:
         url = _apiQuyentrongChuongTrinh + `?id=${id}&parentId=${parentId}&level=${level}`;
@@ -48,7 +48,7 @@ function nhomquyenService($q, $rootScope, $timeout, httpProvider,
     var _providerName = '';
     switch (level) {
       case 1:
-        _providerName = _providerNhomQuyen;
+        _providerName = _providerphanquyenungdung;
         break;
       case 2:
         _providerName = _providerQuyenTrongChuongTrinh;
@@ -69,7 +69,7 @@ function nhomquyenService($q, $rootScope, $timeout, httpProvider,
 
     switch (level) {
       case 1:
-        _providerName = _providerNhomQuyen;
+        _providerName = _providerphanquyenungdung;
         break;
       case 2:
         _providerName = _providerQuyenTrongChuongTrinh;
@@ -92,7 +92,7 @@ function nhomquyenService($q, $rootScope, $timeout, httpProvider,
 
     switch (level) {
       case 1:
-        _providerName = _providerNhomQuyen;
+        _providerName = _providerphanquyenungdung;
         break;
       case 2:
         _providerName = _providerQuyenTrongChuongTrinh;
@@ -115,4 +115,4 @@ function nhomquyenService($q, $rootScope, $timeout, httpProvider,
 
 }
 /* @ngInject */
-export default nhomquyenService;
+export default phanquyenungdungService;

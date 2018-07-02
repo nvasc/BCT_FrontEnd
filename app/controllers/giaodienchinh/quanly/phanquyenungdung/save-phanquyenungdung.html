@@ -10,19 +10,8 @@
         <div class="box-body">
           <div class="form-group">
             <label for="Ten">Tên</label>
-            <input type="text" class="form-control" id="clientKey" placeholder="" ng-model="nhomquyen.saveObj.Ten">
-          </div>
-          <div class="form-group">
-            <label for="TenHienThi">Tên Hiển Thị</label>
-            <input type="text" class="form-control" id="TenHienThi" ng-model="nhomquyen.saveObj.TenHienThi">
-          </div>         
-          <div class="form-group">
-            <div class="icheck-primary">
-              <input type="checkbox" id="IsActive" name="IsActive" ng-model="nhomquyen.saveObj.IsActive"/>
-              <label for="IsActive">Hoạt động</label>
-            </div>
-          </div>         
-          
+            <input type="text" class="form-control" id="name" placeholder="" ng-model="phanquyenungdung.saveObj.Name">
+          </div>   
         </div>
       </form>
     </div>
@@ -37,7 +26,7 @@
       <form role="form">
         <div class="box-body">
           <div class="form-group">
-            <textarea class="form-control" id="MoTa" rows="3" ng-model="nhomquyen.saveObj.MoTa"></textarea>
+            <textarea class="form-control" id="description" rows="3" ng-model="phanquyenungdung.saveObj.Description"></textarea>
           </div>
         </div>
       </form>

@@ -1,16 +1,20 @@
-import colActive from './col-active.html';
+import colCreate from './col-create.html';
+import colUpdate from './col-update.html';
+import colRead from './col-read.html';
+import colDelete from './col-delete.html';
 
-import quyentrongungdungTemplate from './quyentrongungdungtemplete.html';
-import gridCommandNhomQuyen from './grid-command-nhomquyen.html';
-import gridCommandQuyenTrongTrongUngDung from './grid-command-quyentrongungdung.html';
-import saveNhomQuyenTemplate from './save-nhomquyen.html';
-import saveQuyenTrongUngDungTemplate from './grid-command-quyentrongungdung.html';
 
-function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
+import chucnangTemplete from './chucnangTemplete.html';
+import gridCommandphanquyenungdung from './grid-command-phanquyenungdung.html';
+import gridCommandchucnang from './grid-command-chucnang.html';
+import savephanquyenungdung from './save-phanquyenungdung.html';
+import saveChucnang from './save-chucnang.html';
+
+function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFactory) {
   const vm = this;
   var rss = {
-    NhomQuyen: 'Nhóm quyền ứng dụng',
-    QuyenTrongUngDung: 'Quyền trong ứng dụng',
+    phanquyenungdung: 'Các quyền trong ứng dụng',
+    chucnang: 'Quyền trong ứng dụng',
     CreateTitle: 'Tạo mới',
     CreateButton: 'Tạo mới',
     CreateButtonClass: 'btn-primary',
@@ -28,21 +32,19 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     CancelButtonClass: 'btn-default',
     Grid: {
       'Name': 'Tên',
-      'Description': 'Mô Tả',
-      'TenHienThi': 'Tên Hiển Thị',
-      'IsActive': 'Trạng Thái'
+      'Description': 'Mô Tả'
     }
   }
 
   // Initial in screen ------------------
-  nhomquyenService.init();
+  phanquyenungdungService.init();
 
   var _scopeGrid = null;
   // Scope of Grid
   vm.setScopeGrid = function (s) {
     _scopeGrid = s;
   };
-
+  vm.defaultFilter = {};
   vm.action = {};
   vm.saveObj = {};
   vm.create = function (parentId, type, refreshGridCallBack) {
@@ -50,12 +52,17 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     var template = '';
     switch (type) {
       case 1:
-        title = rss.CreateTitle + ' ' + rss.NhomQuyen;
-        template = saveNhomQuyenTemplate;
+        title = rss.CreateTitle + ' ' + rss.phanquyenungdung;
+        template = savephanquyenungdung;
         break;
       case 2:
-        title = rss.CreateTitle + ' ' + rss.QuyenTrongUngDung;
-        template = saveQuyenTrongUngDungTemplate;
+        title = rss.CreateTitle + ' ' + rss.chucnang;
+        template = saveChucnang;
+
+        vm.defaultFilter = {
+          RoleId : parentId,
+          QueryId :0
+        };
         break;
     }
 
@@ -68,11 +75,11 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
       scope: $scope,
     });
 
-    nhomquyenService.get(0, parentId, type).then(function (obj) {
+    phanquyenungdungService.get(0, parentId, type).then(function (obj) {
       vm.saveObj = obj;
       popupFactory.create(function () {
         var deferred = $q.defer();
-        nhomquyenService.create(type, vm.saveObj).then(function () {
+        phanquyenungdungService.create(type, vm.saveObj).then(function () {
           deferred.resolve(true);
           if (refreshGridCallBack) {
             refreshGridCallBack();
@@ -91,14 +98,19 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
   vm.update = function (row, type, refreshGridCallBack) {
     var title = '';
     var template = '';
-    switch (row.entity.Level) {
+
+    switch (type) {
       case 1:
-        title = rss.UpdateTitle + ' ' + rss.NhomQuyen;
-        template = saveNhomQuyenTemplate;
+        title = rss.UpdateTitle + ' ' + rss.phanquyenungdung;
+        template = savephanquyenungdung;
         break;
       case 2:
-        title = rss.UpdateTitle + ' ' + rss.QuyenTrongUngDung;
-        template = saveQuyenTrongUngDungTemplate;
+        title = rss.UpdateTitle + ' ' + rss.chucnang;
+        template = saveChucnang;
+        vm.defaultFilter = {
+          roleId : parentId,
+          QueryId : row.entity.Id
+        };
         break;
     }
     popupFactory.setOptions({
@@ -109,13 +121,15 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
       content: template,
       scope: $scope,
     });
-    var parentId = row.entity.Level === 1 ? 0 : row.entity.Id;
-    nhomquyenService.get(row.entity.Id, parentId,
-      row.entity.Level).then(function (obj) {
+
+    var parentId = type === 1 ? 0 : row.entity.Id;
+    phanquyenungdungService.get(row.entity.Id, parentId, 
+      type).then(function (obj) {
         vm.saveObj = obj;
         popupFactory.update(function () {
           var deferred = $q.defer();
-          nhomquyenService.update(row.entity.Id, row.entity.Level, vm.saveObj).then(function () {
+          phanquyenungdungService.update(row.entity.Id, vm.saveObj, type)
+          .then(function () {
             deferred.resolve(true);
             if (refreshGridCallBack) {
               refreshGridCallBack();
@@ -142,7 +156,7 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     });
     popupFactory.delete(function () { 
       var deferred = $q.defer();
-      nhomquyenService.delete(row.entity.Id, type).then(function () {
+      phanquyenungdungService.delete(row.entity.Id, type).then(function () {
         deferred.resolve(true);
         if (refreshGridCallBack) {          
           refreshGridCallBack();
@@ -156,7 +170,7 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
   vm.action.delete = vm.delete;
 
   // Grid defined ------------------------
-  vm.hedaotaoExpand = {
+  vm.chucnangExpand = {
     filterDefault: {
       Level: 2,
     },
@@ -165,7 +179,7 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
       update: vm.update,
       delete: vm.delete
     },
-    rowTemplate: quyentrongungdungTemplate,
+    rowTemplate: chucnangTemplete,
     height: 300,
     rowExpandedStateChanged: function (row, event) {
       console.log(row, 1);
@@ -175,26 +189,43 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     },
     Options: {
       colDefs: [{
-        name: 'SoThuTu',
+        name: 'DocumentName',
+        displayName: 'Tên',
+      }, {
+        name: 'AllowRead',
+        displayName: 'Xem',
         width: 90,
-        displayName: rss.Grid['SoThuTu'],
-      }, {
-        name: 'Ten',
-        displayName: rss.Grid['Ten'],
-      }, {
-        name: 'TenHienThi',
-        displayName: rss.Grid['TenHienThi'],
-      }, {
-        name: 'IsActive',
-        displayName: rss.Grid['IsActive'],
-        width: 90,
-        cellTemplate: colActive,
+        cellTemplate: colRead,
         cellClass: 'grid-text-align-center',
         enableSorting: false,
         dataType: 3
       }, {
+        name: 'AllowCreate',
+        displayName: 'Tạo mới',
+        width: 90,
+        cellTemplate: colCreate,
+        cellClass: 'grid-text-align-center',
+        enableSorting: false,
+        dataType: 3
+      },{
+        name: 'AllowUpdate',
+        displayName: 'Cập nhật',
+        width: 90,
+        cellTemplate: colUpdate,
+        cellClass: 'grid-text-align-center',
+        enableSorting: false,
+        dataType: 3
+      },{
+        name: 'AllowDelete',
+        displayName: 'Xóa',
+        width: 90,
+        cellTemplate: colDelete,
+        cellClass: 'grid-text-align-center',
+        enableSorting: false,
+        dataType: 3
+      },{
         name: ' ',
-        cellTemplate: gridCommandQuyenTrongTrongUngDung,
+        cellTemplate: gridCommandchucnang,
         cellClass: 'grid-command',
         width: 60,
         enableSorting: false,
@@ -211,7 +242,7 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     displayName: rss.Grid['Description'],
   }, {
     name: ' ',
-    cellTemplate: gridCommandNhomQuyen,
+    cellTemplate: gridCommandphanquyenungdung,
     cellClass: 'grid-command',
     width: 60,
     enableSorting: false,
@@ -231,4 +262,4 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
 }
 
 /* @ngInject */
-export default nhomquyenController;
+export default phanquyenungdungController;
