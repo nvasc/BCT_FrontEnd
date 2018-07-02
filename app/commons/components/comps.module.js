@@ -9,7 +9,6 @@ import 'angular-ui-grid/ui-grid';
 import grid from './grid/grid/grid.directive';
 import gridExpand from './grid/gridExpand/gridExpand.directive';
 import select from './select/select.directive';
-import selectLocal from './select/selectLocal.directive';
 import popupFactory from './popup/popupFactory';
 import upload from './upload/upload.directive';
 //import controller from './example.controller';
@@ -33,7 +32,6 @@ angular
   .directive('ciGrid', grid)
   .directive('ciGridExpand', gridExpand)
   .directive('ciSelect', select)
-  .directive('ciSelectLocal', selectLocal)
   .directive('ciUpload', upload)
   .directive('ciPie', pie)
   .directive('ciCombo', combo)

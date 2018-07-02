@@ -79,14 +79,10 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             filter.Take = 50;
             filter.OrderBys = [];
             filter.Filters = _getCondition(params.data.q);
-            var request = $http.post(url, filter).then(function (resp) {              
+            console.log(filter);
+            var request = $http.get(url, filter).then(function (resp) {              
               success(resp.data);
             });
-            // var $request = $.ajax(params);
-        
-            // $request.then(success);
-            // $request.fail(failure);
-        
             return request;
           }
         }
