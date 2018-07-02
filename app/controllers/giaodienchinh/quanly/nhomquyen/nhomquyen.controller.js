@@ -27,8 +27,8 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
     CancelButton: 'Hủy',
     CancelButtonClass: 'btn-default',
     Grid: {
-      'SoThuTu': 'STT',
-      'Ten': 'Tên',
+      'Name': 'Tên',
+      'Description': 'Mô Tả',
       'TenHienThi': 'Tên Hiển Thị',
       'IsActive': 'Trạng Thái'
     }
@@ -204,11 +204,11 @@ function nhomquyenController($q, $scope, nhomquyenService, popupFactory) {
   }
 
   vm.colDefs = [{
-    name: 'Ten',
-    displayName: rss.Grid['Ten'],
+    name: 'Name',
+    displayName: rss.Grid['Name'],
   }, {
-    name: 'MoTa',
-    displayName: rss.Grid['MoTa'],
+    name: 'Description',
+    displayName: rss.Grid['Description'],
   }, {
     name: ' ',
     cellTemplate: gridCommandNhomQuyen,
