@@ -160,6 +160,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           return m;
         },
       }).on('change', function (e) {
+        //Edit here.
         onChangeSelect(this);
       });
       initSelection();
