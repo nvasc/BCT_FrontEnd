@@ -153,31 +153,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           return m;
         },
       }).on('change', function (e) {
-        if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
-          console.log($(this).select2('data'))
-          if ($(this).select2('data').length > 1) {
-            var vals = [];
-            for (var j = 0; j < $(this).select2('data').length; j++) {
-              vals.push($(this).select2('data')[j].id)
-            }
-            $scope.ngModel = vals;
-          } else {
-            $scope.ngModel = $(this).select2('data')[0].id;
-          }
-        } else {
-          if ($(this).select2('data').length > 1) {
-            var vals = [];
-            for (var j = 0; j < $(this).select2('data').length; j++) {
-              vals.push($(this).select2('data')[j])
-            }
-            $scope.ngModel = vals;
-          } else {
-            $scope.ngModel = $(this).select2('data')[0];
-          }
-        }
-        $timeout(function () {
-          $scope.$apply();
-        })
+        onChangeSelect(this);
       });
       initSelection();
     });

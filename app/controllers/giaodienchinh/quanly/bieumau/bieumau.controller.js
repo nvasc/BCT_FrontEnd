@@ -13,7 +13,9 @@ function bieumauController ($scope, bieumauService) {
   });
   vm.selectData =  ['1', '2'];
   $scope.$watch('bieumau.selectData', function (nval, oval) { 
-    console.log(nval, oval)
+    if (!angular.equals(nval, oval)) {
+      console.log(nval, oval)
+    }    
   });
   vm.defaultFilter = {
     Abc: '123'

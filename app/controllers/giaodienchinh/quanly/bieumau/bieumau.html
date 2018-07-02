@@ -33,11 +33,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-body">
-          <div class="row">
-            <div class="col-md-12">
-                <select class="form-control" ci-select-local="" data-ng-model="bieumau.CountrySelected" ng-options="item.text for item in bieumau.CountryList track by item.value">
-                </select>
-            </div>  
+          <div class="row">            
             <div class="col-md-12">
                <ci-select ci-Id="sss" ci-one-load="false" ng-model="bieumau.selectData" ci-filter-default="1,2,3,4,5,6,7" ci-filter-default-obj="bieumau.defaultFilter" url="api/loaihinhdaotao/getselectdata" ci-is-multiple="true"></ci-select>
             </div> 
