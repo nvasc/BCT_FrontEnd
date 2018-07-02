@@ -43,7 +43,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
   var _control = $('#' + $scope.ciId);
 
   $scope.$watch('select.dataSelected', function (nval, oval) {
-    console.log(nval, oval);
+    //console.log(nval, oval);
   });
 
   function formatResult(item) {
@@ -58,14 +58,8 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       filter.Skip = 0;
       filter.Take = 50;
       filter.OrderBys = [];
-      filter.Filters = [];
-      if (angular.isDefined($scope.ciFilterDefaultObj) && 
-            angular.isObject($scope.ciFilterDefaultObj)) {
-        filter = angular.copy($scope.ciFilterDefaultObj);              
-      }
-      if (angular.isDefined($scope.ciFilterDefault) && $scope.ciFilterDefault !== '') {
-        filter.QueryString = $scope.ciFilterDefault;
-      }
+      filter.Filters = [];    
+      
       if (_.isArray($scope.ngModel)) {
         var result = [];
         for (var i = 0; i < $scope.ngModel.length; i++) {
@@ -75,19 +69,26 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       } else {
         filter.QueryId = $scope.ngModel;
       }
-
-     
+           
       $http.post(url, filter).then(function (resp) {
-        var data = resp.data.Data[0];
-        var option = new Option(data.Text, data.Id + '', true, true);
-        $('#' + $scope.ciId).append(option).trigger('change');
-        // manually trigger the `select2:select` event
-        $('#' + $scope.ciId).trigger({
-          type: 'select2:select',
-          params: {
-            data: data
-          }
-        });
+        var datas = resp.data.Data;
+        for (var j = 0; j < datas.length; j++) {
+          var itemData = {id: datas[j].Id + '', text: datas[j].Text, level: datas[j].Level};
+          if (_.isArray($scope.ngModel)) {            
+            var itemIndex = _.indexOf($scope.ngModel, itemData.id); 
+            if (itemIndex > -1)  {
+              $('#' + $scope.ciId)
+              .append(new Option(itemData.text, itemData.id, false, true)); 
+            }            
+          } else {
+            if (itemData.id === $scope.ngModel + '') {
+              $('#' + $scope.ciId)
+              .append(new Option(itemData.text, itemData.id, false, true));
+              break;
+            }
+          }                        
+        }     
+        $('#' + $scope.ciId).trigger('change');             
       });
     }
   }
@@ -153,6 +154,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
         },
       }).on('change', function (e) {
         if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
+          console.log($(this).select2('data'))
           if ($(this).select2('data').length > 1) {
             var vals = [];
             for (var j = 0; j < $(this).select2('data').length; j++) {
@@ -199,11 +201,10 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           };
 
           if (_.isArray($scope.ngModel)) {
-            var itemModel = _.find($scope.ngModel, function(val) {
+            var itemModel = _.findIndex($scope.ngModel, function(val) {
               return item.id === val;
             });
-            item.selected = angular.isDefined(itemModel);  
-
+            item.selected = itemModel > -1;  
           } else if ($scope.ngModel && $scope.ngModel !== '') {
             item.selected = true;
           }
