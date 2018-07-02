@@ -9,7 +9,8 @@ function tableDirective() {
       url: '@',
       tableData: '=', //table data will set by directive consumer
       columns: '=', // no need for named attributes
-      theadTemplate: '='
+      theadTemplate: '=',
+      colsBold: '='
     },
     template: function (element, attrs) {
       return `<table class="blueTable">
@@ -20,7 +21,8 @@ function tableDirective() {
           <td  ng-repeat="col in columns">
             <span ng-class="[table.isNumber(row[col])==true?'formatright':'', 
             row['isbold']==true?'formatbold':'',
-            row['iscenter']==true?'formatcenter':'']">
+            row['iscenter']==true?'formatcenter':'', 
+            colsBold[col] == 1?'formatbold':'']">
               {{ row[col] }}
             </span>
           </td>

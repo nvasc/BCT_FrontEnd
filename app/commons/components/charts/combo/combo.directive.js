@@ -19,4 +19,5 @@ function comboDirective() {
     controller: controller
   }
 }
+/* @ngInject */
 export default comboDirective;

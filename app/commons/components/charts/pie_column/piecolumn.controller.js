@@ -1,51 +1,64 @@
 import google from 'google';
-
-function pieController($scope, $element, $attrs, $timeout, oauthDataFactory) {
+//line chart
+function piecolumnController($scope, $element, $attrs, $timeout, oauthDataFactory) {
   var vm = this;
   vm.url = oauthDataFactory.urlMain() + $scope.url;
 
-  //init google chart
   google.charts.load('current', {
     'packages': [ 'corechart' ]
   });
   
-  //Create chart
   function drawChart() {
     if (angular.isDefined($scope.data))
     {
-      // Create the data table.
       var jsonData = angular.toJson($scope.data);
       var data = new google.visualization.DataTable(jsonData);
-      // Set chart options
+
       var options = {
         title: $scope.title,
         width: $scope.width,
-        height: $scope.height,
-      //is3D: true,
+        height: $scope.height
       };
-      // Instantiate and draw our chart, passing in some options.
+
       var $pieChart = $(`#${$attrs.ciId}`);
-      var chart = new google.visualization.PieChart($pieChart[0]);
+      var chart;
+      if ($scope.type === 'pie') {
+        chart = new google.visualization.PieChart($pieChart[0]);
+      } 
+      else if ($scope.type === 'column') {
+        chart = new google.visualization.ColumnChart($pieChart[0]);
+      }
       chart.draw(data, options);
+
       google.visualization.events.addListener(chart, 'select', selectHandler);
+
+      function selectHandler () {
+        //var selectedItem = chart.getSelection()[0];
+        console.log(data.getValue(chart.getSelection()[0].row, 2));
+        //console.log(chart.getSelection());
+      }
     }
   };
+
+
   $scope.$watch('data', function(nval, oval) {
     if (!angular.equals(nval,oval))
     {
       google.charts.setOnLoadCallback(drawChart);
     }
   });
-  function selectHandler(e) {
-    console.log(e)
-  }
+  $scope.$watch('type', function(nval, oval) {
+    if (!angular.equals(nval,oval))
+    {
+      google.charts.setOnLoadCallback(drawChart);
+    }
+  });
 
   function init() {
-    //call chart
     google.charts.setOnLoadCallback(drawChart);
   };
 
   init();
 }
 /* @ngInject */
-export default pieController;
+export default piecolumnController;

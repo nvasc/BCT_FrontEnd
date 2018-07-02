@@ -1,6 +1,6 @@
-import controller from './column.controller';
+import controller from './piecolumn.controller';
 
-function columnDirective () {
+function piecolumnDirective () {
   return {
     restrict: 'E',
     scope: {
@@ -8,14 +8,15 @@ function columnDirective () {
       title: '=',
       width: '=',
       height: '=',
-      data: '='
+      data: '=',
+      type: '='
     },
     template: function (element, attrs) {
       return `<div id='${attrs.ciId}'></div>`;
     },
-    controllerAs: 'column',
+    controllerAs: 'line',
     controller: controller
   }
 }
 /* @ngInject */
-export default columnDirective;
+export default piecolumnDirective;

@@ -17,5 +17,5 @@ function barDirective () {
     controller: controller
   }
 }
-
+/* @ngInject */
 export default barDirective;

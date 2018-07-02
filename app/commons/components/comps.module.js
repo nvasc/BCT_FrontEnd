@@ -19,6 +19,7 @@ import combo from './charts/combo/combo.directive';
 import bar from './charts/bar/bar.directive';
 import column from './charts/column/column.directive';
 import line from './charts/line/line.directive';
+import piecolumn from './charts/pie_column/piecolumn.directive';
 
 import table from './table/table.directive';
 
@@ -40,5 +41,6 @@ angular
   .directive('ciColumn', column)
   .directive('ciLine', line)
   .directive('ciTable',table)
+  .directive('ciPieColumn',piecolumn)
   .factory('popupFactory', popupFactory)
   

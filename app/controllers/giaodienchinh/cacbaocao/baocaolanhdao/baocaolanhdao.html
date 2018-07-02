@@ -42,43 +42,138 @@
             <div class="col-md-12">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li ng-class="{ active: isSet(1) }">
-                    <a href ng-click="setTab(1)">Theo trình độ đào tạo</a>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabDaoTao)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabDaoTao)">Theo trình độ đào tạo</a>
                   </li>
-                  <li ng-class="{ active: isSet(2) }">
-                    <a href ng-click="setTab(2)">Theo độ tuổi</a>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabDoTuoi)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabDoTuoi)">Theo độ tuổi</a>
                   </li>
-                  <li ng-class="{ active: isSet(3) }">
-                    <a href ng-click="setTab(3)">Số cán bộ, giảng viên, nhân viên</a>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabCanBo)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabCanBo)">Số cán bộ, giảng viên, nhân viên</a>
                   </li>
-                  <li ng-class="{ active: isSet(4) }">
-                    <a href ng-click="setTab(4)">Theo cán bộ nhân viên</a>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabNhanVien)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabNhanVien)">Theo cán bộ nhân viên</a>
                   </li>
-                  <li ng-class="{ active: isSet(5) }">
-                    <a href ng-click="setTab(5)">Theo giảng viên</a>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabGiangVien)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabGiangVien)">Theo giảng viên</a>
+                  </li>
+                  <li ng-class="{active: isSet(baocaolanhdao.tabC.tabKhoaBoMon)}">
+                    <a href ng-click="setTab(baocaolanhdao.tabC.tabKhoaBoMon)">Theo khoa, tổ bộ môn</a>
                   </li>
                 </ul>
                 <div class="tab-content">
-                  <div ng-show="isSet(1)">
-                    <ci-combo ci-id="daotao" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle"
-                      height="400">
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabDaoTao)">
+                    <ci-combo ci-id="daotao" data="chartData_DaoTao" title="chartTitle" v-axis-title="vAxisTitle" h-axis-title="hAxisTitle" height="400">
                     </ci-combo>
                   </div>
-                  <div ng-show="isSet(2)">
-                    <ci-pie ci-id="dotuoi" data="chartData_DoTuoi" title="" width="900" height="400">
-                    </ci-pie>
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabDoTuoi)">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radDoTuoiPie" name="DoTuoiName" checked="true" ng-click="doTuoiTypeChart(baocaolanhdao.typeChartC.pieChart)"
+                          />
+                          <label for="radDoTuoiPie">Pie</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radDoTuoiColumn" name="DoTuoiName" ng-click="doTuoiTypeChart(baocaolanhdao.typeChartC.columnChart)"
+                          />
+                          <label for="radDoTuoiColumn">Column</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ci-pie-column ci-id="dotuoi" data="chartData_DoTuoi" title="" width="900" height="400" type="doTuoiType">
+                    </ci-pie-column>
                   </div>
-                  <div ng-show="isSet(3)">
-                    <ci-pie ci-id="canbo" data="chartData_CanBo" title="" width="900" height="400">
-                    </ci-pie>
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabCanBo)">
+                    <!-- <ci-pie ci-id="canbo" data="chartData_CanBo" title="" width="900" height="400">
+                    </ci-pie> -->
+                    <div class="row">
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radCanBoPie" name="CanBoName" checked="true" ng-click="canBoTypeChart(baocaolanhdao.typeChartC.pieChart)"
+                          />
+                          <label for="radCanBoPie">Pie</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radCanBoColumn" name="CanBoName" ng-click="canBoTypeChart(baocaolanhdao.typeChartC.columnChart)"
+                          />
+                          <label for="radCanBoColumn">Column</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ci-pie-column ci-id="canbo" data="chartData_CanBo" title="" width="900" height="400" type="canBoType">
+                    </ci-pie-column>
                   </div>
-                  <div ng-show="isSet(4)">
-                    <ci-combo ci-id="nhanvien" data="chartData_NhanVien" title="" width="1000" height="400">
-                    </ci-combo>
+                  <!-- theo nhân viên -->
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabNhanVien)">
+                    <!-- <ci-combo ci-id="nhanvien" data="chartData_NhanVien" title="" width="1000" height="400">
+                    </ci-combo> -->
+                    <div class="row">
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radNhanVienPie" name="NhanVienName" checked="true" ng-click="nhanVienTypeChart(baocaolanhdao.typeChartC.pieChart)"
+                          />
+                          <label for="radNhanVienPie">Pie</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radNhanVienColumn" name="NhanVienName" ng-click="nhanVienTypeChart(baocaolanhdao.typeChartC.columnChart)"
+                          />
+                          <label for="radNhanVienColumn">Column</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ci-pie-column ci-id="nhanvien" data="chartData_NhanVien" title="" width="900" height="400" type="nhanVienType">
+                    </ci-pie-column>
                   </div>
-                  <div ng-show="isSet(5)">
-                    <ci-combo ci-id="giangvien" data="chartData_GiangVien" title="" width="900" height="400">
-                    </ci-combo>
+                  <!-- theo giảng viên -->
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabGiangVien)">
+                    <!-- <ci-combo ci-id="giangvien" data="chartData_GiangVien" title="" width="900" height="400">
+                    </ci-combo> -->
+                    <div class="row">
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radGiangVienPie" name="GiangVienName" checked="true" ng-click="giangVienTypeChart(baocaolanhdao.typeChartC.pieChart)"
+                          />
+                          <label for="radGiangVienPie">Pie</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radGiangVienColumn" name="GiangVienName" ng-click="giangVienTypeChart(baocaolanhdao.typeChartC.columnChart)"
+                          />
+                          <label for="radGiangVienColumn">Column</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ci-pie-column ci-id="giangvien" data="chartData_GiangVien" title="" width="900" height="400" type="giangVienType">
+                    </ci-pie-column>
+                  </div>
+                  <!-- theo khoa, tổ bộ môn -->
+                  <div ng-show="isSet(baocaolanhdao.tabC.tabKhoaBoMon)">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radKhoaBoMonPie" name="KhoaBoMonName" checked="true" ng-click="khoaBoMonTypeChart(baocaolanhdao.typeChartC.pieChart)"
+                          />
+                          <label for="radKhoaBoMonPie">Pie</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="icheck-primary">
+                          <input type="radio" id="radKhoaBoMonColumn" name="KhoaBoMonName" ng-click="khoaBoMonTypeChart(baocaolanhdao.typeChartC.columnChart)"
+                          />
+                          <label for="radKhoaBoMonColumn">Column</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ci-pie-column ci-id="khoabomon" data="chartData_KhoaBoMon" title="" height="400" type="khoaBoMonType">
+                    </ci-pie-column>
                   </div>
                 </div>
                 <!-- /.tab-content -->
@@ -109,17 +204,54 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-table columns="cols" table-data="reportData" thead-template="headTable">
-              </ci-table>
+              <!-- <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+              </ci-table> -->
+              <div ng-show="isSet(baocaolanhdao.tabC.tabDaoTao)">
+                <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                </ci-table>
+              </div>
+
+              <div ng-show="isSet(baocaolanhdao.tabC.tabDoTuoi)">
+                <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                </ci-table>
+              </div>
+
+              <div ng-show="isSet(baocaolanhdao.tabC.tabCanBo)">
+                <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                </ci-table>
+              </div>
+
+              <div ng-show="isSet(baocaolanhdao.tabC.tabNhanVien)">
+                <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                </ci-table>
+              </div>
+
+              <div ng-show="isSet(baocaolanhdao.tabC.tabGiangVien)">
+                <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                </ci-table>
+              </div>
+
+              <div ng-show="isSet(baocaolanhdao.tabC.tabKhoaBoMon)">
+                <ci-table columns="colsKhoa" table-data="reportDataKhoa" thead-template="headTableKhoa" cols-bold="colsBold">
+                </ci-table>
+              </div>
+              <!-- <div ng-if="!baocaolanhdao.tabC.tabKhoaBoMon">
+                  <ci-table columns="cols" table-data="reportData" thead-template="headTable">
+                    </ci-table>
+              </div>
+              <div ng-if="baocaolanhdao.tabC.tabKhoaBoMon">
+                  <ci-table columns="colsKhoa" table-data="reportDataKhoa" thead-template="headTable">
+                    </ci-table>
+              </div>
+            </div> -->
             </div>
+            <!-- /.row -->
           </div>
-          <!-- /.row -->
+          <!-- ./box-body -->
         </div>
-        <!-- ./box-body -->
+        <!-- /.box -->
       </div>
-      <!-- /.box -->
+      <!-- /.col -->
     </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
+    <!-- /.row -->
 </section>
