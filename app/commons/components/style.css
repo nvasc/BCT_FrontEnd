@@ -17,3 +17,15 @@
 .select2-container--default .select2-selection--single {
     border-radius: 0;;
 }
+.list-group.list-group-files {
+    margin-bottom: 0;
+}
+.list-group.list-group-files>.list-group-item {
+    padding: 5px; border: none;
+}
+.list-group.list-group-files>.list-group-item>.file-info {
+    padding-right: 5px;
+}
+.list-group.list-group-files>.list-group-item>.file-uploading {
+    padding-right: 5px;
+}

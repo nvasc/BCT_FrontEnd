@@ -10,9 +10,11 @@ function gridExpandDirective ()  {
       ciGridCommand: '=',
       ciFilter: '=',
       ciFilterDefault: '=',
+      ciSortDefault: '=',
       ciQueryId: '@',
       ciSetScope: '=',
-      ciExpandObject: '=',      
+      ciIsInner: '@',
+      ciExpandObject: '=',
     },
     template: function (element, attrs) {
 

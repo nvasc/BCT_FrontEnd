@@ -11,7 +11,7 @@ import gridExpand from './grid/gridExpand/gridExpand.directive';
 import select from './select/select.directive';
 import selectLocal from './select/selectLocal.directive';
 import popupFactory from './popup/popupFactory';
-
+import upload from './upload/upload.directive';
 //import controller from './example.controller';
 
 import pie from './charts/pie/pie.directive';
@@ -33,6 +33,7 @@ angular
   .directive('ciGridExpand', gridExpand)
   .directive('ciSelect', select)
   .directive('ciSelectLocal', selectLocal)
+  .directive('ciUpload', upload)
   .directive('ciPie', pie)
   .directive('ciCombo', combo)
   .directive('ciBar', bar)

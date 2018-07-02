@@ -39,8 +39,11 @@
                 </select>
             </div>  
             <div class="col-md-12">
-               <ci-select ci-Id="aaa" url="api/client/getdata"></ci-select>
-            </div>              
+               <ci-select ci-Id="sss" ci-one-load="true" ng-model="bieumau.selectData" url="api/loaihinhdaotao/getselectdata"></ci-select>
+            </div> 
+            <div class="col-md-12">
+              <ci-upload ci-Id="uuu" multiple>Select File</ci-upload>
+           </div>      
           </div>
           <!-- /.row -->
         </div>

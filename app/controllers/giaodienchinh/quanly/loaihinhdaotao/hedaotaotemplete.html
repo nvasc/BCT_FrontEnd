@@ -5,8 +5,15 @@
     </button>
   </div>
   <div>
-    <ci-grid-expand url="api/loaihinhdaotao/getdata" col-defs="row.entity.expandOptions.colDefs" ci-height="265" ci-expand-object="row.entity.expandObject.loaidaotaoExpand"
+    <ci-grid-expand url="api/loaihinhdaotao/getdata" 
+    col-defs="row.entity.expandOptions.colDefs" 
+    ci-height="265" 
+    ci-expand-object="row.entity.expandObject.loaidaotaoExpand"
     ci-filter-default="row.entity.expandObject.filterDefault" 
-    ci-set-scope="grid.appScope.gridExpand.setItemScope" ci-grid-command="row.entity.expandObject.action" ci-query-id="{{row.entity.Id}}" ng-if="row.isExpanded"></ci-grid-expand>
+    ci-set-scope="grid.appScope.gridExpand.setItemScope" 
+    ci-grid-command="row.entity.expandObject.action" 
+    ci-query-id="{{row.entity.Id}}" ng-if="row.isExpanded"
+    ci-is-inner="true"
+    ></ci-grid-expand>
   </div>
 </div>

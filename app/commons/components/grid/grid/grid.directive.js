@@ -13,6 +13,7 @@ function gridDirective ()  {
       ciFilter: '=',
       ciFilterDefault: '=',
       ciQueryId: '@',
+      ciIsInner: '@',
       ciSetScope: '=',
     },
     template: function (element, attrs) {

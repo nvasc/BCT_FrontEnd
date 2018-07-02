@@ -365,9 +365,13 @@ function _init() {
 
         //Fixed footer
         _this.fixFooter();
-        if ($.AdminLTE.callbackPushMenu) {
-          $.AdminLTE.callbackPushMenu();
-        }
+        // if ($.AdminLTE.callbackPushMenu) {
+        //   $.AdminLTE.callbackPushMenu();
+        // }
+        setTimeout(function () {
+          window.dispatchEvent(new Event('resize'));          
+        },620);
+        
       });
 
       $(".content-wrapper").click(function () {

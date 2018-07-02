@@ -71,34 +71,31 @@ function clientController($q, $scope, clientService, popupFactory) {
   
   vm.saveObj = {};
 
-  vm.create = function (id, type, refreshGridCallBack) {
-    if (_scopeGrid.grid && _scopeGrid.grid.refresh) {
-      _scopeGrid.grid.refresh();
-    } 
-    // popupFactory.setOptions({
-    //   rss: rss,
-    //   title: rss.CreateTitle,
-    //   columnClass: 'col-md-offset-3 col-md-6',        
-    //   icon: 'fa fa-plus', 
-    //   content: saveTemplate,
-    //   scope: $scope,
-    // });
+  vm.create = function (id, type, refreshGridCallBack) {    
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.CreateTitle,
+      columnClass: 'col-md-offset-3 col-md-6',        
+      icon: 'fa fa-plus', 
+      content: saveTemplate,
+      scope: $scope,
+    });
 
-    // clientService.get(0).then(function (obj) {      
-    //   vm.saveObj = obj;
-    //   popupFactory.create(function () { 
-    //     var deferred = $q.defer();
-    //     clientService.create(vm.saveObj).then(function () {
-    //       deferred.resolve(true); 
-    //       if (_scopeGrid.grid && _scopeGrid.grid.refresh) {
-    //         _scopeGrid.grid.refresh();
-    //       } 
-    //     }, function () {
-    //       deferred.resolve(false);  
-    //     })    
-    //     return deferred.promise;
-    //   }, function () { vm.saveObj = {}; });
-    // });    
+    clientService.get(0).then(function (obj) {      
+      vm.saveObj = obj;
+      popupFactory.create(function () { 
+        var deferred = $q.defer();
+        clientService.create(vm.saveObj).then(function () {
+          deferred.resolve(true); 
+          if (_scopeGrid.grid && _scopeGrid.grid.refresh) {
+            _scopeGrid.grid.refresh();
+          } 
+        }, function () {
+          deferred.resolve(false);  
+        })    
+        return deferred.promise;
+      }, function () { vm.saveObj = {}; });
+    });    
   }
   vm.update = function (row, type, refreshGridCallBack) {
     popupFactory.setOptions({

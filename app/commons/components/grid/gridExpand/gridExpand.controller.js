@@ -2,13 +2,13 @@ import UiGrid from '../common/uiGrid';
 
 function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstants,
   $http, oauthDataFactory) {
-  var vm = this;  
+  var vm = this;
+  var filterDefaultObject = angular.copy($scope.ciFilterDefault);
   if ($scope.ciQueryId) {
-    console.log($scope.ciFilterDefault);
-    $scope.ciFilterDefault.QueryId = $scope.ciQueryId;
+    filterDefaultObject.QueryId = $scope.ciQueryId;
   }
-  var uiGrid = new UiGrid($scope, $timeout, uiGridConstants, $http, oauthDataFactory, 'data', 
-    $scope.ciExpandObject, $scope.ciFilterDefault);
+  var uiGrid = new UiGrid($scope, $timeout, uiGridConstants, $http, oauthDataFactory, 'data',
+    $scope.ciExpandObject, filterDefaultObject);
   vm.gridOptions = uiGrid.gridOptions;
   vm.uiGrid = uiGrid;
   vm.refresh = function () {
@@ -16,10 +16,10 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
   }
 
   vm.scopeGridChirent = null;
-  vm.setItemScope = function (s) {    
+  vm.setItemScope = function (s) {
     vm.scopeGridChirent = s;
   };
-  
+
   vm.create = function (id, type) {
     if ($scope.ciGridCommand && $scope.ciGridCommand.create) {
       var refresh = null;
@@ -28,13 +28,12 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
       }
       if (vm.scopeGridChirent && vm.scopeGridChirent.grid) {
         refresh = vm.scopeGridChirent.grid.refresh;
-      }     
-      if (refresh === null) {        
-        $scope.ciGridCommand.create(id, type);    
       }
-      else {
+      if (refresh === null) {
+        $scope.ciGridCommand.create(id, type);
+      } else {
         $scope.ciGridCommand.create(id, type, refresh);
-      }          
+      }
     }
   }
 
@@ -61,8 +60,8 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
   });
 
   //----------------------init-----------------
-  function resize() {    
-    if (angular.isUndefined($scope.ciHeight) || $scope.ciHeight !== '') { 
+  function resize() {
+    if (angular.isUndefined($scope.ciHeight) || $scope.ciHeight !== '') {
       $timeout(function () {
         var heightPx = $('.auto-of-content .box-body').css('min-height');
         var height = parseInt(heightPx.replace('px', '')) - 25;
@@ -80,14 +79,9 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
       resize();
     });
     $timeout(function () {
-      $.AdminLTE.callbackPushMenu = function () {
-        $timeout(function () {
-          vm.uiGrid.gridApi.core.handleWindowResize();
-        }, 520)
-      }
-      vm.uiGrid.init();      
-    })
-    resize();    
+      vm.uiGrid.init();
+    });
+    resize();
   }
   init();
 }

@@ -53,8 +53,7 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
     self.gridOptions.expandableRowHeight = expandObject.height;
     self.gridOptions.expandableRowScope = {
       subGridVariable: 'subGridScopeVariable'
-    };
-    
+    };    
   }
 
   //gridApi event -------------------------------  

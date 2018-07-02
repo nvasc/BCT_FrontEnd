@@ -3,15 +3,15 @@ import UiGrid from '../common/uiGrid';
 function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
   $http, oauthDataFactory) {
   var vm = this;
-
+  var filterDefaultObject = angular.copy($scope.ciFilterDefault);
   if ($scope.ciQueryId) {
-    console.log($scope.ciFilterDefault);
-    $scope.ciFilterDefault.QueryId = $scope.ciQueryId;
+    filterDefaultObject.QueryId = $scope.ciQueryId;
   }
+  
 
   $scope.data = [];  
   var uiGrid = new UiGrid($scope, $timeout, uiGridConstants, $http, oauthDataFactory, 'data', 
-  null, $scope.ciFilterDefault);
+  null, filterDefaultObject);
   vm.gridOptions = uiGrid.gridOptions;
   vm.uiGrid = uiGrid;
 
@@ -20,7 +20,6 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
   }
   vm.scopeGridChirent = null;
   vm.setItemScope = function (s) {  
-    console.log(s);  
     vm.scopeGridChirent = s;
   };
 
@@ -83,6 +82,7 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
       $scope.ciSetScope($scope);
     }
     $(window, '.content-wrapper').resize(function () {
+      console.log('zo');
       resize();
     });
     $timeout(function () {
