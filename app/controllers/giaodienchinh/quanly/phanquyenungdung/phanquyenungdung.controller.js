@@ -13,8 +13,8 @@ import saveChucnang from './save-chucnang.html';
 function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFactory) {
   const vm = this;
   var rss = {
-    phanquyenungdung: 'Các quyền trong ứng dụng',
-    chucnang: 'Quyền trong ứng dụng',
+    phanquyenungdung: 'các quyền trong ứng dụng',
+    chucnang: 'quyền trong ứng dụng',
     CreateTitle: 'Tạo mới',
     CreateButton: 'Tạo mới',
     CreateButtonClass: 'btn-primary',
@@ -46,6 +46,8 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
   };
   vm.defaultFilter = {};
   vm.action = {};
+
+  
   vm.saveObj = {};
   vm.create = function (parentId, type, refreshGridCallBack) {
     var title = '';
@@ -77,6 +79,8 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
 
     phanquyenungdungService.get(0, parentId, type).then(function (obj) {
       vm.saveObj = obj;
+      vm.saveObj.IdRole = parentId;
+      vm.saveObj.roleObj = { RoleId: parentId };
       popupFactory.create(function () {
         var deferred = $q.defer();
         phanquyenungdungService.create(type, vm.saveObj).then(function () {
@@ -107,10 +111,6 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
       case 2:
         title = rss.UpdateTitle + ' ' + rss.chucnang;
         template = saveChucnang;
-        vm.defaultFilter = {
-          roleId : parentId,
-          QueryId : row.entity.Id
-        };
         break;
     }
     popupFactory.setOptions({
@@ -126,6 +126,7 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
     phanquyenungdungService.get(row.entity.Id, parentId, 
       type).then(function (obj) {
         vm.saveObj = obj;
+        vm.saveObj.roleObj = { QueryId: row.entity.Id, RoleId: row.entity.IdRole };
         popupFactory.update(function () {
           var deferred = $q.defer();
           phanquyenungdungService.update(row.entity.Id, vm.saveObj, type)

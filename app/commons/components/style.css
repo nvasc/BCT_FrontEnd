@@ -41,3 +41,6 @@
     color: #a94442;
     margin-right: 4px;
 }
+.select2-dropdown {
+    z-index: 9999;
+}

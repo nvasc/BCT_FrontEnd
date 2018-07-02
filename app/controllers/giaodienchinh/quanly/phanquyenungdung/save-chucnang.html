@@ -1,27 +1,49 @@
 <div class="row">
   <div class="col-md-12">
     <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">Thông tin cơ bản</h3>
-      </div>
-      <!-- /.box-header -->
-      <!-- form start -->
       <form role="form">
         <div class="box-body">
           <div class="form-group">
-            <label for="Ten">Quyền</label>
+            <label for="Ten">Chức năng</label>
             <ci-select ci-Id="IdDocument" 
               ng-model="phanquyenungdung.saveObj.IdDocument"
-              ci-filter-default-obj="phanquyenungdung.defaultFilter" 
-              url="api/document/GetSelectData"></ci-select>
+              ci-filter-default-obj="phanquyenungdung.saveObj.roleObj" 
+              url="api/document/GetSelectData" ></ci-select>
+          </div>      
+          <div class="row" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+            <div class="col-md-3">
+              <div class="form-group" >
+                <div class="icheck-primary">
+                  <input type="checkbox" id="AllowRead" name="AllowRead" ng-model="phanquyenungdung.saveObj.AllowRead"/>
+                  <label for="AllowRead">Xem</label>
+                </div>
+              </div>  
+            </div>
+            <div class="col-md-3">
+              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="AllowCreate" name="AllowCreate" ng-model="phanquyenungdung.saveObj.AllowCreate"/>
+                  <label for="AllowCreate">Tạo</label>
+                </div>
+              </div> 
+            </div>
+            <div class="col-md-3">
+              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="AllowUpdate" name="AllowUpdate" ng-model="phanquyenungdung.saveObj.AllowUpdate"/>
+                  <label for="AllowUpdate">Sửa</label>
+                </div>
+              </div> 
+            </div>
+            <div class="col-md-3">
+              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="AllowDelete" name="AllowDelete" ng-model="phanquyenungdung.saveObj.AllowDelete"/>
+                  <label for="AllowDelete">Xóa</label>
+                </div>
+              </div> 
+            </div>
           </div>
-          <div class="form-group">
-            <label for="TenHienThi">Tên Hiển Thị</label>
-            <input type="text" class="form-control" id="TenHienThi" ng-model="phanquyenungdung.saveObj.TenHienThi">
-          </div>         
-          <div class="form-group">
-            
-          </div>         
         </div>
       </form>
     </div>
