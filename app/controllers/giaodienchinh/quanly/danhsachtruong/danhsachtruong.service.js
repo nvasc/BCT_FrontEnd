@@ -2,6 +2,7 @@ function danhsachtruongService($q, $rootScope, $timeout, nonceProvider, dataProv
   var service = {};
   var _providerName = 'thongtintruong';
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
     });

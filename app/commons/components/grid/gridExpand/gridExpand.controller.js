@@ -75,6 +75,7 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
     if ($scope.ciSetScope) {
       $scope.ciSetScope($scope);
     }
+    //$(window, '.content-wrapper').unbind('resize')
     $(window, '.content-wrapper').resize(function () {
       resize();
     });

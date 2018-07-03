@@ -1,10 +1,12 @@
 function apiService($timeout, $rootScope) {
 
   var service = {};
+
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
-      console.log('service');
+      
     });
   };
   service.init = _init;

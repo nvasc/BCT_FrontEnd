@@ -2,8 +2,10 @@ function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var service = {};
   var modelName = 'bieumauchuan';
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
+      
     });
   };
   var _key = '';

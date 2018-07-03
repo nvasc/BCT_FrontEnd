@@ -9,10 +9,7 @@ function downloadFactory($http, oauthDataFactory) {
       responseType: 'arraybuffer'
     })
       .then(function (data) {
-        console.log(data)
-        var headers = data.headers();
-        
-        
+        var headers = data.headers();       
         var contentType = headers['content-type'];        
         var fileName = data.headers('Content-Disposition').replace('attachment; filename=', '');
         /*eslint-disable */

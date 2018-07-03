@@ -1,7 +1,7 @@
 function chucnangRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('giaodienchinh.quanly.chucnang', {
-      url: '/quanly/chucnang',
+    .state('giaodienchinh.quantri.chucnang', {
+      url: '/quantri/chucnang',
       component: 'chucnang'
     })
 }

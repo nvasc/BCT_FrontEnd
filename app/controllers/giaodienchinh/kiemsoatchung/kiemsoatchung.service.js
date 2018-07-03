@@ -2,8 +2,10 @@ function kiemsoatchungService($rootScope, $timeout) {
 
   var service = {};
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () { 
-      $.AdminLTE.pushMenu.fixFooter();
+      $.AdminLTE.layout.fix();
+      
     });    
   };
   service.init = _init;

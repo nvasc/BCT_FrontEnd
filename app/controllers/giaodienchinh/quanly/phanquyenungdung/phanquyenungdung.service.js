@@ -7,8 +7,10 @@ function phanquyenungdungService($q, $rootScope, $timeout, httpProvider,
   var _providerQuyenTrongChuongTrinh = 'roledocumentfunction';
 
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
+      
     });
   };
   service.init = _init;
