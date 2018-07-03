@@ -3,7 +3,8 @@ function kiemsoatchungService($rootScope, $timeout) {
   var service = {};
   var _init = function () {
     $timeout(function () { 
-      $.AdminLTE.pushMenu.fixFooter();
+      $.AdminLTE.layout.fix();
+      $(window, '.content-wrapper').unbind('resize');
     });    
   };
   service.init = _init;

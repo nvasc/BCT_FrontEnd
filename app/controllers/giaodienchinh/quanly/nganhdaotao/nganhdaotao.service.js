@@ -4,6 +4,7 @@ function nganhdaotaoService($q, $rootScope, $timeout, nonceProvider, dataProvide
   var _init = function () {
     $timeout(function () {
       $.AdminLTE.layout.fix();
+      $(window, '.content-wrapper').unbind('resize');
     });
   };
   var _key = '';

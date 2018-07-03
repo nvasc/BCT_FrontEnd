@@ -4,6 +4,7 @@ function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var _init = function () {
     $timeout(function () {
       $.AdminLTE.layout.fix();
+      $(window, '.content-wrapper').unbind('resize');
     });
   };
   var _key = '';

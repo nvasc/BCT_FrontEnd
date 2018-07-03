@@ -9,6 +9,7 @@ function phanquyenungdungService($q, $rootScope, $timeout, httpProvider,
   var _init = function () {
     $timeout(function () {
       $.AdminLTE.layout.fix();
+      $(window, '.content-wrapper').unbind('resize');
     });
   };
   service.init = _init;
