@@ -229,7 +229,6 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           $scope.ngModel = $(eleThis).select2('data')[0];
         }
       }
-
       $scope.$apply();
     });
   }

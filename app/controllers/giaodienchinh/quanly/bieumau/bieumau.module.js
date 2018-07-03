@@ -7,7 +7,6 @@ import service from './bieumau.service';
 angular
   .module('bieumau', [])
   .component('bieumau', component)  
-  //.controller('kiemsoatchungController', controller)
   .factory('bieumauService', service)
   .config(routing);
   

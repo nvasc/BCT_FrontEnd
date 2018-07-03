@@ -82,7 +82,6 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
       $scope.ciSetScope($scope);
     }
     $(window, '.content-wrapper').resize(function () {
-      console.log('zo');
       resize();
     });
     $timeout(function () {

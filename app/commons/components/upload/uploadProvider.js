@@ -1,13 +1,7 @@
 function uploadFileChunk(http, url, chunk, fileName, fileInfo, callBack, partCount, totalParts) {
   var FD = new FormData();
   FD.append('file', chunk, fileName);
-  // $.ajax({
-  //   type: 'POST',
-  //   url: 'http://localhost:8170/Home/UploadFile/',
-  //   contentType: false,
-  //   processData: false,
-  //   data: FD
-  // });
+  
   http({
     url: url,
     method: 'POST',
@@ -18,7 +12,7 @@ function uploadFileChunk(http, url, chunk, fileName, fileInfo, callBack, partCou
   }).then(function () {
     if (callBack) {
       if (partCount === totalParts) {
-        callBack(fileInfo.gid);
+        callBack(fileInfo.gid, fileInfo.file.name);
       }      
     }
   });

@@ -16,7 +16,7 @@ function uploadController($scope, $element, $attrs, $timeout,
     _css = $attrs.ngClass ? $attrs.ngClass : $attrs.class;
   }
 
-  var button = $element.find('button').addClass('btn btn-primary');  
+  var button = $element.find('button').addClass('btn btn-primary btn-sm');  
   var fileField = $element.find('input');
   var ul = $element.find('ul');
 
@@ -38,7 +38,7 @@ function uploadController($scope, $element, $attrs, $timeout,
     uploadProvider.removeUploadFile($http, url, gid);
   }
 
-  var _atferUploadFile = function (gid) {
+  var _atferUploadFile = function (gid, name) {
     $('#loading-' + gid).removeClass('fa-spinner');
     $('#loading-' + gid).removeClass('fa-spin');
     $('#loading-' + gid).addClass('fa-check');
@@ -54,6 +54,14 @@ function uploadController($scope, $element, $attrs, $timeout,
       })
     });
     fileField.val(null);
+    if ($attrs.multiple) {
+      $scope.ciFileName.push(name);
+      $scope.ciStoreFileName.push(gid);
+    }
+    else {
+      $scope.ciFileName = name,
+      $scope.ciStoreFileName = gid
+    }
   }
 
   
@@ -67,13 +75,21 @@ function uploadController($scope, $element, $attrs, $timeout,
 
   fileField.bind('change', function (event) {
     vm.files = [];
+    ul.html('');
+    if ($attrs.multiple) {
+      $scope.ciFileName = [],
+      $scope.ciStoreFileName = []; 
+    }
+    else {
+      $scope.ciFileName = '';
+      $scope.ciStoreFileName = '';
+    }
     var files = event.target.files;
     for (var i = 0; i < files.length; i++) {
       var fileInfo = {file: files[i], gid: random.guid('')};
       _appendFileInfo(fileInfo);
       uploadProvider.uploadFile($http, url, fileInfo, _atferUploadFile);
-    }
-
+    }    
   });
   fileField.bind('click', function (e) {
     e.stopPropagation();

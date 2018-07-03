@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 function popupFactory($ngConfirm) {
   var factory = {};
   var _options = {};

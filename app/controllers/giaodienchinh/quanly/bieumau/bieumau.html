@@ -3,23 +3,30 @@
   <ol class="breadcrumb">
     <li>
       <a href="javascript:void(0);">
-        <i class="fa fa-table"></i> Quản lý</a>
+        <i class="fa fa-cogs" aria-hidden="true"></i> Quản lý</a>
     </li>
-    <li class="active">Biểu mẫu</li>
+    <li>
+      <a href="javascript:void(0);"> Ngành đào tạo</a>
+    </li>
   </ol>
 </section>
+<!--content here-->
 <section class="content">
+
   <div class="row">
-    <div class="col-md-12">
+    <!--header of content, Note: must be have height style-->
+    <div class="col-md-12 fix-of-content">
       <div class="box box-primary">
-        <div class="box-body">
+        <div class="box-body header">
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
-              <div class="box-tools">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search ...">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
+              <div class="navbar-form navbar-right search-filter">                
+                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="bieumau.create()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                <button class="btn btn-xs" ng-class="{'btn-success': !bieumau.isFilter, 'btn-danger': bieumau.isFilter}" ng-click="bieumau.filter()" title="Lọc dữ liệu">
+                  <span class="fa" ng-class="{'fa-filter': !bieumau.isFilter, 'fa-times': bieumau.isFilter}"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -30,16 +37,16 @@
       <!-- /.box -->
     </div>
     <!-- /.col -->
-    <div class="col-md-12">
+    <!--body of content -->
+    <div class="col-md-12 auto-of-content">
       <div class="box box-primary">
         <div class="box-body">
-          <div class="row">            
+          <div class="row">
             <div class="col-md-12">
-               <ci-select ci-Id="sss" ci-one-load="false" ng-model="bieumau.selectData" ci-filter-default="1,2,3,4,5,6,7" ci-filter-default-obj="bieumau.defaultFilter" url="api/loaihinhdaotao/getselectdata" ci-is-multiple="true"></ci-select>
-            </div> 
-            <div class="col-md-12">
-              <ci-upload ci-Id="uuu" multiple>Select File</ci-upload>
-           </div>      
+              <ci-grid ci-id="client-grid" url="api/bieumauchuan/getdata" 
+              col-defs="bieumau.colDefs" ci-filter="bieumau.isFilter" 
+              ci-grid-command="bieumau.action" ci-set-scope="bieumau.setScopeGrid" ></ci-grid>
+            </div>
           </div>
           <!-- /.row -->
         </div>
@@ -47,6 +54,6 @@
       </div>
       <!-- /.box -->
     </div>
-    <!-- /.col -->    
+    <!-- /.col -->
   </div>
 </section>

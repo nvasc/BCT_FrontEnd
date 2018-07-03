@@ -6,12 +6,13 @@ import './style.css';
 import 'angular-ui-grid/ui-grid';
 //import 'angular-ui-grid/ui-grid.auto-resize';
 
+import downloadFactory from './download/downloadFactory';
 import grid from './grid/grid/grid.directive';
 import gridExpand from './grid/gridExpand/gridExpand.directive';
 import select from './select/select.directive';
 import popupFactory from './popup/popupFactory';
 import upload from './upload/upload.directive';
-//import controller from './example.controller';
+import download from './download/download.directive';
 
 import pie from './charts/pie/pie.directive';
 import combo from './charts/combo/combo.directive';
@@ -29,10 +30,13 @@ angular
     'ngSanitize',
     'ui.grid.expandable', 'ui.grid.selection', 'ui.grid.pinning'
   ])
+  .factory('downloadFactory', downloadFactory)
+
   .directive('ciGrid', grid)
   .directive('ciGridExpand', gridExpand)
   .directive('ciSelect', select)
   .directive('ciUpload', upload)
+  .directive('ciDownload', download)
   .directive('ciPie', pie)
   .directive('ciCombo', combo)
   .directive('ciBar', bar)

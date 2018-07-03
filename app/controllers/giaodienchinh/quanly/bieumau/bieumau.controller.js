@@ -1,25 +1,151 @@
-import 'select2';
-import 'select2/dist/css/select2.css';
-function bieumauController ($scope, bieumauService) {
+
+import gridCommand from './grid-command.html';
+import colDownload from './col-download.html';
+import saveTemplate from './save.html';
+
+function bieumauController ($q, $scope, bieumauService, popupFactory) {
   const vm = this;
-  vm.title = bieumauService.title();
-  vm.CountryList = [
-    { value: '0', text: 'Chọn quốc gia' },
-    { value: '2', text: 'Việt Nam' },
-  ];
-  vm.CountrySelected = { value: '0' };
-  $scope.$watch('bieumau.CountrySelected', function (nval, oval) { 
-    console.log(nval, oval)
-  });
-  vm.selectData =  ['1', '2'];
-  $scope.$watch('bieumau.selectData', function (nval, oval) { 
-    if (!angular.equals(nval, oval)) {
-      console.log(nval, oval)
-    }    
-  });
-  vm.defaultFilter = {
-    Abc: '123'
+  // Message ------------------
+  var rss = {
+    CreateTitle: 'Tạo mới biểu mẫu',
+    CreateButton: 'Tạo mới',
+    CreateButtonClass: 'btn-primary',
+
+    UpdateTitle: 'Cập nhật một biểu mẫu',
+    UpdateButton: 'Cập nhật',
+    UpdateButtonClass: 'btn-primary',
+
+    DeleteConfirm: 'Bạn có chắc chắn muốn xóa biểu mẫu này?',
+    DeleteTitle: 'Xóa một biểu mẫu',
+    DeleteButton: 'Xóa',
+    DeleteButtonClass: 'btn-danger',
+
+    CancelButton: 'Hủy',
+    CancelButtonClass: 'btn-default'    
   }
+
+  // Initial in screen ------------------
+  bieumauService.init();
+  var _scopeGrid = null;
+  // Scope of Grid
+  vm.setScopeGrid = function (s) {
+    _scopeGrid = s;
+  };
+
+  function refreshGrid() {
+    if (_scopeGrid) {
+      _scopeGrid.refresh();
+    }
+  }
+
+  // Column Define of Grid Component ------------------
+  vm.colDefs = [{
+    name: 'Ma',
+    displayName: 'Mã',
+  }, {
+    name: 'Ten',
+    displayName: 'Tên',
+  }, {
+    name: 'TenFileBieuMau',
+    displayName: 'Tập Tin',
+    cellTemplate: colDownload,
+    cellClass: 'grid-command',
+  }, {
+    name: ' ',
+    cellTemplate: gridCommand,
+    cellClass: 'grid-command',
+    width: 60,
+    enableSorting: false,
+    enableFiltering: false,
+  }];
+
+  // manually Filter in Grid Component ------------------
+  vm.isFilter = false;
+  vm.filter = function () {
+    vm.isFilter = !vm.isFilter;
+  }
+
+  // CRUD for this function ------------------
+  vm.saveObj = {};
+  vm.action = {};
+
+  vm.create = function (id, type, refreshGridCallBack) {
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.CreateTitle,
+      columnClass: 'col-md-offset-3 col-md-6',        
+      icon: 'fa fa-plus', 
+      content: saveTemplate,
+      scope: $scope,
+    });
+
+    bieumauService.get(0).then(function (obj) {      
+      vm.saveObj = obj;
+      popupFactory.create(function () { 
+        var deferred = $q.defer();
+        bieumauService.create(vm.saveObj).then(function () {
+          deferred.resolve(true);
+          if (_scopeGrid) {
+            _scopeGrid.grid.refresh();            
+          }  
+        }, function () {
+          deferred.resolve(false);  
+        })    
+        return deferred.promise;
+      }, function () { vm.saveObj = {}; });
+    });    
+  }
+
+  vm.update = function (row, type, refreshGridCallBack) {
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.UpdateTitle,
+      columnClass: 'col-md-offset-3 col-md-6',  
+      icon: 'fa fa-edit',
+      content: saveTemplate,
+      scope: $scope,
+    });
+    bieumauService.get(row.entity.Id).then(function (obj) {      
+      vm.saveObj = obj;
+      popupFactory.update(function () { 
+        var deferred = $q.defer();
+        bieumauService.update(row.entity.Id, vm.saveObj).then(function () {
+          deferred.resolve(true);
+          if (refreshGridCallBack) {
+            refreshGridCallBack();
+          }   
+        }, function () {
+          deferred.resolve(false);  
+        })              
+        return deferred.promise;
+      }, function () { vm.saveObj = {}; });
+    });
+  };
+  vm.action.update = vm.update;
+
+  vm.delete = function (row, type, refreshGridCallBack) {
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.DeleteTitle,
+      columnClass: 'col-md-offset-5 col-md-3',   
+      icon: 'fa fa-times',
+      content: rss.DeleteConfirm,
+      scope: $scope,
+    });
+    popupFactory.delete(function () { 
+      var deferred = $q.defer();
+      bieumauService.delete(row.entity.Id).then(function () {
+        deferred.resolve(true);
+        if (refreshGridCallBack) {          
+          refreshGridCallBack();
+        }
+      }, function () {
+        deferred.resolve(false);  
+      })    
+      return deferred.promise;
+    }, function () { vm.saveObj = {} });
+  };
+  vm.action.delete = vm.delete;
 }
 
 /* @ngInject */

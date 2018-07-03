@@ -5,7 +5,9 @@ function uploadDirective ()  {
     restrict: 'E',
     scope: {
       ciId: '@',
-      url: '@',      
+      url: '@',  
+      ciFileName: '=',
+      ciStoreFileName: '='    
     },
     transclude: true,
     template: function (element, attrs) {     
