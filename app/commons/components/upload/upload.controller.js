@@ -1,8 +1,9 @@
 import random from '../../utility/random';
 import uploadProvider from './uploadProvider';
 import _ from 'lodash';
+
 function uploadController($scope, $element, $attrs, $timeout,
-  $http, oauthDataFactory) {
+  $http, oauthDataFactory, downloadFactory) {
   
   var url = oauthDataFactory.urlMain()  + ($scope.url ? $scope.url : 'api/upload');
   var vm = this;
@@ -99,8 +100,39 @@ function uploadController($scope, $element, $attrs, $timeout,
     fileField[0].click();
   });
 
-  function init() {
+  var _initExistFile = function (storeFileName, fileName) {
+    ul.append('<li id="item-' + storeFileName + '" class="list-group-item">' + 
+      '<span class="file-info">' + fileName + '</span>' +      
+      '<i id="delete-' + storeFileName + '" class="fa fa-times text-danger" ' +
+      'style="padding-left: 5px;cursor: pointer;"></i>' +
+      '<i id="download-' + storeFileName + '" class="fa fa-download text-primary" ' +
+      'style="padding-left: 5px;cursor: pointer;"></i>' +
+      '</li>');
+    $timeout(function () {
+      $('#delete-' + storeFileName).bind('click', function () {
+        _deleteUploadFile($(this).attr('id').replace('delete-', ''));
+      })
+      $('#download-' + storeFileName).bind('click', function () {
+        downloadFactory.download($(this).attr('id').replace('download-', ''));
+      })
+    }, 250);
+  }
 
+  function init() {
+    if ($attrs.multiple) {
+      for (var i = 0; i < $scope.ciFileName.length; i++) {        
+        if ($scope.ciStoreFileName[i] && $scope.ciStoreFileName[i] !== '' && 
+        $scope.ciFileName[i] && $scope.ciFileName[i] !== '') {
+          _initExistFile($scope.ciStoreFileName[i], $scope.ciFileName[i]);
+        }     
+      }
+    }
+    else {      
+      if ($scope.ciStoreFileName && $scope.ciStoreFileName !== '' && 
+      $scope.ciFileName && $scope.ciFileName !== '') {
+        _initExistFile($scope.ciStoreFileName, $scope.ciFileName);
+      }      
+    }
   }
   init();
 }
