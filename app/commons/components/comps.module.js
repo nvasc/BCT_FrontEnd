@@ -3,6 +3,7 @@ import 'angular-ui-grid/ui-grid.css';
 import 'select2/dist/css/select2.css';
 import './style.css';
 
+import 'select2';
 import 'angular-ui-grid/ui-grid';
 //import 'angular-ui-grid/ui-grid.auto-resize';
 

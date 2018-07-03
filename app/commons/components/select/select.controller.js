@@ -1,4 +1,3 @@
-import 'select2';
 import _ from 'lodash';
 
 function selectController($q, $scope, $element, $attrs, $timeout,
@@ -91,6 +90,11 @@ function selectController($q, $scope, $element, $attrs, $timeout,
         $('#' + $scope.ciId).trigger('change');             
       });
     }
+    else if ($scope.ngModel === 0) {
+      $('#' + $scope.ciId)
+      .append(new Option(msg.SelectTextStart, 0, false, true));
+      $('#' + $scope.ciId).trigger('change');  
+    }
   }
 
   function initControl() {
@@ -111,7 +115,11 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             return queryParameters;
           },
           processResults: function (data, params) {
-            var results = [];
+            var results = [ {
+              id: 0,
+              text: msg.SelectTextStart,
+              level: '1'
+            } ];
             var dataResult = data.Data;
             for (var i = 0; i < dataResult.length; i++) {
               results.push({
@@ -126,15 +134,14 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           },
           transport: function (params, success, failure) {
             var filter = {};          
-
+            console.log($scope.ciFilterDefaultObj)
             if (angular.isDefined($scope.ciFilterDefaultObj) && 
             angular.isObject($scope.ciFilterDefaultObj)) {
               filter = angular.copy($scope.ciFilterDefaultObj);              
             }
             filter.Skip = 0;
             filter.Take = 50;
-            filter.OrderBys = [];
-           
+            filter.OrderBys = [];            
             if (angular.isDefined($scope.ciFilterDefault) && $scope.ciFilterDefault !== '') {
               filter.QueryString = $scope.ciFilterDefault;
             }
@@ -157,7 +164,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
         onChangeSelect(this);
       });
       initSelection();
-    });
+    }, 250);
   }
 
 
@@ -202,7 +209,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           onChangeSelect(this);
         });       
       });
-    });
+    }, 250);
   }
 
   function onChangeSelect(eleThis) {

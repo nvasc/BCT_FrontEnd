@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Chức năng</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="Ma">Mã</label>
+        <input type="text" class="form-control" id="Ma" placeholder="" ng-model="chucnang.saveObj.Code">
+          </div>
+          <div class="form-group">
+            <label for="Ten">Tên</label>
+            <input type="text" class="form-control" id="Ten" ng-model="chucnang.saveObj.Name">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Mô Tả</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <textarea class="form-control" id="MoTa" rows="3" ng-model="chucnang.saveObj.Description"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
