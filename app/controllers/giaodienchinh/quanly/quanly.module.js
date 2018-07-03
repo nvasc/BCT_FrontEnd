@@ -6,8 +6,6 @@ import bieumau from './bieumau/bieumau.module';
 import danhsachtruong from './danhsachtruong/danhsachtruong.module';
 import taikhoan from './taikhoan/taikhoan.module';
 import phanquyennguoidung from './phanquyennguoidung/phanquyennguoidung.module';
-import chucnang from './chucnang/chucnang.module';
-import phanquyen from './phanquyen/phanquyen.module';
 import phanquyenungdung from './phanquyenungdung/phanquyenungdung.module';
 import loaihinhdaotao from './loaihinhdaotao/loaihinhdaotao.module';
 import nganhdaotao from './nganhdaotao/nganhdaotao.module';
@@ -16,7 +14,7 @@ import nganhdaotao from './nganhdaotao/nganhdaotao.module';
 angular
   .module('quanly', [ 
     'bieumau', 'danhsachtruong','taikhoan', 'phanquyennguoidung',
-    'phanquyenungdung','chucnang',    'loaihinhdaotao', 'nganhdaotao'
+    'phanquyenungdung', 'loaihinhdaotao', 'nganhdaotao'
   ])
   .component('quanly', component) 
   .config(routing);
