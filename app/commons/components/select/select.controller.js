@@ -134,7 +134,6 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           },
           transport: function (params, success, failure) {
             var filter = {};          
-            console.log($scope.ciFilterDefaultObj)
             if (angular.isDefined($scope.ciFilterDefaultObj) && 
             angular.isObject($scope.ciFilterDefaultObj)) {
               filter = angular.copy($scope.ciFilterDefaultObj);              
@@ -216,7 +215,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
     $timeout(function () {
       if (angular.isUndefined($scope.ciValueType) || $scope.ciValueType === 'key') {
 
-        if ($(eleThis).select2('data').length > 1) {
+        if ($scope.ciIsMultiple === 'true') {
           var vals = [];
           for (var j = 0; j < $(eleThis).select2('data').length; j++) {
             vals.push($(eleThis).select2('data')[j].id)
@@ -226,7 +225,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           $scope.ngModel = $(eleThis).select2('data')[0].id;
         }
       } else {
-        if ($(eleThis).select2('data').length > 1) {
+        if ($scope.ciIsMultiple === 'true') {
           var vals = [];
           for (var j = 0; j < $(eleThis).select2('data').length; j++) {
             vals.push($(eleThis).select2('data')[j])
