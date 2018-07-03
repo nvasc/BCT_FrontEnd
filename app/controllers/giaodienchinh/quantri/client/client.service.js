@@ -2,9 +2,10 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var service = {};
   var _providerName = 'client';
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
-      $(window, '.content-wrapper').unbind('resize');
+      
     });
   };
   var _key = '';

@@ -5,9 +5,9 @@ function loaihinhdaotaoService($q, $rootScope, $timeout, httpProvider,
   var _providerName = 'loaihinhdaotao';
 
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
-      $.AdminLTE.layout.fix();
-      $(window, '.content-wrapper').unbind('resize');
+      $.AdminLTE.layout.fix();      
     });
   };
   service.init = _init;
