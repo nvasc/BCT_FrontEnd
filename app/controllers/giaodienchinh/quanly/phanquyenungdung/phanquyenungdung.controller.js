@@ -49,7 +49,7 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
 
   
   vm.saveObj = {};
-  vm.create = function (parentId, type, refreshGridCallBack) {
+  vm.create = function (parentId, type, refreshGridCallBack) {    
     var title = '';
     var template = '';
     switch (type) {
@@ -90,7 +90,6 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
           }
           else if (_scopeGrid) {
             _scopeGrid.gridExpand.refresh();
-
           }
         }, function () {
           deferred.resolve(false);
@@ -187,7 +186,7 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
     rowTemplate: chucnangTemplete,
     height: 300,
     rowExpandedStateChanged: function (row, event) {
-      console.log(row, 1);
+      
     },
     create: function () {
       console.log('zo');

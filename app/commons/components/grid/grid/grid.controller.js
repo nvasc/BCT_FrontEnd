@@ -80,8 +80,7 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
   function init() {
     if ($scope.ciSetScope) {
       $scope.ciSetScope($scope);
-    }
-    //$(window, '.content-wrapper').unbind('resize');
+    }    
     $(window, '.content-wrapper').bind('resize', function () {
       resize();
     });

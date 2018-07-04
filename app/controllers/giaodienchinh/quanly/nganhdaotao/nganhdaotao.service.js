@@ -2,9 +2,10 @@ function nganhdaotaoService($q, $rootScope, $timeout, nonceProvider, dataProvide
   var service = {};
 
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
       $.AdminLTE.layout.fix();
-      $(window, '.content-wrapper').unbind('resize');
+      
     });
   };
   var _key = '';
