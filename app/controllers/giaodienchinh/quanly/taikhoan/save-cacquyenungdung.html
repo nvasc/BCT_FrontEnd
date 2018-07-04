@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="Ten">Quyền</label>
+            <ci-select ci-Id="IdRoles"
+              ci-is-multiple="true" 
+              ng-model="taikhoan.saveObj.IdRoles"
+              ci-filter-default-obj="taikhoan.saveObj.userObj" 
+              url="api/userrole/GetSelectDataForTaiKhoan" ></ci-select>
+          </div>   
+      </form>
+    </div>
+  </div>
+</div>
