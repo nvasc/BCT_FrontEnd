@@ -54,7 +54,7 @@
         <div class="box-body">
           <div class="form-group">
             <label for="Ma">Tên đăng nhập</label>
-            <input type="text" class="form-control" id="Username" placeholder="" ng-model="danhsachtruong.saveObj.Username">
+            <input type="text" class="form-control" id="Username" placeholder="" ng-disabled="danhsachtruong.saveObj.IsUpdate" ng-model="danhsachtruong.saveObj.Username">
           </div>
           <div class="form-group" ng-if="!danhsachtruong.saveObj.IsUpdate">
             <label for="Ten">Mật khẩu</label>
@@ -62,7 +62,7 @@
           </div>
           <div class="form-group">
             <label for="Ten">Email</label>
-            <input type="text" class="form-control" id="Email" ng-model="danhsachtruong.saveObj.Email">
+            <input type="text" class="form-control" id="Email" ng-disabled="danhsachtruong.saveObj.IsUpdate" ng-model="danhsachtruong.saveObj.Email">
           </div>          
         </div>
       </div>

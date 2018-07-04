@@ -103,6 +103,7 @@ function danhsachtruongController($q, $scope, danhsachtruongService, popupFactor
     });
     danhsachtruongService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
+      vm.saveObj.IsUpdate = true;
       popupFactory.update(function () { 
         var deferred = $q.defer();
         danhsachtruongService.update(row.entity.Id, vm.saveObj).then(function () {
