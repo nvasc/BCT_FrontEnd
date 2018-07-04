@@ -73,6 +73,26 @@ function uploadController($scope, $element, $attrs, $timeout,
   if ($attrs.multiple) {
     fileField.attr('multiple', $attrs.multiple);
   }
+  var _disableDelete = function (isShow) {
+    ul.find('li').each(function (index) {      
+      var eleIs = $(this).find('i');
+      for (var i = 0; i < eleIs.length; i++) {
+        if ($(eleIs[i]).attr('id').indexOf('delete-') > -1) {
+          $(eleIs[i]).css('display', isShow ? '' : 'none');
+        }
+      }      
+    });
+  }
+  $scope.$watch($attrs.disabled, function () {
+    if ($attrs.disabled) {
+      button.css('display', 'none');
+      _disableDelete(false);
+    }
+    else {
+      button.css('display', '');
+      _disableDelete(true);
+    }
+  });
 
   fileField.bind('change', function (event) {
     vm.files = [];

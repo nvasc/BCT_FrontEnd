@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12">
+    
+    <div class="box box-primary">
+      <div role="form">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Ma">Biểu mẫu chuẩn</label>
+                        <ci-select ci-Id="IdBieuMauChuan"
+                          ng-model="nhapkhaubaocao.saveObj.IdBieuMauChuan"
+                          ci-one-load="true"
+                          ci-filter-default-obj="nhapkhaubaocao.defaultFilter" 
+                          url="api/bieumauchuan/GetSelectData" ng-disabled="nhapkhaubaocao.saveObj.IsDetail"></ci-select>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FileBieuMau">Tập tin nhập khẩu</label>
+                        <ci-upload ci-id="FileBieuMau" 
+                          ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau" 
+                          ci-file-name="nhapkhaubaocao.saveObj.TenFileBieuMau" ng-disabled="nhapkhaubaocao.saveObj.IsDetail">Chọn tập tin</ci-upload>
+                      </div>
+                </div>
+              </div>         
+        </div>
+      </div>        
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="ChiTiet">Chi tiết</label>
+            <textarea class="form-control" id="ChiTiet" rows="3" readonly  ng-model="nhapkhaubaocao.saveObj.ChiTiet"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

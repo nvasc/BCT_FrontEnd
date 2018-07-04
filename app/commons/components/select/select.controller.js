@@ -39,7 +39,14 @@ function selectController($q, $scope, $element, $attrs, $timeout,
     }
     return [];
   }
-  var _control = $('#' + $scope.ciId);
+  var _control = $element.find('select#' + $scope.ciId);
+
+  
+  $scope.$watch($attrs.disabled, function () {
+    if ($attrs.disabled) {
+      _control.attr('disabled', $attrs.disabled);
+    }
+  });
 
   $scope.$watch('select.dataSelected', function (nval, oval) {
     //console.log(nval, oval);
@@ -193,8 +200,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           }
           
           results.push(item);
-        }
-        
+        }       
         
         _control.select2({
           language: {
@@ -206,9 +212,10 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           data: results
         }).on('change', function (e) {
           onChangeSelect(this);
-        });       
+        });   
+            
       });
-    }, 250);
+    });
   }
 
   function onChangeSelect(eleThis) {

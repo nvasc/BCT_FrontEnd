@@ -11,13 +11,19 @@ function downloadFactory($http, oauthDataFactory) {
       .then(function (data) {
         var headers = data.headers();       
         var contentType = headers['content-type'];        
-        var fileName = data.headers('Content-Disposition').replace('attachment; filename=', '');
-        /*eslint-disable */
+        var fileNameEncode = data.headers('Content-Disposition')
+        .replace('attachment; filename=', '')
+        .replace('"', '')
+        .replace('"', '');
+
+        //Base64 to UTF8
+        var fileName = decodeURIComponent(escape(atob(fileNameEncode.replace(/\s/g, ''))));
         
+        /*eslint-disable */        
         var linkElement = document.createElement('a');
          /*eslint-enable */
         try {
-          var blob = new Blob([ data ], {
+          var blob = new Blob([ data.data ], {
             type: contentType
           });
           /*eslint-disable */

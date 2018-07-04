@@ -1,48 +1,59 @@
 <section class="content-header">
-        <h4>&nbsp;</h4>
-        <ol class="breadcrumb">
-                <li>
-                        <a href="javascript:void(0);">
-                                <i class="fa fa-dashboard"></i> Nhập khẩu báo cáo
-                        </a>
-                </li>
-        </ol>
+  <h4>&nbsp;</h4>
+  <ol class="breadcrumb">
+    <li>
+      <a href="javascript:void(0);">
+        <i class="fa fa-cogs" aria-hidden="true"></i> Quản lý</a>
+    </li>
+    <li>
+      <a href="javascript:void(0);">Nhập khẩu báo cáo</a>
+    </li>
+  </ol>
 </section>
+<!--content here-->
 <section class="content">
-    <!--content here-->
-    <div class="row">
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-2 col-xs-6 pull-right">
-                  <div class="box-tools">
-                    <div class="has-feedback">
-                      <input type="text" class="form-control input-sm" placeholder="Search ...">
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
-                  </div>
-                </div>
+
+  <div class="row">
+    <!--header of content, Note: must be have height style-->
+    <div class="col-md-12 fix-of-content">
+      <div class="box box-primary">
+        <div class="box-body header">
+          <div class="row">
+            <div class="col-md-2 col-xs-6 pull-right">
+              <div class="navbar-form navbar-right search-filter">                
+                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="nhapkhaubaocao.create()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                <button class="btn btn-xs" ng-class="{'btn-success': !nhapkhaubaocao.isFilter, 'btn-danger': nhapkhaubaocao.isFilter}" ng-click="nhapkhaubaocao.filter()" title="Lọc dữ liệu">
+                  <span class="fa" ng-class="{'fa-filter': !nhapkhaubaocao.isFilter, 'fa-times': nhapkhaubaocao.isFilter}"></span>
+                </button>
               </div>
-              <!-- /.row -->
             </div>
-            <!-- ./box-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.row -->
         </div>
-        <!-- /.col -->
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-body">
-              <div class="row">
-                
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- ./box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->    
+        <!-- ./box-body -->
       </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <!--body of content -->
+    <div class="col-md-12 auto-of-content">
+      <div class="box box-primary">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <ci-grid ci-id="client-grid" url="api/xulyimportbieumau/getdata" 
+              col-defs="nhapkhaubaocao.colDefs" ci-filter="nhapkhaubaocao.isFilter" 
+              ci-grid-command="nhapkhaubaocao.action" ci-set-scope="nhapkhaubaocao.setScopeGrid" ></ci-grid>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
 </section>
