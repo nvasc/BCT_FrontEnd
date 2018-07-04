@@ -88,6 +88,10 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
           if (refreshGridCallBack) {
             refreshGridCallBack();
           }
+          else if (_scopeGrid) {
+            _scopeGrid.gridExpand.refresh();
+
+          }
         }, function () {
           deferred.resolve(false);
         })
