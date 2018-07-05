@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Thông tin dịch vụ</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="Name">Tên dịch vụ</label>
+            <input type="text" class="form-control" id="Name" placeholder="" ng-model="dichvuchayngam.saveObj.Name">
+          </div>
+          <div class="form-group">
+            <label for="Description">Mô tả</label>
+            <input type="text" class="form-control" id="Description" placeholder="" ng-model="dichvuchayngam.saveObj.Description">
+          </div>
+          <div class="form-group">
+            <label for="RuntimeType">Dịch vụ</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Thông tin cấu hình</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="RuntimeType">Loại hình dịch vụ</label>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="icheck-primary">
+                    <input type="radio" id="Enqueue" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" value="0" />
+                    <label for="Enqueue">Chạy một lần</label>
+                  </div>
+                 
+                </div>
+                <div class="col-md-6">
+                  <div class="icheck-primary">
+                    <input type="radio" id="Schedule" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" value="1" />
+                    <label for="Schedule">Chạy theo lịch</label>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
