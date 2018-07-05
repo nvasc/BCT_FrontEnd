@@ -37,17 +37,31 @@
             <div class="row">
                 <div class="col-md-6">
                   <div class="icheck-primary">
-                    <input type="radio" id="Enqueue" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" value="0" />
+                    <input type="radio" id="Enqueue" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" ng-value="0" ng-change="dichvuchayngam.changeRuntimeType()"/>
                     <label for="Enqueue">Chạy một lần</label>
                   </div>
                  
                 </div>
                 <div class="col-md-6">
                   <div class="icheck-primary">
-                    <input type="radio" id="Schedule" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" value="1" />
+                    <input type="radio" id="Schedule" name="RuntimeType" ng-model="dichvuchayngam.saveObj.RuntimeType" ng-value="1" ng-change="dichvuchayngam.changeRuntimeType()" />
                     <label for="Schedule">Chạy theo lịch</label>
                 </div>
                 </div>
+            </div>
+          </div>
+          <div ng-if="dichvuchayngam.saveObj.RuntimeType === 1">
+            <div class="form-group">
+              <label for="Cron">Thời gian</label>
+              <input type="text" class="form-control" id="Cron" placeholder="" ng-model="dichvuchayngam.saveObj.Cron">
+            </div>
+            <div class="form-group">
+              <label for="CronDescription">Mô tả thời gian</label>
+              <textarea class="form-control" id="CronDescription" ng-model="dichvuchayngam.saveObj.CronDescription"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="JobId">Id dịch vụ</label>
+              <input type="text" class="form-control" id="JobId" placeholder="" ng-model="dichvuchayngam.saveObj.JobId" readonly="readonly">
             </div>
           </div>
         </div>
