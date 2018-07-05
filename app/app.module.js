@@ -32,6 +32,7 @@ import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 import oauthData from './commons/authentication/oauthDataFactory';
 import loginInfo from './commons/authentication/loginInfoFactory';
 import oauth from './commons/authentication/oauthFactory';
+import role from './commons/authentication/roleFactory';
 import oauthInterceptor from './commons/authentication/oauthInterceptorFactory';
 import nonceProvider from './commons/dataprovider/nonceProvider';
 import dataProvider from './commons/dataprovider/dataProvider';
@@ -83,6 +84,7 @@ angular
  .factory('oauthDataFactory', oauthData)
  .factory('loginInfoFactory', loginInfo)
  .factory('oauthFactory', oauth)
+ .factory('roleFactory', role)
  .factory('oauthInterceptorFactory', oauthInterceptor)
  .factory('nonceProvider', nonceProvider)
  .factory('dataProvider', dataProvider)

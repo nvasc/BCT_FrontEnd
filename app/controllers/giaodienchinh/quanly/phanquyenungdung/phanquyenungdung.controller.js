@@ -50,6 +50,7 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
   
   vm.saveObj = {};
   vm.create = function (parentId, type, refreshGridCallBack) {    
+    
     var title = '';
     var template = '';
     switch (type) {

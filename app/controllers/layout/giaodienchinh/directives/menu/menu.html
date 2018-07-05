@@ -2,7 +2,7 @@
   <section class="sidebar">
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="treeview" ui-sref-active="active">
+      <li class="treeview" ng-if="menu.role.lgi.login" ui-sref-active="active">
         <a ui-sref="giaodienchinh.kiemsoatchung">
           <i class="fa fa-dashboard"></i>
           <span>Kiểm soát chung</span>
@@ -114,7 +114,7 @@
           <span>Nhập khẩu báo cáo</span>
         </a>
       </li>
-      <li class="treeview">
+      <li class="treeview" ng-if="menu.role.quanly">
         <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quanly.**'}">
           <i class="fa fa-table"></i>
           <span>Quản lý </span>
@@ -123,40 +123,40 @@
           </span>
         </a>
         <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quanly.**'}">
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.bmc.read">
             <a ui-sref="giaodienchinh.quanly.bieumau">
               <i class="fa fa-circle-o"></i>Biểu mẫu</a>
           </li>
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.lhdt.read">
             <a ui-sref="giaodienchinh.quanly.loaihinhdaotao">
               <i class="fa fa-circle-o"></i>Loại hình đào tạo</a>
           </li>          
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.ndt.read">
             <a ui-sref="giaodienchinh.quanly.nganhdaotao">
               <i class="fa fa-circle-o"></i>Ngành đào tạo</a>
           </li>
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.tk.read">
             <a ui-sref="giaodienchinh.quanly.taikhoan">
               <i class="fa fa-circle-o"></i>Tài khoản</a>
           </li>
          
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.nqud.read">
             <a ui-sref="giaodienchinh.quanly.phanquyenungdung">
               <i class="fa fa-circle-o"></i>Phân quyền ứng dụng</a>
           </li>
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.pqnd.read">
             <a ui-sref="giaodienchinh.quanly.phanquyennguoidung">
               <i class="fa fa-circle-o"></i>Phân quyền người dùng</a>
           </li>
 
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.tttr.read">
             <a ui-sref="giaodienchinh.quanly.danhsachtruong">
               <i class="fa fa-circle-o"></i>Danh sách trường</a>
           </li>
         </ul>
       </li>
       <li>
-        <li class="treeview">
+        <li class="treeview" ng-if="menu.role.quantri">
           <a href="javascript:void(0);" ui-sref-active="{'active': 'giaodienchinh.quantri.**'}">
             <i class="fa fa-table"></i>
             <span>Quản trị </span>
@@ -166,26 +166,26 @@
           </a>
           <ul class="treeview-menu" ui-sref-active="{'menu-open': 'giaodienchinh.quantri.**'}">
             <li ui-sref-active="active">
-              <a ui-sref="giaodienchinh.quantri.client">
+              <a ui-sref="giaodienchinh.quantri.client" ng-if="menu.role.clt.read">
                 <i class="fa fa-circle-o"></i>Các Client</a>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" ng-if="menu.role.dcm.read">
               <a ui-sref="giaodienchinh.quantri.chucnang">
                 <i class="fa fa-circle-o"></i>Chức năng</a>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" ng-if="menu.role.tt.read">
               <a ui-sref="giaodienchinh.quantri.tinhthanh">
                 <i class="fa fa-circle-o"></i>Tỉnh thành</a>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" ng-if="menu.role.dt.read">
               <a ui-sref="giaodienchinh.quantri.dantoc">
                 <i class="fa fa-circle-o"></i>Dân tộc</a>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" ng-if="menu.role.tg.read">
               <a ui-sref="giaodienchinh.quantri.tongiao">
                 <i class="fa fa-circle-o"></i>Tôn giáo</a>
             </li>
-            <li ui-sref-active="active">
+            <!-- <li ui-sref-active="active">
               <a ui-sref="giaodienchinh.quantri.api">
                 <i class="fa fa-circle-o"></i>Các Api</a>
             </li>
@@ -196,7 +196,7 @@
             <li ui-sref-active="active">
               <a ui-sref="giaodienchinh.quantri.nhatkyvaloi">
                 <i class="fa fa-circle-o"></i>Nhật ký và lỗi hệ thống</a>
-            </li>
+            </li> -->
           </ul>
         </li>
     </ul>
