@@ -8,11 +8,13 @@ import thongtindangnhap from './thongtindangnhap/thongtindangnhap.module';
 import nhatkyvaloi from './nhatkyvaloi/nhatkyvaloi.module';
 import chucnang from './chucnang/chucnang.module';
 import tinhthanh from './tinhthanh/tinhthanh.module';
+import dantoc from './dantoc/dantoc.module';
+import tongiao from './tongiao/tongiao.module';
 /* @ngInject */
 angular
   .module('quantri', [ 
     'api', 'nhatkyvaloi','thongtindangnhap', 
-    'client', 'chucnang', 'tinhthanh'
+    'client', 'chucnang', 'tinhthanh', 'dantoc', 'tongiao'
   ])
   .component('quantri', component) 
   .config(routing);
