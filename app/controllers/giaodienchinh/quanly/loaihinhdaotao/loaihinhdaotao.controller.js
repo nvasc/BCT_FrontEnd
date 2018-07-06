@@ -119,7 +119,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
     loaihinhdaotaoService.get(row.entity.Id, parentId,
       row.entity.Level).then(function (obj) {
         vm.saveObj = obj;
-        vm.saveObj.Level = row.entity.Level
+        vm.saveObj.Level = row.entity.Level;
         popupFactory.update(function () {
           var deferred = $q.defer();
           loaihinhdaotaoService.update(row.entity.Id, vm.saveObj).then(function () {
