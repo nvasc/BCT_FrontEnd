@@ -44,10 +44,10 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
     name: 'Name',
     displayName: 'Tên dịch vụ',
   }, {
-    name: 'RuntimeFunction',
+    name: 'RuntimeTypeStr',
     displayName: 'Dịch vụ',
   },{
-    name: 'RuntimeFunction',
+    name: 'RuntimeFunctionStr',
     displayName: 'Chức năng',
   },
   {
@@ -82,6 +82,7 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
   // CRUD for this function ------------------
   vm.saveObj = {};
   vm.action = {};
+  vm.selectObj = {};
 
   vm.create = function (id, type, refreshGridCallBack) {
     popupFactory.setOptions({
@@ -95,6 +96,7 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
 
     dichvuchayngamService.get(0).then(function (obj) {      
       vm.saveObj = obj;
+      console.log(obj);
       popupFactory.create(function () { 
         var deferred = $q.defer();
         dichvuchayngamService.create(vm.saveObj).then(function () {
@@ -119,8 +121,10 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
       content: saveTemplate,
       scope: $scope,
     });
-    dichvuchayngamService.get(row.entity.Id).then(function (obj) {      
+    dichvuchayngamService.get(row.entity.Id).then(function (obj) {     
       vm.saveObj = obj;
+      vm.saveObj.SelectId = obj.RuntimeFunction;
+      vm.saveObj.IsDisabled = obj.RuntimeStatus === 1;
       popupFactory.update(function () { 
         var deferred = $q.defer();
         dichvuchayngamService.update(row.entity.Id, vm.saveObj).then(function () {
@@ -161,18 +165,21 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
   };
   vm.action.delete = vm.delete;
 
-  vm.run = function() {
-    console.log('aaaaaa');
+  vm.run = function(entity) {
+   
+    dichvuchayngamService.start(entity.JobId).then(function(rs) {
+      if (_scopeGrid) {
+        _scopeGrid.grid.refresh();            
+      }  
+    });
   }
 
-  vm.stop = function() {
-
-  }
-
-  vm.changeRuntimeType = function() {
-    if (vm.saveObj.Id === 0) {
-      vm.saveObj.JobId = random.guid('');
-    }
+  vm.stop = function(entity) {
+    dichvuchayngamService.stop(entity.JobId).then(function(rs) {
+      if (_scopeGrid) {
+        _scopeGrid.grid.refresh();            
+      }  
+    });
   }
 }
 

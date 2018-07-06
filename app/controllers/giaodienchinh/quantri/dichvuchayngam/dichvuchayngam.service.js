@@ -1,4 +1,5 @@
-function dichvuchayngamService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function dichvuchayngamService($q, $rootScope, $timeout, 
+  nonceProvider, dataProvider, httpProvider) {
   var service = {};
 
   var _init = function () {
@@ -18,8 +19,7 @@ function dichvuchayngamService($q, $rootScope, $timeout, nonceProvider, dataProv
     nonceProvider.getForVAFT().then(function (key) {
       _setKey(key);
       var dichvuchayngamProvider = dataProvider.provider('runtimeservice');
-      var obj = dichvuchayngamProvider.get({id: id}, function () {
-        obj.ApplicationType = obj.ApplicationType + '';
+      var obj = dichvuchayngamProvider.get({id: id}, function () {        
         deferred.resolve(obj);
       });       
     });
@@ -60,6 +60,24 @@ function dichvuchayngamService($q, $rootScope, $timeout, nonceProvider, dataProv
     return deferred.promise; 
   };
   service.delete = _delete;
+
+  var _start = function (id) {
+    var deferred = $q.defer();
+    httpProvider.put('api/runtimeservice/start?jobId=' + id, null, true).then(function (result) {
+      deferred.resolve(result);
+    });    
+    return deferred.promise;
+  };
+  service.start = _start;
+
+  var _stop = function (id) {
+    var deferred = $q.defer();
+    httpProvider.put('api/runtimeservice/stop?jobId=' + id,null, true).then(function (result) {
+      deferred.resolve(result);
+    });    
+    return deferred.promise;
+  };
+  service.stop = _stop;
 
   return service
 }
