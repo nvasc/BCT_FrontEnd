@@ -5,4 +5,14 @@
   <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.grid.delete(row)" title="Xóa">
     <i class="fa fa-close"></i>
   </button>
+  <button type="button" class="btn btn-primary btn-xs" 
+    ng-if="row.entity.RuntimeType == 1 && (row.entity.RuntimeStatus == 0 || row.entity.RuntimeStatus == 3)"
+    ng-click="grid.appScope.$parent.dichvuchayngam.run(row.entity)" title="Chạy">
+      <i class="fa fa-play" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-danger btn-xs"
+  ng-if="row.entity.RuntimeType == 1 && row.entity.RuntimeStatus == 2" 
+    ng-click="grid.appScope.$parent.dichvuchayngam.stop(row.entity)" title="Dừng">
+      <i class="fa fa-stop" aria-hidden="true"></i>
+  </button>
 </div>

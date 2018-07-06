@@ -13,11 +13,15 @@
             <input type="text" class="form-control" id="Name" placeholder="" ng-model="dichvuchayngam.saveObj.Name">
           </div>
           <div class="form-group">
-            <label for="Description">Mô tả</label>
-            <input type="text" class="form-control" id="Description" placeholder="" ng-model="dichvuchayngam.saveObj.Description">
+            <label for="Description">Mô tả dịch vụ</label>
+            <textarea class="form-control" id="Description" ng-model="dichvuchayngam.saveObj.Description"></textarea>
           </div>
           <div class="form-group">
-            <label for="RuntimeType">Dịch vụ</label>
+            <label for="RuntimeType">Chức năng</label>
+            <ci-select ci-Id="RuntimeFunction"
+              ng-model="dichvuchayngam.saveObj.RuntimeFunction"
+              ci-filter-default="dichvuchayngam.saveObj.Id" 
+              url="api/runtimeservice/GetFunctionSelectData" ></ci-select>
           </div>
         </div>
       </form>
@@ -52,11 +56,18 @@
           </div>
           <div ng-if="dichvuchayngam.saveObj.RuntimeType === 1">
             <div class="form-group">
-              <label for="Cron">Thời gian</label>
+              <label for="Cron">Thời gian thực hiện</label>
               <input type="text" class="form-control" id="Cron" placeholder="" ng-model="dichvuchayngam.saveObj.Cron">
+              <p class="text-muted">
+                <ul>
+                  <li>Thời gian chạy của dịch vụ phải theo định dạng <b>"* * * * * ? *"</b>.</li>
+                  <li>Vui lòng tham khảo 
+                    <a href="https://www.freeformatter.com/cron-expression-generator-quartz.html" target="_blank">tại đây</a> để xem ví dụ và tạo thời gian thời hiện đúng với định dạng của hệ thống</li>
+                </ul> 
+              </p>
             </div>
             <div class="form-group">
-              <label for="CronDescription">Mô tả thời gian</label>
+              <label for="CronDescription">Mô tả thời gian thực hiện</label>
               <textarea class="form-control" id="CronDescription" ng-model="dichvuchayngam.saveObj.CronDescription"></textarea>
             </div>
             <div class="form-group">
