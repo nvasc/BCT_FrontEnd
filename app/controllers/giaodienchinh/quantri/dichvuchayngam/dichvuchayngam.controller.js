@@ -1,6 +1,7 @@
 
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
+import random from '../../../../commons/utility/random';
 
 function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFactory) {
   const vm = this;
@@ -150,6 +151,12 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
     }, function () { vm.saveObj = {} });
   };
   vm.action.delete = vm.delete;
+
+  vm.changeRuntimeType = function() {
+    if (vm.saveObj.Id === 0) {
+      vm.saveObj.JobId = random.guid('');
+    }
+  }
 }
 
 /* @ngInject */
