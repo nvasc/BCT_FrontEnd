@@ -56,16 +56,11 @@ function cauhinhbaocaoService($q, $rootScope, $timeout, httpProvider,
   };
   service.update = _update;
 
-  var _delete = function (id) {
+  var _delete = function (id, level) {
     var deferred = $q.defer();
-    nonceProvider.getForVAFT().then(function (key) {
-      _setKey(key);
-      var clientProvider = dataProvider.provider(_providerName, _getKey());
-      clientProvider.delete({
-        id: id
-      }, function (res) {
-        deferred.resolve(res);
-      });
+    var url = _apiModel + `?id=${id}&level=${level}`;
+    httpProvider.delete(url, true).then(function (result) {
+      deferred.resolve(result); 
     });
     return deferred.promise;
   };

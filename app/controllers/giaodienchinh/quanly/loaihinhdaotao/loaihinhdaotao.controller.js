@@ -119,6 +119,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
     loaihinhdaotaoService.get(row.entity.Id, parentId,
       row.entity.Level).then(function (obj) {
         vm.saveObj = obj;
+        vm.saveObj.Level = row.entity.Level
         popupFactory.update(function () {
           var deferred = $q.defer();
           loaihinhdaotaoService.update(row.entity.Id, vm.saveObj).then(function () {
@@ -136,8 +137,27 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       });
   }
   vm.action.update = vm.update;
-  vm.delete = function (row) {
-    console.log(row, 'delete');
+  vm.delete = function (row, type, refreshGridCallBack) {
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.DeleteTitle,
+      columnClass: 'col-md-offset-5 col-md-3',   
+      icon: 'fa fa-times',
+      content: rss.DeleteConfirm,
+      scope: $scope,
+    });
+    popupFactory.delete(function () { 
+      var deferred = $q.defer();
+      loaihinhdaotaoService.delete(row.entity.Id, row.entity.Level).then(function () {
+        deferred.resolve(true);
+        if (refreshGridCallBack) {
+          refreshGridCallBack();
+        }
+      }, function () {
+        deferred.resolve(false);  
+      })    
+      return deferred.promise;
+    }, function () { vm.saveObj = {} });
   }
   vm.action.delete = vm.delete;
 
