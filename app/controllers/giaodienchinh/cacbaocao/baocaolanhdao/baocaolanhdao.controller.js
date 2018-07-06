@@ -21,6 +21,7 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
   baocaolanhdaoService.init();
   vm.tabC = tabConst();
   vm.typeChartC = typeChartConst();
+  vm.mYear = null;
   //tạo dữ liệu giả cho báo cáo
   $scope.reportData = [
     {

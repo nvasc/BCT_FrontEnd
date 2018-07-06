@@ -21,7 +21,7 @@ function selectDirective ()  {
         isMultiple = 'multiple'
       }
       return '<select id="' + attrs.ciId + '" ' + 
-              isMultiple + ' style="width:100%;"></select>';
+              isMultiple + ' style="width:100%;"><option></option></select>';
     },
     controller: controller,
     controllerAs: 'select'

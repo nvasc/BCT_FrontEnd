@@ -16,15 +16,20 @@
       <div class="box box-primary">
         <div class="box-body">
           <div class="row">
-            <div class="col-md-2 col-xs-6 pull-right">
-              <div class="box-tools">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search ...">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            <div class="col-md-3">
+              <div class="form-group">
+                  <ci-select ci-Id="school" ng-model="baocaolanhdao.schoolId"
+                  url="api/thongtintruong/GetDtoSelectData" placeholder="Trường"></ci-select>
+                </div>            
+            </div>  
+            <div class="col-md-3 col-md-offset-6">
+                <div class="form-group">
+                  <ci-select ci-Id="mYear" ng-model="baocaolanhdao.mYear"
+                url="api/common/GetYears" placeholder="Năm" ci-one-load="true"></ci-select>
                 </div>
-              </div>
-            </div>
+              </div> 
           </div>
+          
           <!-- /.row -->
         </div>
         <!-- ./box-body -->
