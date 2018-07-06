@@ -1,0 +1,7 @@
+<label ng-if="row.entity.RuntimeType == 1" ng-switch="row.entity.RuntimeStatus">
+    <span ng-switch-when="0" class="text-muted">Đang chờ</span>
+    <span ng-switch-when="1" class="text-yellow">Chạy</span>
+    <span ng-switch-when="2" class="text-green">Đang chạy</span>
+    <span ng-switch-when="3" class="text-red">Dừng</span>
+</label>
+  

@@ -1,7 +1,8 @@
 
+import random from '../../../../commons/utility/random';
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
-import random from '../../../../commons/utility/random';
+import colStatusTemplate from './col-status.html';
 
 function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFactory) {
   const vm = this;
@@ -50,16 +51,24 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
     displayName: 'Chức năng',
   },
   {
-    name: 'RuntimeStatus',
-    displayName: 'Trạng thái',
-  },{
     name: 'Cron',
     displayName: 'Thời gian chạy',
+  },{
+    name: 'CronDescription',
+    displayName: 'mô tả',
+  },{
+    name: 'RuntimeStatus',
+    displayName: 'Trạng thái',
+    width: 90,
+    cellTemplate: colStatusTemplate,
+    cellClass: 'grid-text-align-center',
+    enableSorting: false,
+    dataType: 3
   }, {
     name: ' ',
     cellTemplate: gridCommand,
-    cellClass: 'grid-command',
-    width: 60,
+    cellClass: 'grid-command grid-text-align-center',
+    width: 120,
     enableSorting: false,
     enableFiltering: false,
   }];
@@ -151,6 +160,14 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
     }, function () { vm.saveObj = {} });
   };
   vm.action.delete = vm.delete;
+
+  vm.run = function() {
+    console.log('aaaaaa');
+  }
+
+  vm.stop = function() {
+
+  }
 
   vm.changeRuntimeType = function() {
     if (vm.saveObj.Id === 0) {
