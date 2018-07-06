@@ -6,7 +6,7 @@
         <i class="fa fa-cogs" aria-hidden="true"></i> Quản trị</a>
     </li>
     <li>
-      <a href="javascript:void(0);"> Chức năng</a>
+      <a href="javascript:void(0);">Dịch vụ chạy ngầm</a>
     </li>
   </ol>
 </section>
@@ -21,11 +21,11 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="chucnang.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="dichvuchayngam.create()">
                     <span class="fa fa-plus"></span>
                   </button>
-                <button class="btn btn-xs" ng-class="{'btn-success': !chucnang.isFilter, 'btn-danger': chucnang.isFilter}" ng-click="chucnang.filter()" title="Lọc dữ liệu">
-                  <span class="fa" ng-class="{'fa-filter': !chucnang.isFilter, 'fa-times': chucnang.isFilter}"></span>
+                <button class="btn btn-xs" ng-class="{'btn-success': !dichvuchayngam.isFilter, 'btn-danger': dichvuchayngam.isFilter}" ng-click="dichvuchayngam.filter()" title="Lọc dữ liệu">
+                  <span class="fa" ng-class="{'fa-filter': !dichvuchayngam.isFilter, 'fa-times': dichvuchayngam.isFilter}"></span>
                 </button>
               </div>
             </div>
@@ -43,14 +43,10 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-grid 
-                ci-id="chucnang-grid" 
-                url="api/document/getdata" 
-                col-defs="chucnang.colDefs" 
-                ci-filter="chucnang.isFilter" 
-                ci-grid-command="chucnang.action" 
-                ci-set-scope="chucnang.setScopeGrid" >
-              </ci-grid>
+              <ci-grid ci-id="client-grid" url="api/runtimeservice/getdata" 
+              col-defs="dichvuchayngam.colDefs" ci-filter="dichvuchayngam.isFilter" 
+              ci-grid-command="dichvuchayngam.action" 
+              ci-set-scope="dichvuchayngam.setScopeGrid" ></ci-grid>
             </div>
           </div>
           <!-- /.row -->

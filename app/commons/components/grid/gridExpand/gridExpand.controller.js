@@ -15,19 +15,23 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
     uiGrid.init();
   }
 
-  vm.scopeGridChirent = null;
-  vm.setItemScope = function (s) {
-    vm.scopeGridChirent = s;
+  vm.scopeGridChirent = {};
+  vm.setItemScope = function (s, queryId) {
+    vm.scopeGridChirent[queryId] = s;
   };
+  vm.getItemSccope = function (queryId) { 
+    return vm.scopeGridChirent[queryId];
+  }
 
   vm.create = function (id, type) {
+    var scope = vm.getItemSccope(id);    
     if ($scope.ciGridCommand && $scope.ciGridCommand.create) {
       var refresh = null;
-      if (vm.scopeGridChirent && vm.scopeGridChirent.gridExpand) {
-        refresh = vm.scopeGridChirent.gridExpand.refresh;
+      if (scope && scope.gridExpand) {
+        refresh = scope.gridExpand.refresh;
       }
-      if (vm.scopeGridChirent && vm.scopeGridChirent.grid) {
-        refresh = vm.scopeGridChirent.grid.refresh;
+      if (scope && scope.grid) {
+        refresh = scope.grid.refresh;
       }
       if (refresh === null) {
         $scope.ciGridCommand.create(id, type);
@@ -37,7 +41,7 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
     }
   }
 
-  vm.update = function (row, type) {
+  vm.update = function (row, type) { 
     if ($scope.ciGridCommand && $scope.ciGridCommand.update) {
       $scope.ciGridCommand.update(row, type, vm.refresh);
     }
@@ -73,7 +77,7 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
 
   function init() {
     if ($scope.ciSetScope) {
-      $scope.ciSetScope($scope);
+      $scope.ciSetScope($scope, $scope.ciQueryId);
     }
     //$(window, '.content-wrapper').unbind('resize')
     $(window, '.content-wrapper').resize(function () {

@@ -32,8 +32,10 @@ module.exports = new WebpackConfig().extend('./webpack.config.common.babel.js').
       template: 'index.ejs',
       inject: 'body',
       contentTo: 'aHR0cDovL2xvY2FsaG9zdDo1MjA4MS8=', //= 'http://localhost:52081/',
-      audience: 'f75a3bfeb3c64f489fc80ae155287918',
-      secret: 'Kj5isbpJ9pgs9RWJKqOzPdtDrmkpteIWSdM3pAKB_8g',
+      audience: 'f75a3bfeb3c64f489fc80ae155287918', //Cao Nhat
+      //audience: 'c78eae44ec354db98e68a1052d7b91f1', //Cap Truong
+      secret: 'Kj5isbpJ9pgs9RWJKqOzPdtDrmkpteIWSdM3pAKB_8g',// Cao nhất
+      //secret: 't2iKCoOEUrmhEhz1MNWosgWZVQJGc4wi77Pu2qE3Ncc', // Cap Truong
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ]

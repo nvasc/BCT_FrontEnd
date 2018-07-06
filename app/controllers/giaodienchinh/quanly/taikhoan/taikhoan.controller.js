@@ -80,6 +80,9 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
           if (refreshGridCallBack) {
             refreshGridCallBack();
           }
+          else if (_scopeGrid) {
+            _scopeGrid.gridExpand.refresh();
+          }
         }, function () {
           deferred.resolve(false);
         })
