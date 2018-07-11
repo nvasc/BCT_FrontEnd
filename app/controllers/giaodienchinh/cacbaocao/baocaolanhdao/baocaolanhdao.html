@@ -17,25 +17,24 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-4">
-                <div class="form-group row">
-                    <label for="truong" class="col-md-2 col-sm-12 lbcenter">Trường</label>
-                    <div class="col-md-10 col-sm-12">
-                        <ci-select ci-Id="school" ng-model="baocaolanhdao.schoolId"
-                        url="api/thongtintruong/GetDtoSelectData" placeholder="Trường"></ci-select>
-                    </div>
-                  </div>
-            </div>  
+              <div class="form-group row">
+                <label for="truong" class="col-md-2 col-sm-12 lbcenter">Trường</label>
+                <div class="col-md-10 col-sm-12">
+                  <ci-select ci-Id="school" ng-model="baocaolanhdao.schoolId" url="api/thongtintruong/GetDtoSelectData" placeholder="Trường"
+                    ng-init="loadCommitSchoolId()"></ci-select>
+                </div>
+              </div>
+            </div>
             <div class="col-md-4 col-md-offset-4">
-                <div class="form-group row">
-                    <label for="nam" class="col-md-2 col-sm-12 lbcenter">Năm</label>
-                    <div class="col-md-10 col-sm-12">
-                        <ci-select ci-Id="mYear" ng-model="baocaolanhdao.mYear"
-                        url="api/common/GetYears" placeholder="Năm" ci-one-load="true"></ci-select>
-                    </div>
-                  </div>
-              </div> 
+              <div class="form-group row">
+                <label for="nam" class="col-md-2 col-sm-12 lbcenter">Năm</label>
+                <div class="col-md-10 col-sm-12">
+                  <ci-select ci-Id="mYear" ng-model="baocaolanhdao.mYear" url="api/common/GetYears" placeholder="Năm" ci-one-load="true" ng-init="loadCommitYear()"></ci-select>
+                </div>
+              </div>
+            </div>
           </div>
-          
+
           <!-- /.row -->
         </div>
         <!-- ./box-body -->
@@ -218,10 +217,10 @@
               <!-- <ci-table columns="cols" table-data="reportData" thead-template="headTable">
               </ci-table> -->
               <div ng-show="isSet(baocaolanhdao.tabC.tabDaoTao)">
-                <ci-table url="api/baocaolanhdao/GetSelectData" ci-paramester="baocaolanhdao.paramester" ci-filter-object="baocaolanhdao.filterObject" columns="baocaolanhdao.cols"  thead-template="headTable" cols-bold="baocaolanhdao.colsBold">
+                <ci-table url="api/baocaolanhdao/GetSelectData" ci-paramester="baocaolanhdao.paramester" ci-filter-object="baocaolanhdao.filterObject"
+                  columns="baocaolanhdao.cols" thead-template="headTable" cols-bold="baocaolanhdao.colsBold">
                 </ci-table>
               </div>
-
               <div ng-show="isSet(baocaolanhdao.tabC.tabDoTuoi)">
                 <ci-table columns="cols" table-data="reportData" thead-template="headTable">
                 </ci-table>
