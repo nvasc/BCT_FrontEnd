@@ -98,7 +98,7 @@
     ],
     "max-statements": [
       2,
-      40
+      100
     ],
     "complexity": [
       2,
