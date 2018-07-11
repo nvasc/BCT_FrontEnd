@@ -2,17 +2,18 @@ function dantocService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var service = {};
 
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
-      $.AdminLTE.layout.fix();
-      $(window, '.content-wrapper').unbind('resize');
+      $.AdminLTE.layout.fix();      
     });
   };
+  service.init = _init;
   var _key = '';
   var _getKey = function () {return _key;}
   service.getKey = _getKey;
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
-  service.init = _init;
+  
 
   var _get = function (id) { 
     var deferred = $q.defer();

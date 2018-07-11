@@ -4,9 +4,9 @@ function taikhoanService($q, $rootScope, $timeout, nonceProvider, dataProvider) 
   var _providerPhanQuyenNguoidung = 'userrole';
 
   var _init = function () {
+    $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
-      $.AdminLTE.layout.fix();
-      $(window, '.content-wrapper').unbind('resize');
+      $.AdminLTE.layout.fix();      
     });
   };
   var _key = '';

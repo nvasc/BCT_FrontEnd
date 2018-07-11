@@ -1,8 +1,9 @@
 import gridCommand from './grid-command.html';
 import colActive from './col-active.html';
 import saveTemplate from './save.html';
+import GridEditIssuerClient from './grid-edit-issuer-client'
 
-function clientController($q, $scope, clientService, popupFactory) {
+function clientController($q, $scope, clientService, $timeout, popupFactory) {
   const vm = this;
   // Message ------------------
   var rss = {
@@ -36,10 +37,19 @@ function clientController($q, $scope, clientService, popupFactory) {
     displayName: 'Key',
   }, {
     name: 'Secret',
-    displayName: 'Secret',
+    displayName: 'Secret',    
   }, {
     name: 'Issuer',
-    displayName: 'Domains',
+    displayName: 'Kết nối từ',
+    cellTooltip: function(row, col) {
+      return row.entity.Issuer;
+    }
+  }, {
+    name: 'IssuerFrom',
+    displayName: 'Kết nối đến',
+    cellTooltip: function(row, col) {
+      return row.entity.IssuerFrom;
+    }
   }, {
     name: 'RefreshTokenLifeTime',
     displayName: 'Expire In',
@@ -75,24 +85,27 @@ function clientController($q, $scope, clientService, popupFactory) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.CreateTitle,
-      columnClass: 'col-md-offset-3 col-md-6',        
+      columnClass: 'col-md-offset-2 col-md-8',      
       icon: 'fa fa-plus', 
       content: saveTemplate,
       scope: $scope,
     });
 
     clientService.get(0).then(function (obj) {      
-      vm.saveObj = obj;
+      vm.saveObj = obj;          
+      vm.configs = new GridEditIssuerClient($scope, $timeout, vm.saveObj.Issuers);
       popupFactory.create(function () { 
         var deferred = $q.defer();
         clientService.create(vm.saveObj).then(function () {
           deferred.resolve(true); 
           if (_scopeGrid.grid && _scopeGrid.grid.refresh) {
             _scopeGrid.grid.refresh();
-          } 
+          }        
         }, function () {
           deferred.resolve(false);  
-        })    
+        }) 
+        
+        deferred.resolve(true);    
         return deferred.promise;
       }, function () { vm.saveObj = {}; });
     });    
@@ -101,13 +114,14 @@ function clientController($q, $scope, clientService, popupFactory) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.UpdateTitle,
-      columnClass: 'col-md-offset-3 col-md-6',  
+      columnClass: 'col-md-offset-2 col-md-8',
       icon: 'fa fa-edit',
       content: saveTemplate,
       scope: $scope,
     });
     clientService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
+      vm.configs = new GridEditIssuerClient($scope, $timeout, vm.saveObj.Issuers);
       popupFactory.update(function () { 
         var deferred = $q.defer();
         clientService.update(row.entity.Id, vm.saveObj).then(function () {

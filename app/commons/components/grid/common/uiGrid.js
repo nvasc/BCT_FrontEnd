@@ -29,7 +29,7 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
     infiniteScrollUp: true,
     infiniteScrollRowsFromEnd: 40,
     enableColumnMenus: false,
-    columnDefs: headerHandle(scope.colDefs),
+    columnDefs: headerHandle(scope.colDefs, scope),
     useExternalFiltering: true,
     onRegisterApi: function (gridApi) {
       gridApi.infiniteScroll.on.needLoadMoreData(scope, getDataDown);

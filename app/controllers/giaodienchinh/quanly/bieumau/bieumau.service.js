@@ -1,4 +1,4 @@
-function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider, httpProvider) {
   var service = {};
   var modelName = 'bieumauchuan';
   var _init = function () {
@@ -62,6 +62,28 @@ function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
     return deferred.promise; 
   };
   service.delete = _delete;
+
+  var _getConfig = function (id) { 
+    httpProvider
+    var deferred = $q.defer();
+    httpProvider.get('api/bieumauchuan/getconfig?id=' + id, true)
+    .then(function (result) {
+      deferred.resolve(result);
+    });
+    return deferred.promise;
+  };
+  service.getConfig = _getConfig;
+
+  var _saveConfig = function (id, data) { 
+    httpProvider
+    var deferred = $q.defer();
+    httpProvider.put('api/bieumauchuan/saveconfig?id=' + id, data, true)
+    .then(function (result) {
+      deferred.resolve(result);
+    });
+    return deferred.promise;
+  };
+  service.saveConfig = _saveConfig;
 
   return service
 }

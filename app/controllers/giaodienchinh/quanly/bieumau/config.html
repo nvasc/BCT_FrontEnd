@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Cấu hình để nhập khẩu vào hệ thống</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="SheetName">Tên Sheet</label>
+                  <input type="text" class="form-control" id="SheetName" placeholder="" ng-model="bieumau.saveObj.ExcelConfig.SheetName">
+                </div>  
+                <div class="form-group">
+                  <label for="SheetName">Bất đầu từ dòng thứ </label>
+                  <input type="number" class="form-control" id="StartRow" placeholder="" ng-model="bieumau.saveObj.ExcelConfig.StartRow">
+                </div>       
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="TableName">Tên Bảng Trong Database</label>
+                  <input type="text" class="form-control" id="TableName" ng-model="bieumau.saveObj.ExcelConfig.TableName">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Danh sách các cột import</h3>
+          <button class="btn btn-xs btn-primary pull-right" ng-click="bieumau.configs.addColumn();"><i class="fa fa-plus"></i></button>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div role="form">
+          <div class="box-body">            
+            <ci-grid-edit ci-id="grid-edit-columns" col-defs="bieumau.configs.gridEditColumns" ci-data="bieumau.configs.data" ci-set-scope="bieumau.configs.setScope" ></ci-grid-edit>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

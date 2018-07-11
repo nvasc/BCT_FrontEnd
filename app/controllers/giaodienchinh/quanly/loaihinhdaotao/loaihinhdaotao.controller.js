@@ -46,7 +46,6 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
   vm.action = {};
   vm.saveObj = {};
   vm.create = function (parentId, type, refreshGridCallBack) {  
-   
     var title = '';
     switch (type) {
       case 1:
@@ -90,6 +89,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
         vm.saveObj = {};
       });
     });
+    
   }
   vm.action.create = vm.create;
 

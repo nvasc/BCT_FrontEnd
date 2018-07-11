@@ -70,7 +70,7 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
 
   //----------------------init-----------------
   function resize() {
-    if (angular.isUndefined($scope.ciHeight) || $scope.ciHeight !== '') {      
+    if (angular.isUndefined($scope.ciHeight) || $scope.ciHeight !== '') {     
       $timeout(function () {      
         var heightPx = $('.auto-of-content .box-body').css('min-height');
         var height = parseInt(heightPx.replace('px', '')) - 25;
@@ -89,6 +89,7 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
     });
     $timeout(function () {
       $.AdminLTE.callbackPushMenu = function () {
+        
         $timeout(function () {
           vm.uiGrid.gridApi.core.handleWindowResize();
         }, 520)
