@@ -10,6 +10,7 @@ import 'angular-ui-grid/ui-grid';
 import downloadFactory from './download/downloadFactory';
 import grid from './grid/grid/grid.directive';
 import gridExpand from './grid/gridExpand/gridExpand.directive';
+import gridEdit from './grid/gridEdit/gridEdit.directive';
 import select from './select/select.directive';
 import popupFactory from './popup/popupFactory';
 import upload from './upload/upload.directive';
@@ -29,12 +30,14 @@ angular
   .module('comps', [
     'ui.grid', 'ui.grid.infiniteScroll', 'ui.grid.resizeColumns', 'ui.grid.autoResize',
     'ngSanitize',
-    'ui.grid.expandable', 'ui.grid.selection', 'ui.grid.pinning'
+    'ui.grid.expandable', 'ui.grid.selection', 'ui.grid.pinning',
+    'ui.grid.edit', 'ui.grid.cellNav'
   ])
   .factory('downloadFactory', downloadFactory)
 
   .directive('ciGrid', grid)
   .directive('ciGridExpand', gridExpand)
+  .directive('ciGridEdit', gridEdit)
   .directive('ciSelect', select)
   .directive('ciUpload', upload)
   .directive('ciDownload', download)

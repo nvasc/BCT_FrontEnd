@@ -44,3 +44,15 @@
 .select2-dropdown {
     z-index: 9999;
 }
+
+.ui-grid-cell input {
+ height: 30px;
+ line-height: 30px;
+ padding-left: 5px;
+}
+
+.ui-grid-cell select {
+    height: 29px;
+    line-height: 29px;
+    padding-left: 5px;
+   }

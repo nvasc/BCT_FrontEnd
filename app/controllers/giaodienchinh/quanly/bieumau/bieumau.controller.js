@@ -2,8 +2,11 @@
 import gridCommand from './grid-command.html';
 import colDownload from './col-download.html';
 import saveTemplate from './save.html';
+import configTempate from './config.html';
+import GridEditConfigBieuMau from './grid-edit-config-bieu-mau'
 
-function bieumauController ($q, $scope, bieumauService, popupFactory) {
+
+function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) {
   const vm = this;
   // Message ------------------
   var rss = {
@@ -19,6 +22,10 @@ function bieumauController ($q, $scope, bieumauService, popupFactory) {
     DeleteTitle: 'Xóa một biểu mẫu',
     DeleteButton: 'Xóa',
     DeleteButtonClass: 'btn-danger',
+
+    ConfigTitle: 'Cấu hình một biểu mẫu(chức năng chỉ dành cho người quản trị)',
+    ConfigButton: 'Cấu hình',
+    ConfigButtonClass: 'btn-primary',
 
     CancelButton: 'Hủy',
     CancelButtonClass: 'btn-default'    
@@ -54,7 +61,7 @@ function bieumauController ($q, $scope, bieumauService, popupFactory) {
     name: ' ',
     cellTemplate: gridCommand,
     cellClass: 'grid-command',
-    width: 60,
+    width: 90,
     enableSorting: false,
     enableFiltering: false,
   }];
@@ -145,7 +152,52 @@ function bieumauController ($q, $scope, bieumauService, popupFactory) {
       return deferred.promise;
     }, function () { vm.saveObj = {} });
   };
-  vm.action.delete = vm.delete;
+  vm.action.delete = vm.delete;    
+
+  vm.config = function (row) {   
+    var popup = null;
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.ConfigTitle,
+      columnClass: 'col-md-offset-1 col-md-10',  
+      icon: 'fa fa-cog',
+      content: configTempate,
+      scope: $scope,
+      buttons: {
+        Update: {
+          text: rss.UpdateButton,
+          btnClass: rss.UpdateButtonClass,
+          action: function (scope, button) {
+            bieumauService.saveConfig(row.entity.Id, vm.saveObj).then(function (obj) {   
+              if (obj && popup) {
+                popup.close();
+              }
+            });
+            return false;
+          }
+        },
+        close: {
+          text: rss.CancelButton,
+          btnClass: rss.CancelButtonClass,
+          action: function (scope, button) {
+            
+          }
+        }
+      }
+    });    
+    
+    bieumauService.getConfig(row.entity.Id).then(function (obj) {      
+      vm.saveObj = obj;
+      var length = vm.saveObj.ExcelConfig.ColConfigs.length
+      if (length > 0) {
+        vm.saveObj.ExcelConfig.ColConfigs[length - 1].IsLast = true;
+      }      
+      vm.configs = new GridEditConfigBieuMau($scope, $timeout, vm.saveObj.ExcelConfig.ColConfigs);
+      popup = popupFactory.custom();
+    });
+  }
+
+  
 }
 
 /* @ngInject */

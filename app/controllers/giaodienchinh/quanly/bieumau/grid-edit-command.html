@@ -1,0 +1,11 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-primary btn-xs" ng-if="row.entity.Index !== 1" ng-click="grid.appScope.$parent.bieumau.configs.upColumn(row)" title="Cấu hình để nhập khẩu báo cáo">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+  <button type="button" class="btn btn-primary btn-xs"  ng-if="!row.entity.IsLast" ng-click="grid.appScope.$parent.bieumau.configs.downColumn(row)" title="Cập nhật">
+    <i class="fa fa-arrow-down"></i>
+  </button>
+  <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.$parent.bieumau.configs.deleteColumn(row)" title="Xóa">
+    <i class="fa fa-close"></i>
+  </button>
+</div>

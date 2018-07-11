@@ -102,7 +102,8 @@ function popupFactory($ngConfirm) {
 
   var _custom = function () {
     var popup = null; 
-    popup = $ngConfirm(_options);    
+    popup = $ngConfirm(_options);
+    return popup;    
   }
   factory.custom = _custom;
 
