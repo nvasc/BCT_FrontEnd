@@ -195,7 +195,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
               return item.id === val;
             });
             item.selected = itemModel > -1;  
-          } else if ($scope.ngModel && $scope.ngModel !== '') {
+          } else if ($scope.ngModel && $scope.ngModel === item.id) {
             item.selected = true;
           }
           

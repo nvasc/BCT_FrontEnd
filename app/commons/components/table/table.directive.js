@@ -7,21 +7,23 @@ function tableDirective() {
     restrict: 'EA',
     scope: {
       url: '@',
-      tableData: '=', //table data will set by directive consumer
+      //tableData: '=', //table data will set by directive consumer
       columns: '=', // no need for named attributes
       theadTemplate: '=',
-      colsBold: '='
+      colsBold: '=',
+      ciFilterObject: '=',
+      ciParamester: '='
     },
     template: function (element, attrs) {
       return `<table class="blueTable">
       <thead ng-bind-html="table.headerTemplete">
       </thead>
       <tbody>
-        <tr ng-repeat="row in tableData track by $index" index={{index}}>
-          <td  ng-repeat="col in columns">
+        <tr ng-repeat="row in table.tableData track by $index" index={{index}}>
+          <td  ng-repeat="col in table.columns">
             <span ng-class="[table.isNumber(row[col])==true?'formatright':'', 
-            row['isbold']==true?'formatbold':'',
-            row['iscenter']==true?'formatcenter':'', 
+            row['IsBold']==true?'formatbold':'',
+            row['IsCenter']==true?'formatcenter':'', 
             colsBold[col] == 1?'formatbold':'']">
               {{ row[col] }}
             </span>
