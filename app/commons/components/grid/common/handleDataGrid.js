@@ -1,6 +1,7 @@
 export default function HandleDataGrid(timeout, http, url, filterDefault) {   
          
   var self = this;
+  self.count = 0;
   self.getFirstData = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult) {
     var filter = {};
     if (filterDefault) {
@@ -22,9 +23,11 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
   }; 
 
   self.getDataDown = function(pagingGrid, gridApi, orderGrid, filterGrid, 
-    setDataResult, dataResult) {        
+    setDataResult, dataResult) {       
+    if (!pagingGrid.isNext()) {
+      return;
+    }
     pagingGrid.handlePageDown();
-    console.log('down', pagingGrid);
     var filter = {};
     if (filterDefault) {
       filter = angular.copy(filterDefault)
@@ -40,7 +43,7 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
         var data = response.data.Data;
         gridApi.infiniteScroll.saveScrollPercentage();
         data = dataResult.concat(data);
-
+        pagingGrid.total = response.data.Count;
         return gridApi.infiniteScroll.dataLoaded(pagingGrid.firstPage > 0,
           pagingGrid.lastPage < pagingGrid.numberPage()).
         then(function () {
@@ -54,7 +57,6 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
 
   self.getDataUp = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult, dataResult) {
     pagingGrid.handlePageUp();
-    console.log('Up');
     var filter = {};
     if (filterDefault) {
       filter = angular.copy(filterDefault)
@@ -70,7 +72,7 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
         pagingGrid.firstPage--;
         gridApi.infiniteScroll.saveScrollPercentage();
         dataResult = data.concat(dataResult);
-
+        pagingGrid.total = response.data.Count;
         return gridApi.infiniteScroll.dataLoaded(pagingGrid.firstPage > 0, 
           pagingGrid.lastPage < pagingGrid.numberPage())
           .then(function () {

@@ -31,6 +31,10 @@ function PagingGrid() {
     }
   }
 
+  self.isNext = function () {    
+    return self.total < self.skip;
+  }
+
   self.handlePageDown = function () {
     if (self.lastPage !== 0) {
       self.skip = (self.lastPage * self.take) + 1;
