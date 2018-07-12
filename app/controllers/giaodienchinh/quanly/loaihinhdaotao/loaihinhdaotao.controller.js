@@ -29,6 +29,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
     Grid: {
       'SoThuTu': 'STT',
       'Ten': 'Tên',
+      'Ma': 'Mã',
       'TenHienThi': 'Tên Hiển Thị',
       'IsActive': 'Trạng Thái'
     }
@@ -175,12 +176,12 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
     height: 300,
     rowExpandedStateChanged: function (row, event) {
       console.log(row, 1);
-    },
-    create: function () {
-      console.log('zo');
-    },
+    },    
     Options: {
       colDefs: [{
+        name: 'Ma',
+        displayName: rss.Grid['Ma'],
+      }, {
         name: 'Ten',
         displayName: rss.Grid['Ten'],
       }, {
@@ -220,6 +221,9 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       },
       Options: {
         colDefs: [{
+          name: 'Ma',
+          displayName: rss.Grid['Ma'],
+        }, {
           name: 'Ten',
           displayName: rss.Grid['Ten'],
         }, {
@@ -246,6 +250,9 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
   }
 
   vm.colDefs = [{
+    name: 'Ma',
+    displayName: rss.Grid['Ma'],
+  }, {
     name: 'Ten',
     displayName: rss.Grid['Ten'],
   }, {

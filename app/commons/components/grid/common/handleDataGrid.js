@@ -24,6 +24,7 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
   self.getDataDown = function(pagingGrid, gridApi, orderGrid, filterGrid, 
     setDataResult, dataResult) {        
     pagingGrid.handlePageDown();
+    console.log('down', pagingGrid);
     var filter = {};
     if (filterDefault) {
       filter = angular.copy(filterDefault)
@@ -53,6 +54,7 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
 
   self.getDataUp = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult, dataResult) {
     pagingGrid.handlePageUp();
+    console.log('Up');
     var filter = {};
     if (filterDefault) {
       filter = angular.copy(filterDefault)

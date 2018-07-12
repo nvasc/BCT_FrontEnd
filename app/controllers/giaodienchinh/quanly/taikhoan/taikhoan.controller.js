@@ -195,6 +195,9 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
   }
 
   vm.colDefs = [{
+    name: 'Username',
+    displayName: 'Tài Khoản',
+  }, {
     name: 'FullName',
     displayName: 'Họ và tên',
   }, {

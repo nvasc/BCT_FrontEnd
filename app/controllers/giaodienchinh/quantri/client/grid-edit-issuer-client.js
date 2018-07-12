@@ -1,5 +1,4 @@
 import gridEditCommand from './grid-edit-command.html';
-import _ from 'lodash';
 
 export default function GridEditIssuerClient(scope, timeout, colConfigs) {
   var self = this;

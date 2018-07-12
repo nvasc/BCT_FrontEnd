@@ -135,7 +135,7 @@
             <a ui-sref="giaodienchinh.quanly.nganhdaotao">
               <i class="fa fa-circle-o"></i>Ngành đào tạo</a>
           </li>
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" ng-if="menu.role.chbc.read">
             <a ui-sref="giaodienchinh.quanly.cauhinhbaocao">
               <i class="fa fa-circle-o"></i>Cấu hình báo cáo</a>
           </li>
