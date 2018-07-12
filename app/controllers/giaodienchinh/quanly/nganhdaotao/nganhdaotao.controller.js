@@ -5,6 +5,8 @@ import saveTemplate from './save.html';
 
 function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = nganhdaotaoService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới ngành đào tạo',
@@ -21,7 +23,11 @@ function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
     DeleteButtonClass: 'btn-danger',
 
     CancelButton: 'Hủy',
-    CancelButtonClass: 'btn-default'    
+    
+    CancelButtonClass: 'btn-default',
+
+    DetailTitle: 'Chi tiết ngành đào tạo',
+    CloseButton: 'Đóng',
   }
 
   // Initial in screen ------------------
@@ -45,14 +51,14 @@ function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
   }, {
     name: 'Ten',
     displayName: 'Tên',
-  }, {
+  },{
     name: ' ',
     cellTemplate: gridCommand,
     cellClass: 'grid-command',
     width: 60,
     enableSorting: false,
     enableFiltering: false,
-  }];
+  }];  
 
   // manually Filter in Grid Component ------------------
   vm.isFilter = false;
@@ -94,7 +100,7 @@ function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
   vm.update = function (row, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
-      title: rss.UpdateTitle,
+      title: vm.role.update ? rss.UpdateTitle : rss.DetailTitle,
       columnClass: 'col-md-offset-3 col-md-6',  
       icon: 'fa fa-edit',
       content: saveTemplate,
@@ -111,9 +117,9 @@ function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
           }   
         }, function () {
           deferred.resolve(false);  
-        })              
+        });              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;

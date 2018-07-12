@@ -1,13 +1,17 @@
-function nganhdaotaoService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function nganhdaotaoService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory) {
   var service = {};
 
-  var _init = function () {
+  var _init = function () {  
+
     $(window, '.content-wrapper').unbind('resize');
     $timeout(function () {
-      $.AdminLTE.layout.fix();
-      
+      $.AdminLTE.layout.fix();      
     });
   };
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('ndt');
+  }
   var _key = '';
   var _getKey = function () {return _key;}
   service.getKey = _getKey;

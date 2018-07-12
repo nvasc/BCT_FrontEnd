@@ -1,4 +1,4 @@
-function chucnangService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function chucnangService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory) {
   var service = {};
 
   var _init = function () {
@@ -6,6 +6,11 @@ function chucnangService($q, $rootScope, $timeout, nonceProvider, dataProvider) 
       $.AdminLTE.layout.fix();
     });
   };
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('dcm');
+  }
+
   var _key = '';
   var _getKey = function () {return _key;}
   service.getKey = _getKey;

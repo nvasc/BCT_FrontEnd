@@ -32,6 +32,14 @@ function roleFactory(oauthDataFactory) {
 
   dataFactory.getRoles = _getRoles; 
 
+  var _getRoleFor = function (docName) {
+    _loadRoles();    
+    return roles[docName];
+  }
+  
+  dataFactory.getRoleFor = _getRoleFor; 
+
+
   return dataFactory;
 }
 

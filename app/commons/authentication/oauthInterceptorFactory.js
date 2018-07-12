@@ -20,16 +20,19 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
     var i = 0;
     
     if (rejection.status === 401) {
-      if (angular.isDefined(rejection.data) && angular.isDefined(rejection.data.Message)) {
-        //$rootScope.toastr.error(rejection.data.Message, { allowHtml: true });        
+      if (angular.isDefined(rejection.data)) {
+               
         if (!oauthDataFactory.checkValidToken()) {
           oauthDataFactory.removeToken();          
           $state.go('dangnhap');
         }
         else {
-          $state.go('page401');
-        }
-        
+          if ($rootScope.IsShowPopup === true) {
+            $rootScope.toastr.error(rejection.data, { allowHtml: true }); 
+          } else {
+            $state.go('page401');
+          }          
+        }        
       }
     }
     else if (rejection.status === 400) {

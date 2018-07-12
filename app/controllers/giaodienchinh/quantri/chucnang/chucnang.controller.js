@@ -1,9 +1,12 @@
 
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
+import colShare from './col-share.html';
 
 function chucnangController ($q, $scope, chucnangService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = chucnangService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới chức năng',
@@ -20,7 +23,10 @@ function chucnangController ($q, $scope, chucnangService, popupFactory) {
     DeleteButtonClass: 'btn-danger',
 
     CancelButton: 'Hủy',
-    CancelButtonClass: 'btn-default'    
+    CancelButtonClass: 'btn-default',
+    
+    DetailTitle: 'Chi tiết ngành đào tạo',
+    CloseButton: 'Đóng',    
   }
 
   // Initial in screen ------------------
@@ -44,6 +50,14 @@ function chucnangController ($q, $scope, chucnangService, popupFactory) {
   }, {
     name: 'Name',
     displayName: 'Tên',
+  }, {
+    width: 60,
+    name: 'IsShare',
+    displayName: 'Chia sẻ',
+    cellTemplate: colShare,
+    cellClass: 'grid-text-align-center',
+    enableSorting: false,
+    dataType: 3
   }, {
     name: ' ',
     cellTemplate: gridCommand,
@@ -112,7 +126,7 @@ function chucnangController ($q, $scope, chucnangService, popupFactory) {
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;

@@ -1,4 +1,4 @@
-function popupFactory($ngConfirm) {
+function popupFactory($ngConfirm, $rootScope) {
   var factory = {};
   var _options = {};
 
@@ -9,6 +9,7 @@ function popupFactory($ngConfirm) {
 
   var _create = function (createAction, closeCallback) {
     var popup = null; 
+    
     _options.buttons = {
       Create: {
         text: _options.rss.CreateButton,
@@ -34,37 +35,66 @@ function popupFactory($ngConfirm) {
         }
       }
     };    
+    _options.onClose = function () {
+      $rootScope.IsShowPopup = false;
+    }
+    _options.onOpen = function () {
+      $rootScope.IsShowPopup = true;
+    }
     popup = $ngConfirm(_options);
   }  
   factory.create = _create;
 
-  var _update = function (updateAction, closeCallback) {
+  var _update = function (updateAction, closeCallback, role) {
+    console.log(role);
     var popup = null;
-    _options.buttons = {
-      Update: {
-        text: _options.rss.UpdateButton,
-        btnClass: _options.rss.UpdateButtonClass,
-        action: function (scope, button) {
-          if (updateAction) {
-            updateAction().then(function (resp) {
-              if (resp) {
-                popup.close();
-              }
-            });
+    if (role && role.update === true) {
+      _options.buttons = {
+        Update: {
+          text: _options.rss.UpdateButton,
+          btnClass: _options.rss.UpdateButtonClass,
+          action: function (scope, button) {
+            if (updateAction) {
+              updateAction().then(function (resp) {
+                if (resp) {
+                  popup.close();
+                }
+              });
+            }
+            return false;
           }
-          return false;
-        }
-      },
-      close: {
-        text: _options.rss.CancelButton,
-        btnClass: _options.rss.CancelButtonClass,
-        action: function (scope, button) {
-          if (closeCallback) {
-            closeCallback();
+        },        
+        close: {
+          text: _options.rss.CancelButton,
+          btnClass: _options.rss.CancelButtonClass,
+          action: function (scope, button) {
+            if (closeCallback) {
+              closeCallback();
+            }
           }
         }
-      }
-    };
+      };
+    }
+    else {
+      _options.buttons = {        
+        close: {
+          text: _options.rss.CloseButton,
+          btnClass: _options.rss.CancelButtonClass,
+          action: function (scope, button) {
+            if (closeCallback) {
+              closeCallback();
+            }
+          }
+        }
+      };
+    }
+    
+    _options.onClose = function () {
+      $rootScope.IsShowPopup = false;
+    }
+    _options.onOpen = function () {
+      $rootScope.IsShowPopup = true;
+    }
     popup = $ngConfirm(_options);
   }  
   factory.update = _update;
@@ -96,6 +126,12 @@ function popupFactory($ngConfirm) {
         }
       }
     };
+    _options.onClose = function () {
+      $rootScope.IsShowPopup = false;
+    }
+    _options.onOpen = function () {
+      $rootScope.IsShowPopup = true;
+    }
     popup = $ngConfirm(_options);
   }  
   factory.delete = _delete;

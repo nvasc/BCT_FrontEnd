@@ -10,12 +10,18 @@
         <div class="box-body">
           <div class="form-group">
             <label for="Ma">Mã</label>
-        <input type="text" class="form-control" id="Ma" placeholder="" ng-model="chucnang.saveObj.Code">
+            <input type="text" class="form-control" id="Ma" placeholder="" ng-model="chucnang.saveObj.Code">
           </div>
           <div class="form-group">
             <label for="Ten">Tên</label>
             <input type="text" class="form-control" id="Ten" ng-model="chucnang.saveObj.Name">
           </div>
+          <div class="form-group">
+              <div class="icheck-primary">
+                <input type="checkbox" id="IsShare" name="IsShare" ng-model="chucnang.saveObj.IsShare"/>
+                <label for="IsShare">Chia sẻ cho toàn hệ thống</label>
+              </div>
+            </div>
         </div>
       </form>
     </div>
