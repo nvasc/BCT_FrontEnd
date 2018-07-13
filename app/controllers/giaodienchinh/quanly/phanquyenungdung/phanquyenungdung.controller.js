@@ -12,6 +12,8 @@ import saveChucnang from './save-chucnang.html';
 
 function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = phanquyenungdungService.getRole();
   var rss = {
     phanquyenungdung: 'các quyền trong ứng dụng',
     chucnang: 'quyền trong ứng dụng',
@@ -145,7 +147,7 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
           return deferred.promise;
         }, function () {
           vm.saveObj = {};
-        });
+        },vm.role);
       });
   }
   vm.action.update = vm.update;

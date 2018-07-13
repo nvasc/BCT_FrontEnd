@@ -6,6 +6,8 @@ import saveCacQuyenUngDung from './save.html';
 
 function phanquyennguoidungController($q, $scope, phanquyennguoidungService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = phanquyennguoidungService.getRole();
   var rss = {
     phanquyennguoidung: 'người dùng vào quyền trong ứng dụng',
     CreateTitle: 'Tạo mới',
