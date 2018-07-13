@@ -1,4 +1,5 @@
-function taikhoanService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function taikhoanService($q, $rootScope, $timeout, nonceProvider, 
+  dataProvider, roleFactory, httpProvider) {
   var service = {};
   var _providerTaiKhoan = 'taikhoan';
   var _providerPhanQuyenNguoidung = 'userrole';
@@ -9,6 +10,11 @@ function taikhoanService($q, $rootScope, $timeout, nonceProvider, dataProvider) 
       $.AdminLTE.layout.fix();      
     });
   };
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('tk');
+  }
+
   var _key = '';
   var _getKey = function () {return _key;}
   service.getKey = _getKey;
@@ -76,6 +82,28 @@ function taikhoanService($q, $rootScope, $timeout, nonceProvider, dataProvider) 
     return deferred.promise; 
   };
   service.delete = _delete;
+
+  var _getPasswordReset = function(id) {
+    httpProvider
+    var deferred = $q.defer();
+    httpProvider.get('api/taikhoan/GetPasswordReset?id=' + id, true)
+    .then(function (result) {
+      deferred.resolve(result);
+    });
+    return deferred.promise;
+  }
+  service.getPasswordReset = _getPasswordReset;
+
+  var _updatePasswordReset = function(id,data) {
+    httpProvider
+    var deferred = $q.defer();
+    httpProvider.put('api/taikhoan/ResetPassword?id=' + id, data, true)
+    .then(function (result) {
+      deferred.resolve(result);
+    });
+    return deferred.promise;
+  }
+  service.updatePasswordReset = _updatePasswordReset;
 
   return service
 }

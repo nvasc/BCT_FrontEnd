@@ -5,10 +5,13 @@ import gridCommandCacQuyenUngDung from './grid-command-cacquyenungdung.html';
 import colActive from './col-active.html';
 import saveTaiKhoanTemplate from './save-taikhoan.html';
 import saveCacQuyenungDungTemplate from './save-cacquyenungdung.html';
+import resetPasswordTemplate from './reset-password.html';
 
 
 function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = taikhoanService.getRole();
   // Message ------------------
   var rss = {
     TitleTaiKhoan: 'tài khoản',
@@ -25,6 +28,9 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
     DeleteTitle: 'Xóa một tài khoản',
     DeleteButton: 'Xóa',
     DeleteButtonClass: 'btn-danger',
+
+    resetPasswordConfirm: 'Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản này?',
+    resetPasswordTitle: 'Đặt lại mật khẩu',
 
     CancelButton: 'Hủy',
     CancelButtonClass: 'btn-default'    
@@ -120,7 +126,7 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
         return deferred.promise;
       }, function () {
         vm.saveObj = {};
-      });
+      }, vm.role);
     });
   }
   vm.action.update = vm.update;
@@ -159,6 +165,40 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
   }
   vm.action.delete = vm.delete;
 
+  vm.resetPassword = function(row) {
+    var popup = null;
+    popupFactory.setOptions({
+      rss: rss,
+      title: rss.ResetPasswordTitle,
+      columnClass: 'col-md-offset-3 col-md-6',  
+      icon: 'fa fa-edit',
+      content: resetPasswordTemplate,
+      scope: $scope,
+      buttons: {
+        Update: {
+          text: rss.UpdateButton,
+          btnClass: rss.UpdateButtonClass,
+          action: function (scope, button) {
+            taikhoanService.updatePasswordReset(row.entity.Id, vm.saveObj).then(function (obj) {   
+              if (obj && popup) {
+                popup.close();
+              }
+            });
+            return false;
+          }
+        },
+        close: {
+          text: rss.CancelButton,
+          btnClass: rss.CancelButtonClass,
+          action: function (scope, button) {}
+        }
+      }
+    });
+    taikhoanService.getPasswordReset(row.entity.Id).then(function (obj) {      
+      vm.saveObj = obj; 
+      popup = popupFactory.custom();
+    });
+  }
   // Grid defined ------------------------
   vm.quyenungdungExpand = {
     filterDefault: {
@@ -215,7 +255,7 @@ function taikhoanController ($q, $scope, taikhoanService, popupFactory) {
     name: ' ',
     cellTemplate: gridCommandTaiKhoan,
     cellClass: 'grid-command',
-    width: 60,
+    width: 90,
     enableSorting: false,
     enableFiltering: false,
   }];
