@@ -1,5 +1,5 @@
 function dichvuchayngamService($q, $rootScope, $timeout, 
-  nonceProvider, dataProvider, httpProvider) {
+  nonceProvider, dataProvider, httpProvider, roleFactory) {
   var service = {};
 
   var _init = function () {
@@ -13,6 +13,10 @@ function dichvuchayngamService($q, $rootScope, $timeout,
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   service.init = _init;
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('srts');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

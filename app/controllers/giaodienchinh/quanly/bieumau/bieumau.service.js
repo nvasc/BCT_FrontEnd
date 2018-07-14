@@ -1,4 +1,5 @@
-function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider, httpProvider) {
+function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider, httpProvider,
+  roleFactory) {
   var service = {};
   var modelName = 'bieumauchuan';
   var _init = function () {
@@ -14,6 +15,10 @@ function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider, h
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   service.init = _init;
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('bmc');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

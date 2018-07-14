@@ -1,5 +1,7 @@
 <div class="btn-group">
-  <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.$parent.client.configs.deleteColumn(row)" title="Xóa">
+  <button type="button" class="btn btn-danger btn-xs"
+    ng-if="grid.appScope.$parent.client.role.delete"  
+    ng-click="grid.appScope.$parent.client.configs.deleteColumn(row)" title="Xóa">
     <i class="fa fa-close"></i>
   </button>
 </div>

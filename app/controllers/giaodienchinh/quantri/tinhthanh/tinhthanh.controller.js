@@ -5,6 +5,8 @@ import saveTemplate from './save.html';
 
 function tinhthanhController ($q, $scope, tinhthanhService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = tinhthanhService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới tỉnh thành',
@@ -110,7 +112,7 @@ function tinhthanhController ($q, $scope, tinhthanhService, popupFactory) {
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;

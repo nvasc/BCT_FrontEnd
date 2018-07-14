@@ -21,7 +21,9 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="dantoc.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                  ng-if="dantoc.role.create" 
+                  ng-click="dantoc.create()">
                     <span class="fa fa-plus"></span>
                   </button>
                 <button class="btn btn-xs" ng-class="{'btn-success': !dantoc.isFilter, 'btn-danger': dantoc.isFilter}" ng-click="dantoc.filter()" title="Lọc dữ liệu">
@@ -43,9 +45,12 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-grid ci-id="dantoc-grid" url="api/dantoc/getdata" 
-              col-defs="dantoc.colDefs" ci-filter="dantoc.isFilter" 
-              ci-grid-command="dantoc.action" ci-set-scope="dantoc.setScopeGrid" ></ci-grid>
+              <ci-grid ci-id="dantoc-grid" 
+                url="api/dantoc/getdata" 
+                col-defs="dantoc.colDefs" 
+                ci-filter="dantoc.isFilter" 
+                ci-grid-command="dantoc.action" 
+                ci-set-scope="dantoc.setScopeGrid" ></ci-grid>
             </div>
           </div>
           <!-- /.row -->

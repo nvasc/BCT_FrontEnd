@@ -21,10 +21,14 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="tinhthanh.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                    ng-if="tinhthanh.role.create" 
+                    ng-click="tinhthanh.create()">
                     <span class="fa fa-plus"></span>
                   </button>
-                <button class="btn btn-xs" ng-class="{'btn-success': !tinhthanh.isFilter, 'btn-danger': tinhthanh.isFilter}" ng-click="tinhthanh.filter()" title="Lọc dữ liệu">
+                <button class="btn btn-xs" 
+                  ng-class="{'btn-success': !tinhthanh.isFilter, 'btn-danger': tinhthanh.isFilter}" 
+                  ng-click="tinhthanh.filter()" title="Lọc dữ liệu">
                   <span class="fa" ng-class="{'fa-filter': !tinhthanh.isFilter, 'fa-times': tinhthanh.isFilter}"></span>
                 </button>
               </div>
@@ -43,9 +47,13 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <ci-grid ci-id="client-grid" url="api/tinhthanh/getdata" 
-              col-defs="tinhthanh.colDefs" ci-filter="tinhthanh.isFilter" 
-              ci-grid-command="tinhthanh.action" ci-set-scope="tinhthanh.setScopeGrid" ></ci-grid>
+              <ci-grid 
+                ci-id="client-grid" 
+                url="api/tinhthanh/getdata" 
+                col-defs="tinhthanh.colDefs" 
+                ci-filter="tinhthanh.isFilter" 
+                ci-grid-command="tinhthanh.action" 
+                ci-set-scope="tinhthanh.setScopeGrid"></ci-grid>
             </div>
           </div>
           <!-- /.row -->

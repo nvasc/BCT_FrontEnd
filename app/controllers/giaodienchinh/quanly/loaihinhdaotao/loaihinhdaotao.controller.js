@@ -7,6 +7,9 @@ import saveTemplate from './save.html';
 
 function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = loaihinhdaotaoService.getRole();
+  //Message
   var rss = {
     CapBacDaoTao: 'cấp bậc đào tạo',
     HeDaoTao: 'hệ đào tạo',
@@ -134,7 +137,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
           return deferred.promise;
         }, function () {
           vm.saveObj = {};
-        });
+        }, vm.role);
       });
   }
   vm.action.update = vm.update;

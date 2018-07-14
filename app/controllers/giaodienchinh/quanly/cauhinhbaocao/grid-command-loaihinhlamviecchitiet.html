@@ -1,8 +1,17 @@
 <div class="btn-group">
-  <button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.grid.update(row)" title="Cập nhật">
+  <button type="button" class="btn btn-primary btn-xs" 
+    ng-if="!grid.appScope.$parent.cauhinhbaocao.role.update"
+    ng-click="grid.appScope.grid.update(row)" title="Xem">
+      <i class="fa fa-eye"></i>
+  </button>
+  <button type="button" class="btn btn-primary btn-xs"
+    ng-if="grid.appScope.$parent.cauhinhbaocao.role.update" 
+    ng-click="grid.appScope.grid.update(row)" title="Cập nhật">
     <i class="fa fa-edit"></i>
   </button>
-  <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.grid.delete(row)" title="Xóa">
+  <button type="button" class="btn btn-danger btn-xs"
+    ng-if="grid.appScope.$parent.cauhinhbaocao.role.delete"  
+    ng-click="grid.appScope.grid.delete(row)" title="Xóa">
     <i class="fa fa-close"></i>
   </button>
 </div>

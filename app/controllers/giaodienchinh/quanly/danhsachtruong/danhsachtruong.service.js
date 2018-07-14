@@ -1,4 +1,5 @@
-function danhsachtruongService($q, $rootScope, $timeout, nonceProvider, dataProvider) {  
+function danhsachtruongService($q, $rootScope, $timeout, nonceProvider, dataProvider, 
+  roleFactory) {  
   var service = {};
   var _providerName = 'thongtintruong';
   var _init = function () {
@@ -13,6 +14,10 @@ function danhsachtruongService($q, $rootScope, $timeout, nonceProvider, dataProv
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   service.init = _init;
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('tttr');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

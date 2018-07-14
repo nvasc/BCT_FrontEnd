@@ -1,19 +1,22 @@
 <div style="height:300px;">
   <div style="height: 35px; padding-right: 10px;">
-    <button class="btn btn-xs btn-primary pull-right" style="margin-top: 5px;" title="Tạo mới" ng-click="grid.appScope.gridExpand.create(row.entity.Id, 2)">
+    <button class="btn btn-xs btn-primary pull-right" 
+      style="margin-top: 5px;" title="Tạo mới"
+      ng-if="grid.appScope.$parent.loaihinhdaotao.role.create" 
+      ng-click="grid.appScope.gridExpand.create(row.entity.Id, 2)">
       <span class="fa fa-plus"></span>
     </button>
   </div>
   <div>
     <ci-grid-expand url="api/loaihinhdaotao/getdata" 
-    col-defs="row.entity.expandOptions.colDefs" 
-    ci-height="265" 
-    ci-expand-object="row.entity.expandObject.loaidaotaoExpand"
-    ci-filter-default="row.entity.expandObject.filterDefault" 
-    ci-set-scope="grid.appScope.gridExpand.setItemScope" 
-    ci-grid-command="row.entity.expandObject.action" 
-    ci-query-id="{{row.entity.Id}}" ng-if="row.isExpanded"
-    ci-is-inner="true"
+      col-defs="row.entity.expandOptions.colDefs" 
+      ci-height="265" 
+      ci-expand-object="row.entity.expandObject.loaidaotaoExpand"
+      ci-filter-default="row.entity.expandObject.filterDefault" 
+      ci-set-scope="grid.appScope.gridExpand.setItemScope" 
+      ci-grid-command="row.entity.expandObject.action" 
+      ci-query-id="{{row.entity.Id}}" ng-if="row.isExpanded"
+      ci-is-inner="true"
     ></ci-grid-expand>
   </div>
 </div>

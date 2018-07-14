@@ -1,5 +1,5 @@
 function cauhinhbaocaoService($q, $rootScope, $timeout, httpProvider, 
-  dataProvider, nonceProvider) {
+  dataProvider, nonceProvider, roleFactory) {
   var service = {};
   var _apiModel = 'api/cauhinhbaocao';
   var _providerName = 'cauhinhbaocao';
@@ -22,6 +22,9 @@ function cauhinhbaocaoService($q, $rootScope, $timeout, httpProvider,
   }
   service.setKey = _setKey;
   
+  service.getRole = function () {
+    return roleFactory.getRoleFor('chbc');
+  }
 
   var _get = function (id, parentId, level) {
     var deferred = $q.defer();
