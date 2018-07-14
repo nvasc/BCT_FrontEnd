@@ -14,11 +14,12 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
       data += '&Secret=' + secret;
     }
     var deferred = $q.defer();
-    $http.post(oauthDataFactory.urlLogin() , data, 
+    $http.post(oauthDataFactory.urlLogin(), data, 
       { 
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
       }).then(function (response) {
         var resultData = response.data;
+        console.log(response);
         if (resultData.IsOk) {
           oauthDataFactory.setToken(resultData.ResultData.Token)
           oauthDataFactory.setRememberMe(loginData.RememberMe);
@@ -34,17 +35,21 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
   } 
 
   var _logOut = function () {
-    if (oauthDataFactory.token) {
-      $http.delete(oauthDataFactory.urlMain + 'api/Authentication?id=' + 
-        oauthDataFactory.token).then(function (rep) {
-          oauthDataFactory.remove();
+    var rtid = oauthDataFactory.getRefreshToken();
+    if (rtid) {
+      $http.delete(oauthDataFactory.urlLogin() + '?id=' + 
+        oauthDataFactory.getRefreshToken()).then(function (rep) {
+          oauthDataFactory.removeToken();
+          oauthDataFactory.removeRememberMe();
           $location.path('/');
         }, function() {
-          oauthDataFactory.remove();
+          oauthDataFactory.removeToken();
+          oauthDataFactory.removeRememberMe();
           $location.path('/');
         });
     } else {
-      oauthDataFactory.remove();
+      oauthDataFactory.removeToken();
+      oauthDataFactory.removeRememberMe();
       $location.path('/');
     }       
   };

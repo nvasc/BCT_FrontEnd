@@ -19,12 +19,12 @@
       <input type="hidden" id="connect-to-server" value="<%= htmlWebpackPlugin.options.contentTo %>">
     <% } %>
     <% if (htmlWebpackPlugin.options.audience) { %>
-      <!-- <input type="hidden" id="audience" value="<%= htmlWebpackPlugin.options.audience %>"> -->
-      <input type="hidden" id="audience" value="c78eae44ec354db98e68a1052d7b91f1">
+      <input type="hidden" id="audience" value="<%= htmlWebpackPlugin.options.audience %>">
+      <!-- <input type="hidden" id="audience" value="c78eae44ec354db98e68a1052d7b91f1"> -->
     <% } %>
     <% if (htmlWebpackPlugin.options.secret) { %>
-      <!-- <input type="hidden" id="secret" value="<%= htmlWebpackPlugin.options.secret %>"> -->
-      <input type="hidden" id="secret" value="t2iKCoOEUrmhEhz1MNWosgWZVQJGc4wi77Pu2qE3Ncc">
+      <input type="hidden" id="secret" value="<%= htmlWebpackPlugin.options.secret %>">
+      <!-- <input type="hidden" id="secret" value="t2iKCoOEUrmhEhz1MNWosgWZVQJGc4wi77Pu2qE3Ncc"> -->
     <% } %>
     <div id="app-wrapper" ui-view></div>      
   </body>

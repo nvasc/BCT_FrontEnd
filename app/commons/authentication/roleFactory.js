@@ -11,7 +11,7 @@ function roleFactory(oauthDataFactory) {
       var rl = tokenDetail.rl;
       for (var i = 0; i < rl.length; i++) {
         var splits = rl[i].split('_');
-        if (splits.length === 2) {
+        if (splits.length >= 2) {
           roles[splits[0]] = { 
             create : splits[1].indexOf('c') > -1,
             read : splits[1].indexOf('r') > -1, 

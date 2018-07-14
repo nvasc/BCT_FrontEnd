@@ -18,17 +18,16 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
   var _responseError = function (rejection) {
     var error = '';
     var i = 0;
-    
+    console.log(rejection);
     if (rejection.status === 401) {
-      if (angular.isDefined(rejection.data)) {
-               
+      if (angular.isDefined(rejection.data)) {               
         if (!oauthDataFactory.checkValidToken()) {
           oauthDataFactory.removeToken();          
           $state.go('dangnhap');
         }
         else {
           if ($rootScope.IsShowPopup === true) {
-            $rootScope.toastr.error(rejection.data, { allowHtml: true }); 
+            $rootScope.toastr.error(rejection.data.Message, { allowHtml: true }); 
           } else {
             $state.go('page401');
           }          
@@ -61,15 +60,10 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
         }
         $rootScope.toastr.error('<ul>' + error + '</ul>', { allowHtml: true });
       }
+    } else if (rejection.status === 403) {
+      
     } else if (rejection.status === 500) {
-      if ($rootScope.modalObjects && $rootScope.modalObjects.length > 0) {
-        for (var j = 0; j < $rootScope.modalObjects.length; j++) {
-          if ($rootScope.modalObjects[j]) {
-            $rootScope.modalObjects[j].close();
-          }
-        }
-        $rootScope.modalObjects = [];
-      }
+      
     }
     return $q.reject(rejection);
   }

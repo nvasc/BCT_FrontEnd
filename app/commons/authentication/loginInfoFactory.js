@@ -42,6 +42,7 @@ function loginInfoFactory(oauthDataFactory, $state) {
   dataFactory.getUserName = _getUserName;
 
   var _checkLogin = function () {
+
     var obj = oauthDataFactory.getTokenDetail();  
     if (!obj) {
       if ($state.current.name.indexOf('.') !== -1) {
@@ -52,8 +53,13 @@ function loginInfoFactory(oauthDataFactory, $state) {
       if ('dangnhap' === $state.current.name) {
         $state.go('giaodienchinh.kiemsoatchung');
       }
+      if ('dangnhap' !== $state.current.name && oauthDataFactory.getRememberMe()) {
+        console.info('Xử lý kiểm tra token gần hết hạn để re-login');
+      }
     }
-  };   
+
+    
+  };
   dataFactory.checkLogin = _checkLogin; 
 
   return dataFactory;

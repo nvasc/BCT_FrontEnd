@@ -48,7 +48,18 @@ function oauthDataFactory(localStorageService, $rootScope, $location) {
   var _getToken = function () {
     return localStorageService.get(_ascToken);
   }; 
+
   dataFactory.getToken = _getToken;
+
+  var _getRefreshToken = function () {
+    var objToken =  _getTokenDetail();
+    if (objToken) {
+      return objToken.rtid
+    }
+    return null;
+  }; 
+  
+  dataFactory.getRefreshToken = _getRefreshToken;
 
   var _removeToken = function () {
     return localStorageService.remove(_ascToken);

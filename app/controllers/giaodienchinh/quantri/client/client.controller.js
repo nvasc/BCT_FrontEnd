@@ -1,4 +1,5 @@
 import gridCommand from './grid-command.html';
+import './style.css';
 import colActive from './col-active.html';
 import saveTemplate from './save.html';
 import GridEditIssuerClient from './grid-edit-issuer-client'
