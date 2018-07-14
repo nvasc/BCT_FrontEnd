@@ -1,5 +1,5 @@
 function phanquyenungdungService($q, $rootScope, $timeout, httpProvider, 
-  dataProvider, nonceProvider) {
+  dataProvider, nonceProvider, roleFactory) {
   var service = {};
   var _apiphanquyenungdung = 'api/role';
   var _apiQuyentrongChuongTrinh = 'api/roledocumentfunction';
@@ -25,6 +25,9 @@ function phanquyenungdungService($q, $rootScope, $timeout, httpProvider,
   }
   service.setKey = _setKey;
   
+  service.getRole = function () {
+    return roleFactory.getRoleFor('nqud');
+  }
 
   var _get = function (id, parentId, level) {
     var deferred = $q.defer();

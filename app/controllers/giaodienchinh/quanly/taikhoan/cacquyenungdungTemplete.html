@@ -1,6 +1,7 @@
 <div style="height:300px;">
   <div style="height: 35px; padding-right: 5px;">
     <button class="btn btn-xs btn-primary pull-right" style="margin-top: 5px;" title="Tạo mới" 
+      ng-if="grid.appScope.$parent.taikhoan.role.create"
       ng-click="grid.appScope.gridExpand.create(row.entity.Id, 2);">
       <span class="fa fa-plus"></span>
     </button>
