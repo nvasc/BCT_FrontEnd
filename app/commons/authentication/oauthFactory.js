@@ -36,7 +36,7 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
   var _logOut = function () {
     var rtid = oauthDataFactory.getRefreshToken();
     if (rtid) {
-      $http.delete(oauthDataFactory.urlLogin() + '?id=' + 
+      $http.delete(oauthDataFactory.urlMain() + 'token?id=' + 
         oauthDataFactory.getRefreshToken()).then(function (rep) {
           oauthDataFactory.removeToken();
           oauthDataFactory.removeRememberMe();
@@ -55,7 +55,7 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
 
   var _refreshToken = function () {
     var deferred = $q.defer();
-    $http.get(oauthDataFactory.urlLogin()).then(function (response) {
+    $http.get(oauthDataFactory.urlMain() + 'token').then(function (response) {
       var resultData = response.data;
       if (resultData.IsOk) {
         oauthDataFactory.setToken(resultData.ResultData.Token)       

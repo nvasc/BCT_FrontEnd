@@ -60,6 +60,10 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
         $rootScope.toastr.error('<ul>' + error + '</ul>', { allowHtml: true });
       }
     } else if (rejection.status === 403) {
+      if (rejection.data.Code === 'invalid_token') {
+        oauthDataFactory.removeToken();          
+          $state.go('dangnhap');
+      }
       
     } else if (rejection.status === 500) {
       

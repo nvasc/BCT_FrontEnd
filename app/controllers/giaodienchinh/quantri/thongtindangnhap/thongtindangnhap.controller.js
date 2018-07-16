@@ -31,7 +31,7 @@ function thongtindangnhapController($q, $scope, thongtindangnhapService, popupFa
     name: 'UserAgent',
     displayName: 'User Agent',
     cellTooltip: function(row, col) {
-      return row.entity.IssuerFrom;
+      return row.entity.UserAgent;
     }
   },{
     name: 'PublicIp',
@@ -118,10 +118,10 @@ function thongtindangnhapController($q, $scope, thongtindangnhapService, popupFa
       }
     }
     
-    deletePopup = popupFactory.setOptions(option);
+    popupFactory.setOptions(option);
     thongtindangnhapService.get(row.entity.Id).then(function (obj) {  
       vm.saveObj = obj;  
-      popupFactory.custom();
+      deletePopup = popupFactory.custom();
     });
   };  
 }
