@@ -1,10 +1,16 @@
 <div class="btn-group">
-  <button type="button" class="btn btn-primary btn-xs" 
+  <button type="button" class="btn btn-primary btn-xs"
+    ng-if="row.entity.Status !== 1 || row.entity.Status === 2"  
     ng-click="grid.appScope.$parent.nhapkhaubaocao.detail(row)" title="Xem chi tiết">
     <i class="fa fa-eye" aria-hidden="true"></i>
   </button>
+  <button type="button" class="btn btn-primary btn-xs"
+    ng-if="row.entity.Status === 1" 
+    ng-click="grid.appScope.$parent.nhapkhaubaocao.update(row)" title="Cập nhật">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
   <button type="button" class="btn btn-danger btn-xs"
-    ng-if="grid.appScope.$parent.nhapkhaubaocao.role.delete" 
+    ng-if="grid.appScope.$parent.nhapkhaubaocao.role.delete && row.entity.Status !== 2" 
     ng-click="grid.appScope.grid.delete(row)" title="Xóa">
     <i class="fa fa-close"></i>
   </button>
