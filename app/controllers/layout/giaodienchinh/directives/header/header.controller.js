@@ -9,7 +9,12 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory, $stat
     
     $state.go('dangnhap');
   }
-
+  
+  vm.test = function () {
+    oauthFactory.refreshToken().then(function (result) {
+      console.log(result);
+    });
+  }
 }
 
 /* @ngInject */

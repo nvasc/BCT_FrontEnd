@@ -18,7 +18,6 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
   var _responseError = function (rejection) {
     var error = '';
     var i = 0;
-    console.log(rejection);
     if (rejection.status === 401) {
       if (angular.isDefined(rejection.data)) {               
         if (!oauthDataFactory.checkValidToken()) {

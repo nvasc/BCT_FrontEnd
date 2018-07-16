@@ -46,7 +46,6 @@ function popupFactory($ngConfirm, $rootScope) {
   factory.create = _create;
 
   var _update = function (updateAction, closeCallback, role) {
-    console.log(role);
     var popup = null;
     if (role && role.update === true) {
       _options.buttons = {

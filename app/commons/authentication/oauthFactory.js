@@ -19,7 +19,6 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
       }).then(function (response) {
         var resultData = response.data;
-        console.log(response);
         if (resultData.IsOk) {
           oauthDataFactory.setToken(resultData.ResultData.Token)
           oauthDataFactory.setRememberMe(loginData.RememberMe);
@@ -56,24 +55,16 @@ function oauthFactory($http, $q, localStorageService, oauthDataFactory, $locatio
 
   var _refreshToken = function () {
     var deferred = $q.defer();
-    if (oauthDataFactory.token) {
-      var data = 'grant_type=refresh_token&refresh_token=' + 
-      oauthDataFactory.refreshToken + '&client_id=' + oauthDataFactory.clientId;
-      localStorageService.remove('authorizationData');
+    $http.get(oauthDataFactory.urlLogin()).then(function (response) {
+      var resultData = response.data;
+      if (resultData.IsOk) {
+        oauthDataFactory.setToken(resultData.ResultData.Token)       
+      }
+      deferred.resolve(resultData);    
 
-      $http.post(oauthDataFactory.urlMain + 'token', data, { 
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
-      }).success(function (response) {
-        var resultData = response.data;          
-        deferred.resolve(true);
-      }).error(function (err, status) {
-        _logOut();
-        deferred.reject(err);
-      });      
-    }
-    else {
-      deferred.resolve(false);
-    }
+    },function (err, status) {
+      deferred.reject(err);
+    });
     return deferred.promise;
   };
 
