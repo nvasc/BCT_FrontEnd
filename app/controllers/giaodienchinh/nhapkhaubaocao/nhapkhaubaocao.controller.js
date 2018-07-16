@@ -125,6 +125,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;   
       vm.saveObj.IsDetail = true;
+      vm.saveObj.IdBieuMauChuan = vm.saveObj.IdBieuMauChuan + '';
       popupFactory.custom();
     });
   };

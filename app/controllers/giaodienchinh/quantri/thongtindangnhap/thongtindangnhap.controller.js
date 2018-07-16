@@ -1,5 +1,7 @@
 import gridCommand from './grid-command.html';
 import deleteTemplate from './deleteTemplate.html';
+import expireDateTemplate from './expire-date-templete.html';
+import issuerDateTemplate from './issuer-date-templete.html';
 
 function thongtindangnhapController($q, $scope, thongtindangnhapService, popupFactory) {
   const vm = this;
@@ -43,18 +45,18 @@ function thongtindangnhapController($q, $scope, thongtindangnhapService, popupFa
     name: 'IssuerFrom',
     displayName: 'Kết nối đến',
   },{
-    name: 'IssuedDate',
-    cellFilter: 'date:\'dd-MM-yyyy HH:mm\'',
+    name: 'IssuedUtc',
+    cellTemplate: issuerDateTemplate,    
     displayName: 'Ngày đăng nhập',
   },{
-    name: 'ExpiresDate',
-    cellFilter: 'date:\'dd-MM-yyyy HH:mm\'',
+    name: 'ExpiresUtc',
+    cellTemplate: expireDateTemplate, 
     displayName: 'Ngày hết hạn',
   }, {
     name: ' ',
     cellTemplate: gridCommand,
     cellClass: 'grid-command',
-    width: 60,
+    width: 30,
     enableSorting: false,
     enableFiltering: false,
   }];
