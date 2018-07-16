@@ -21,7 +21,9 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="client.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                    ng-if="client.role.create" 
+                    ng-click="client.create()">
                     <span class="fa fa-plus"></span>
                   </button>
                 <button class="btn btn-xs" ng-class="{'btn-success': !client.isFilter, 'btn-danger': client.isFilter}" ng-click="client.filter()" title="Lọc dữ liệu">

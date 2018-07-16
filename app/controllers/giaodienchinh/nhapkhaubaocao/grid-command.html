@@ -3,7 +3,9 @@
     ng-click="grid.appScope.$parent.nhapkhaubaocao.detail(row)" title="Xem chi tiết">
     <i class="fa fa-eye" aria-hidden="true"></i>
   </button>
-  <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.grid.delete(row)" title="Xóa">
+  <button type="button" class="btn btn-danger btn-xs"
+    ng-if="grid.appScope.$parent.nhapkhaubaocao.role.delete" 
+    ng-click="grid.appScope.grid.delete(row)" title="Xóa">
     <i class="fa fa-close"></i>
   </button>
 </div>

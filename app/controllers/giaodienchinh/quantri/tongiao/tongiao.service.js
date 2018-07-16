@@ -1,4 +1,4 @@
-function tongiaoService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function tongiaoService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory) {
   var service = {};
 
   var _init = function () {
@@ -13,6 +13,10 @@ function tongiaoService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   service.init = _init;
+
+  service.getRole = function () {
+    return roleFactory.getRoleFor('tg');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

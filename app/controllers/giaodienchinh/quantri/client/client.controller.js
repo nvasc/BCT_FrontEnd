@@ -6,6 +6,8 @@ import GridEditIssuerClient from './grid-edit-issuer-client'
 
 function clientController($q, $scope, clientService, $timeout, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = clientService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới một client',
@@ -134,7 +136,7 @@ function clientController($q, $scope, clientService, $timeout, popupFactory) {
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
 

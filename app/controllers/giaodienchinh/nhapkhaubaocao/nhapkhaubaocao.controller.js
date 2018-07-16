@@ -7,6 +7,8 @@ import colStatusTemplate from './col-status.html';
 
 function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = nhapkhaubaocaoService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới nhập khẩu báo cáo',

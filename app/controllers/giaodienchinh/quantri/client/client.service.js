@@ -1,4 +1,4 @@
-function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {  
+function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory) {  
   var service = {};
   var _providerName = 'client';
 
@@ -16,6 +16,9 @@ function clientService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   
+  service.getRole = function () {
+    return roleFactory.getRoleFor('clt');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

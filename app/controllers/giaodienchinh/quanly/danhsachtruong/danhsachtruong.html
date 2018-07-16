@@ -21,10 +21,13 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="danhsachtruong.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                  ng-if="danhsachtruong.role.create" 
+                  ng-click="danhsachtruong.create()">
                     <span class="fa fa-plus"></span>
                   </button>
-                <button class="btn btn-xs" ng-class="{'btn-success': !danhsachtruong.isFilter, 'btn-danger': danhsachtruong.isFilter}" ng-click="danhsachtruong.filter()" title="Lọc dữ liệu">
+                <button class="btn btn-xs" 
+                  ng-class="{'btn-success': !danhsachtruong.isFilter, 'btn-danger': danhsachtruong.isFilter}" ng-click="danhsachtruong.filter()" title="Lọc dữ liệu">
                   <span class="fa" ng-class="{'fa-filter': !danhsachtruong.isFilter, 'fa-times': danhsachtruong.isFilter}"></span>
                 </button>
               </div>

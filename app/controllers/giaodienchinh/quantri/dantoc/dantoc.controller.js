@@ -5,6 +5,8 @@ import saveTemplate from './save.html';
 
 function dantocController ($q, $scope, dantocService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = dantocService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới tỉnh thành',
@@ -110,7 +112,7 @@ function dantocController ($q, $scope, dantocService, popupFactory) {
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;

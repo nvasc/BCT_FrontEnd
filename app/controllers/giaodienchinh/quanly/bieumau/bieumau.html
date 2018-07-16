@@ -21,7 +21,9 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="bieumau.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                    ng-if="bieumau.role.create"  
+                    ng-click="bieumau.create()">
                     <span class="fa fa-plus"></span>
                   </button>
                 <button class="btn btn-xs" ng-class="{'btn-success': !bieumau.isFilter, 'btn-danger': bieumau.isFilter}" ng-click="bieumau.filter()" title="Lọc dữ liệu">

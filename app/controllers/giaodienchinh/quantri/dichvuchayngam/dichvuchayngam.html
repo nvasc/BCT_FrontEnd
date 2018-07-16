@@ -21,7 +21,9 @@
           <div class="row">
             <div class="col-md-2 col-xs-6 pull-right">
               <div class="navbar-form navbar-right search-filter">                
-                <button class="btn btn-xs btn-primary" title="Tạo mới" ng-click="dichvuchayngam.create()">
+                <button class="btn btn-xs btn-primary" title="Tạo mới"
+                  ng-if="dichvuchayngam.role.create" 
+                  ng-click="dichvuchayngam.create()">
                     <span class="fa fa-plus"></span>
                   </button>
                 <button class="btn btn-xs" ng-class="{'btn-success': !dichvuchayngam.isFilter, 'btn-danger': dichvuchayngam.isFilter}" ng-click="dichvuchayngam.filter()" title="Lọc dữ liệu">

@@ -4,6 +4,8 @@ import saveTemplate from './save.html';
 
 function danhsachtruongController($q, $scope, danhsachtruongService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = danhsachtruongService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới một trường',
@@ -115,7 +117,7 @@ function danhsachtruongController($q, $scope, danhsachtruongService, popupFactor
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
 

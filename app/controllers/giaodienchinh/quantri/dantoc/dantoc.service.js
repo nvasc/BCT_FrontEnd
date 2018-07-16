@@ -1,4 +1,4 @@
-function dantocService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
+function dantocService($q, $rootScope, $timeout, nonceProvider, dataProvider,roleFactory) {
   var service = {};
 
   var _init = function () {
@@ -14,6 +14,9 @@ function dantocService($q, $rootScope, $timeout, nonceProvider, dataProvider) {
   var _setKey = function (key) { _key = key;}
   service.setKey = _setKey;
   
+  service.getRole = function () {
+    return roleFactory.getRoleFor('dt');
+  }
 
   var _get = function (id) { 
     var deferred = $q.defer();

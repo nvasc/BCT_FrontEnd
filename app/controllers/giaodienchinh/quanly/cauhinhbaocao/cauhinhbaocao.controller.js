@@ -7,6 +7,9 @@ import saveTemplate from './save.html';
 
 function cauhinhbaocaoController($q, $scope, cauhinhbaocaoService, popupFactory) {
   const vm = this;
+   //Get Role
+  vm.role = cauhinhbaocaoService.getRole();
+
   var rss = {
     LoaiNhanVien: 'loại nhân viên',
     LoaiHinhLamViec: 'loại hình làm việc',
@@ -133,7 +136,7 @@ function cauhinhbaocaoController($q, $scope, cauhinhbaocaoService, popupFactory)
           return deferred.promise;
         }, function () {
           vm.saveObj = {};
-        });
+        }, vm.role);
       });
   }
   vm.action.update = vm.update;

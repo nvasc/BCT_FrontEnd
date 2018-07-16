@@ -6,6 +6,8 @@ import colStatusTemplate from './col-status.html';
 
 function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = dichvuchayngamService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới chức năng',
@@ -136,7 +138,7 @@ function dichvuchayngamController ($q, $scope, dichvuchayngamService, popupFacto
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;

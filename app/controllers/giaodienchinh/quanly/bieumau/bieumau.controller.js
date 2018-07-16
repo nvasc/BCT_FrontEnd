@@ -8,6 +8,8 @@ import GridEditConfigBieuMau from './grid-edit-config-bieu-mau'
 
 function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = bieumauService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới biểu mẫu',
@@ -125,7 +127,9 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { 
+        vm.saveObj = {}; 
+      }, vm.role);
     });
   };
   vm.action.update = vm.update;

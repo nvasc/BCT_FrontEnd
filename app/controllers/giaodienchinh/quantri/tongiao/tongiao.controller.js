@@ -5,6 +5,8 @@ import saveTemplate from './save.html';
 
 function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
   const vm = this;
+  //Get Role
+  vm.role = tongiaoService.getRole();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới tỉnh thành',
@@ -110,7 +112,7 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; }, vm.role);
     });
   };
   vm.action.update = vm.update;
