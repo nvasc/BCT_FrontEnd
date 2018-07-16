@@ -227,7 +227,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           for (var j = 0; j < $(eleThis).select2('data').length; j++) {
             vals.push($(eleThis).select2('data')[j].id)
           }
-          $scope.ngModel = vals;
+          $scope.ngModel = vals  + '';
         } else {
           $scope.ngModel = $(eleThis).select2('data')[0].id;
         }
