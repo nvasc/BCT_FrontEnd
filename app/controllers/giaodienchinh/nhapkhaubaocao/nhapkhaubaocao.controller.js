@@ -15,9 +15,6 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     CreateButton: 'Tạo mới',
     CreateButtonClass: 'btn-primary',
 
-    UpdateTitle: 'Cập nhật nhập khẩu báo cáo',
-    UpdateButton: 'Cập nhật',
-    UpdateButtonClass: 'btn-primary',
 
     DeleteConfirm: 'Bạn có chắc chắn muốn xóa nhập khẩu báo cáo này?',
     DeleteTitle: 'Xóa một nhập khẩu báo cáo',
@@ -110,33 +107,6 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     });    
   }
 
-  vm.update = function (row, type, refreshGridCallBack) {
-    popupFactory.setOptions({
-      rss: rss,
-      title: rss.UpdateTitle,
-      columnClass: 'col-md-offset-3 col-md-6',  
-      icon: 'fa fa-edit',
-      content: saveTemplate,
-      scope: $scope,
-    });
-    nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
-      vm.saveObj = obj;
-      vm.saveObj.IdBieuMauChuan = vm.saveObj.IdBieuMauChuan + ''; 
-      popupFactory.update(function () { 
-        var deferred = $q.defer();
-        nhapkhaubaocaoService.update(row.entity.Id, vm.saveObj).then(function () {
-          deferred.resolve(true);
-          if (refreshGridCallBack) {
-            refreshGridCallBack();
-          }   
-        }, function () {
-          deferred.resolve(false);  
-        })              
-        return deferred.promise;
-      }, function () { vm.saveObj = {}; }, vm.role);
-    });
-  };
-
   vm.detail = function (row) {
     popupFactory.setOptions({
       rss: rss,
@@ -155,7 +125,6 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;   
       vm.saveObj.IsDetail = true;
-      vm.saveObj.IdBieuMauChuan = vm.saveObj.IdBieuMauChuan + '';
       popupFactory.custom();
     });
   };
