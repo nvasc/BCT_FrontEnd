@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 function tabConst() {
   var self = {};
   self.tabDaoTao = 1;
@@ -16,7 +18,8 @@ function typeChartConst() {
   return seft;
 }
 
-function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $document) {
+function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $document, 
+  oauthDataFactory, $http) {
   const vm = this;
   baocaolanhdaoService.init();
   vm.tabC = tabConst();
@@ -50,8 +53,53 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
     }
   });
 
+  var filter = {};
+  vm.loadData = function() {
+    var url = 'api/baocaolanhdao/GetSelectData';
+    if (vm.paramester) {
+      url += vm.paramester
+    }
+    $http.post(oauthDataFactory.urlMain() + url, 
+    filter).then(function (resp) {
+      vm.reportDataDoiNgu = resp.data.Data;
+    });
+  };
+
+  vm.loadData();
+
+  $scope.$watch('baocaolanhdao.paramester', function (nval, oval) {
+    if (!angular.equals(nval, oval)) {
+      vm.loadData();
+    }
+  });
+
+  $scope.$watch('baocaolanhdao.reportDataDoiNgu', function(nval, oval) {
+    if (!angular.equals(nval, oval)) {
+      switch (vm.tab) {
+        case vm.tabC.tabDaoTao:
+          loadChartDaoTao();
+          break;
+        case vm.tabC.tabDoTuoi:
+          loadChartDoTuoi();
+          break;
+        case vm.tabC.tabCanBo:
+          loadChartCanBo();
+          break;
+        case vm.tabC.tabNhanVien:
+          loadChartNhanVien();
+          break;
+        case vm.tabC.tabGiangVien:
+          loadChartGiangVien();
+          break;
+        case vm.tabC.tabKhoaBoMon:
+          loadChartKhoaBoMon();
+          break;
+      }
+    }
+  });
+
   //tạo dữ liệu giả cho báo cáo khoa, bộ môn
-  $scope.reportDataKhoa = [
+  vm.reportDataKhoa = [
     {
       'TenKhoa':'Tổng số',
       'TongSo' : 1147 ,
@@ -447,83 +495,118 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
 
   //Theo trình độ đào tạo
   function loadChartDaoTao () {
-    $scope.chartData_DaoTao = 
-    {
-      cols: [
-        {'id':'Ten','label':'Tên','type':'string'},
-        {'id':'TongSo','label':'Tổng số','type':'number'},
-        {'id':'TongSoNu','label':'Tổng số Nữ','type':'number'}
-      ],
-      rows: [
-        {c:[{v: 'Dân tộc ít người'},{v: 10},{v: 6}]},
-        {c:[{v: 'Giáo sư'},{v: 3},{v: 1}]},
-        {c:[{v: 'Phó giáo sư'},{v: 10},{v: 0}]},
-        {c:[{v: 'TSKH và Tiến sĩ'},{v: 110},{v: 20}]},
-        {c:[{v: 'Thạc sĩ'},{v: 765},{v: 339}]},
-        {c:[{v: 'CK Y cấp I, II'},{v: 0},{v: 0}]},
-        {c:[{v: 'Đại học'},{v: 419},{v: 210}]},
-        {c:[{v: 'Cao đẳng'},{v: 40},{v: 13}]},
-        {c:[{v: 'Khác'},{v: 206},{v: 91}]}
-      ]
+    var dataTemp = _.filter(vm.reportDataDoiNgu, function(p) { 
+      return p.IdLoaiHinhLamViecChiTiet === 12; 
+    });
+   
+    if (dataTemp.length > 0) {
+      vm.chartData_DaoTao = 
+      {
+        cols: [
+          {'id':'Ten','label':'Tên','type':'string'},
+          {'id':'TongSo','label':'Tổng số','type':'number'},
+          {'id':'TongSoNu','label':'Tổng số Nữ','type':'number'}
+        ],
+        rows: [
+          {c:[{v: 'Dân tộc ít người'},{v: dataTemp[0].TongSoDanToc},
+          {v: dataTemp[0].TongSoDanTocNu}]},
+          {c:[{v: 'Giáo sư'},{v: dataTemp[0].TongGiaoSu},{v: dataTemp[0].TongGiaoSuNu}]},
+          {c:[{v: 'Phó giáo sư'},{v: dataTemp[0].TongPhoGiaoSu},{v: dataTemp[0].TongPhoGiaoSuNu}]},
+          {c:[{v: 'TSKH và Tiến sĩ'},{v: dataTemp[0].TongTienSi},{v: dataTemp[0].TongTienSiNu}]},
+          {c:[{v: 'Thạc sĩ'},{v: dataTemp[0].TongSoThacSi},{v: dataTemp[0].TongSoThacSi}]},
+          {c:[{v: 'CK Y cấp I, II'},{v: dataTemp[0].TongSoChuyenKhoaY},
+          {v: dataTemp[0].TongSoChuyenKhoaYNu}]},
+          {c:[{v: 'Đại học'},{v: dataTemp[0].TongSoDaiHoc},{v: dataTemp[0].TongSoDaiHocNu}]},
+          {c:[{v: 'Cao đẳng'},{v: dataTemp[0].TongSoCaoDang},{v: dataTemp[0].TongSoCaoDang}]},
+          {c:[{v: 'Khác'},{v: dataTemp[0].TongSoKhac},{v: dataTemp[0].TongSoKhacNu}]}
+        ]
+      }
     }
+    
   };
 
   //Theo độ tuổi
   function loadChartDoTuoi () {
-    $scope.chartData_DoTuoi = {
-      cols: [
-        {'id':'DoTuoi','label':'Độ tuổi','type':'string'},
-        {'id':'TongSo','label':'Tổng số','type':'number'},
-        {'id':'Id','label':'', 'type':'number'},
-      ],
-      rows: [
-        {c:[{v: 'Dưới 30 tuổi',ddd: 0},{v: 201},{v:123}]},
-        {c:[{v: 'Từ 30 đến 35'},{v: 316},{v:223}]},
-        {c:[{v: 'Từ 36 đến 40'},{v: 224},{v:3312}]},
-        {c:[{v: 'Từ 41 đến 45'},{v: 110},{v:423123}]},
-        {c:[{v: 'Từ 46 đến 50'},{v: 82},{v:5231}]},
-        {c:[{v: 'Từ 51 đến 55'},{v: 72},{v:612312}]},
-        {c:[{v: 'Từ 56 đến 60'},{v: 27},{v:71231}]},
-        {c:[{v: 'Trên 60 tuổi'},{v: 2},{v:812312}]}
-      ]
+    var dataTemp = _.filter(vm.reportDataDoiNgu, function(p) { 
+      return p.IdLoaiHinhLamViecChiTiet === 25 || p.IdLoaiHinhLamViecChiTiet === 26 ||
+      p.IdLoaiHinhLamViecChiTiet === 27 || p.IdLoaiHinhLamViecChiTiet === 28 ||
+      p.IdLoaiHinhLamViecChiTiet === 30 || p.IdLoaiHinhLamViecChiTiet === 31 ||
+      p.IdLoaiHinhLamViecChiTiet === 32 || p.IdLoaiHinhLamViecChiTiet === 33; 
+    });
+
+    if (dataTemp.length > 0) {
+      vm.chartData_DoTuoi = {
+        cols: [
+          {'id':'DoTuoi','label':'Độ tuổi','type':'string'},
+          {'id':'TongSo','label':'Tổng số','type':'number'},
+          {'id':'Id','label':'', 'type':'number'},
+        ],
+        rows: [
+          {c:[{v: 'Dưới 30 tuổi'},{v: dataTemp[0].TongSo},{v:dataTemp[0].Id}]},
+          {c:[{v: 'Từ 30 đến 35'},{v: dataTemp[1].TongSo},{v:dataTemp[1].Id}]},
+          {c:[{v: 'Từ 36 đến 40'},{v: dataTemp[2].TongSo},{v:dataTemp[2].Id}]},
+          {c:[{v: 'Từ 41 đến 45'},{v: dataTemp[3].TongSo},{v:dataTemp[3].Id}]},
+          {c:[{v: 'Từ 46 đến 50'},{v: dataTemp[4].TongSo},{v:dataTemp[4].Id}]},
+          {c:[{v: 'Từ 51 đến 55'},{v: dataTemp[5].TongSo},{v:dataTemp[5].Id}]},
+          {c:[{v: 'Từ 56 đến 60'},{v: dataTemp[6].TongSo},{v:dataTemp[6].Id}]},
+          {c:[{v: 'Trên 60 tuổi'},{v: dataTemp[7].TongSo},{v:dataTemp[7].Id}]}
+        ]
+      }
     }
   };
-  
+ 
   //Theo cán bộ
   function loadChartCanBo() {
-    $scope.chartData_CanBo = {
-      cols: [
-        {'id':'CanBo','label':'Cán bộ','type':'string'},
-        {'id':'TongSo','label':'Tổng số','type':'number'}
-      ],
-      rows: [
-        {c:[{v: 'Cán bộ nhân viên'},{v: 506}]},
-        {c:[{v: 'Giảng viên'},{v: 1034}]},
-        {c:[{v: 'Giảng viên thỉnh giảng'},{v: 0}]}
-      ]
-    };
+    console.log(vm.reportDataDoiNgu)
+    var dataTemp = _.filter(vm.reportDataDoiNgu, function(p) { 
+      return p.IdLoaiHinhLamViecChiTiet === 13 || p.IdLoaiHinhLamViecChiTiet === 14 ||
+      p.IdLoaiHinhLamViecChiTiet === 15; 
+    });
+    if (dataTemp.length > 0) {
+      vm.chartData_CanBo = {
+        cols: [
+          {'id':'CanBo','label':'Cán bộ','type':'string'},
+          {'id':'TongSo','label':'Tổng số','type':'number'},
+          {'id':'Id','label':'', 'type':'number'},
+        ],
+        rows: [
+          {c:[{v: 'Cán bộ nhân viên'},{v: dataTemp[0].TongSo},{v:dataTemp[0].Id}]},
+          {c:[{v: 'Giảng viên'},{v: dataTemp[1].TongSo},{v:dataTemp[1].Id}]},
+          {c:[{v: 'Giảng viên thỉnh giảng'},{v: dataTemp[2].TongSo},{v:dataTemp[2].Id}]}
+        ]
+      };
+    }
   };
 
   //Theo nhân viên
   function loadChartNhanVien() {
-    $scope.chartData_NhanVien = {
-      cols: [
-        {'id':'CanBoNhanVien','label':'Cán bộ nhân viên','type':'string'},
-        {'id':'TongSo','label':'Tổng số','type':'number'}
-      ],
-      rows: [
-        {c:[{v: 'Cán bộ quản lý'},{v: 127}]},
-        {c:[{v: 'Trong đó: Kiêm nhiệm giảng dạy'},{v: 113}]},
-        {c:[{v: 'Cán bộ hành chính, nghiệp vụ, phục vụ (không bao gồm giảng viên )'},{v: 232}]},
-        {c:[{v: 'Trong đó: Kiêm nhiệm giảng dạy'},{v: 0}]},
-        {c:[{v: 'Nhân viên phục vụ'},{v: 147}]}
-      ]
-    };
+    console.log(vm.reportDataDoiNgu)
+    var dataTemp = _.filter(vm.reportDataDoiNgu, function(p) { 
+      return p.IdLoaiHinhLamViecChiTiet === 16 || p.IdLoaiHinhLamViecChiTiet === 19 ||
+      p.IdLoaiHinhLamViecChiTiet === 17 || p.IdLoaiHinhLamViecChiTiet === 19 ||
+      p.IdLoaiHinhLamViecChiTiet === 18; 
+    });
+    if (dataTemp.length > 0) {
+      vm.chartData_NhanVien = {
+        cols: [
+          {'id':'CanBoNhanVien','label':'Cán bộ nhân viên','type':'string'},
+          {'id':'TongSo','label':'Tổng số','type':'number'}
+        ],
+        rows: [
+          {c:[{v: 'Cán bộ quản lý'},{v: dataTemp[0].TongSo},{v:dataTemp[0].Id}]},
+          {c:[{v: 'Trong đó: Kiêm nhiệm giảng dạy'},{v: dataTemp[1].TongSo},{v:dataTemp[1].Id}]},
+          {c:[{v: 'Cán bộ hành chính, nghiệp vụ, phục vụ (không bao gồm giảng viên )'},
+          {v: dataTemp[2].TongSo},{v:dataTemp[2].Id}]},
+          {c:[{v: 'Trong đó: Kiêm nhiệm giảng dạy'},{v: dataTemp[3].TongSo},{v:dataTemp[3].Id}]},
+          {c:[{v: 'Nhân viên phục vụ'},{v: dataTemp[4].TongSo},{v:dataTemp[4].Id}]}
+        ]
+      };
+    }
   };
   
   //Theo giảng viên
   function loadChartGiangVien() {
-    $scope.chartData_GiangVien = {
+    vm.chartData_GiangVien = {
       cols: [
 
         {'id':'GiangVien','label':'Giảng viên','type':'string'},
@@ -539,7 +622,7 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
 
   //Theo khoa, tổ bộ môn
   function loadChartKhoaBoMon() {
-    $scope.chartData_KhoaBoMon = {
+    vm.chartData_KhoaBoMon = {
       cols: [
         {'id':'TenKhoa','label':'Tên khoa','type':'string'},
         {'id':'TongSo','label':'Tổng số','type':'number'}
@@ -571,13 +654,13 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
   };
   
   //Tab
-  $scope.tab = 1;
+  vm.tab = 1;
 
-  $scope.setTab = function(newTab) {
-    $scope.tab = newTab;
+  vm.setTab = function(newTab) {
+    vm.tab = newTab;
   };
 
-  $scope.$watch('tab', function(val) {
+  $scope.$watch('baocaolanhdao.tab', function(val) {
     switch (val) {
       case vm.tabC.tabDaoTao:
         loadChartDaoTao();
@@ -597,15 +680,14 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
       case vm.tabC.tabKhoaBoMon:
         loadChartKhoaBoMon();
         break;
-      
     }
   });
 
-  $scope.isSet = function(tabNum) {
-    return $scope.tab === tabNum;
+  vm.isSet = function(tabNum) {
+    return vm.tab === tabNum;
   };
 
-  $scope.headTable = `
+  vm.headTable = `
     <tr>
       <th rowspan="3" style="width: 150px"></th>
       <th rowspan="3" style="width: 50px">Tổng số</th>
@@ -668,11 +750,11 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
       <td class="centertd">20</td>
     </tr>`;
 
-  $scope.colsKhoa = ['TenKhoa','TongSo','TongSoNu','TongSoDanToc','TongSoDanTocNu','TongGiaoSu',
+  vm.colsKhoa = ['TenKhoa','TongSo','TongSoNu','TongSoDanToc','TongSoDanTocNu','TongGiaoSu',
     'TongPhoGiaoSu','TongTienSi','TongSoThacSi',
     'TongSoChuyenKhoaY','TongSoDaiHoc','TongSoCaoDang','TongSoKhac'];
 
-  $scope.headTableKhoa = `
+  vm.headTableKhoa = `
     <tr>
       <th rowspan="3" style="width: 150px"></th>
       <th rowspan="3" style="width: 50px">Tổng số</th>
@@ -719,30 +801,30 @@ function baocaolanhdaoController ($scope, baocaolanhdaoService, $timeout, $docum
       <td class="centertd">12</td>
     </tr>`;
 
-  $scope.doTuoiTypeChart = function(val) {
-    $scope.doTuoiType = val;
+  vm.doTuoiTypeChart = function(val) {
+    vm.doTuoiType = val;
   }
-  $scope.doTuoiTypeChart(vm.typeChartC.pieChart);
+  vm.doTuoiTypeChart(vm.typeChartC.pieChart);
 
-  $scope.canBoTypeChart = function(val) {
-    $scope.canBoType = val;
+  vm.canBoTypeChart = function(val) {
+    vm.canBoType = val;
   }
-  $scope.canBoTypeChart(vm.typeChartC.pieChart);
+  vm.canBoTypeChart(vm.typeChartC.pieChart);
 
-  $scope.nhanVienTypeChart = function(val) {
-    $scope.nhanVienType = val;
+  vm.nhanVienTypeChart = function(val) {
+    vm.nhanVienType = val;
   }
-  $scope.nhanVienTypeChart(vm.typeChartC.pieChart);
+  vm.nhanVienTypeChart(vm.typeChartC.pieChart);
 
-  $scope.giangVienTypeChart = function(val) {
-    $scope.giangVienType = val;
+  vm.giangVienTypeChart = function(val) {
+    vm.giangVienType = val;
   }
-  $scope.giangVienTypeChart(vm.typeChartC.pieChart);
+  vm.giangVienTypeChart(vm.typeChartC.pieChart);
 
-  $scope.khoaBoMonTypeChart = function(val) {
-    $scope.khoaBoMonType = val;
+  vm.khoaBoMonTypeChart = function(val) {
+    vm.khoaBoMonType = val;
   }
-  $scope.khoaBoMonTypeChart(vm.typeChartC.pieChart);
+  vm.khoaBoMonTypeChart(vm.typeChartC.pieChart);
 
 }
 

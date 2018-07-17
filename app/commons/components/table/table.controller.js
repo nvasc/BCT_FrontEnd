@@ -5,9 +5,10 @@ function tableController($scope, $element, $attrs, $timeout, oauthDataFactory, $
   vm.url = oauthDataFactory.urlMain() + $scope.url;
   vm.headerTemplete = $sce.trustAsHtml($scope.theadTemplate);
   vm.columns = $scope.columns;
+  vm.tableData = $scope.tableData;
 
-  var ciFilterObjectChange = null;
-  var ciParamesterChange = null;
+  // var ciFilterObjectChange = null;
+  // var ciParamesterChange = null;
 
   function init() {
     //nếu ko có tableData thì khởi tạo
@@ -19,45 +20,51 @@ function tableController($scope, $element, $attrs, $timeout, oauthDataFactory, $
       vm.columns = [];
     }
     
-    var filter = {};
-    if ($attrs.ciFilterObject) {
-      filter = angular.copy($scope.ciFilterObject);
-      if (ciFilterObjectChange) {
-        ciFilterObjectChange();
-      }
-      ciFilterObjectChange = $scope.$watch('ciFilterObject', function (nval, oval) {
-        if (!angular.equals(nval, oval)) {
-          init();
-        }
-      });
+    // var filter = {};
+    // if ($attrs.ciFilterObject) {
+    //   filter = angular.copy($scope.ciFilterObject);
+    //   if (ciFilterObjectChange) {
+    //     ciFilterObjectChange();
+    //   }
+    //   ciFilterObjectChange = $scope.$watch('ciFilterObject', function (nval, oval) {
+    //     if (!angular.equals(nval, oval)) {
+    //       init();
+    //     }
+    //   });
 
-    }
+    // }
 
-    filter.Skip = 0;
-    filter.Take = 50;
-    filter.OrderBys = [];
-    filter.Filters = [];
+    // filter.Skip = 0;
+    // filter.Take = 50;
+    // filter.OrderBys = [];
+    // filter.Filters = [];
 
-    if (angular.isDefined($scope.url)) {
-      var url = vm.url;
+    // if (angular.isDefined($scope.url)) {
+    //   var url = vm.url;
 
-      if ($attrs.ciParamester) {
-        url += $scope.ciParamester;
-        if (ciParamesterChange) {
-          ciParamesterChange();
-        }
-        ciParamesterChange = $scope.$watch('ciParamester', function (nval, oval) {
-          if (!angular.equals(nval, oval)) {
-            init();
-          }
-        });
-      }      
-      $http.post(url, filter).then(function (resp) {
-        vm.tableData = resp.data.Data;
-      });
-    }
+    //   if ($attrs.ciParamester) {
+    //     url += $scope.ciParamester;
+    //     if (ciParamesterChange) {
+    //       ciParamesterChange();
+    //     }
+    //     ciParamesterChange = $scope.$watch('ciParamester', function (nval, oval) {
+    //       if (!angular.equals(nval, oval)) {
+    //         init();
+    //       }
+    //     });
+    //   }      
+    //   $http.post(url, filter).then(function (resp) {
+    //     vm.tableData = resp.data.Data;
+    //   });
+    // }
     
   };
+
+  $scope.$watch('tableData', function (nval, oval) {
+    if (!angular.equals(nval, oval)) {
+      vm.tableData = nval;
+    }
+  });
 
   vm.isNumber =  function checkNumber(val) {
     return angular.isNumber(val);

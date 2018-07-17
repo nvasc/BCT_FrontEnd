@@ -7,12 +7,12 @@ function tableDirective() {
     restrict: 'EA',
     scope: {
       url: '@',
-      //tableData: '=', //table data will set by directive consumer
+      tableData: '=', //table data will set by directive consumer
       columns: '=', // no need for named attributes
       theadTemplate: '=',
       colsBold: '=',
-      ciFilterObject: '=',
-      ciParamester: '='
+      //ciFilterObject: '=',
+      //ciParamester: '='
     },
     template: function (element, attrs) {
       return `<table class="blueTable">
