@@ -52,6 +52,14 @@ function nganhdaotaoController ($q, $scope, nganhdaotaoService, popupFactory) {
     name: 'Ten',
     displayName: 'Tên',
   },{
+    name: 'IsActive',
+    displayName: 'Hoạt động',
+    width: 90,
+    cellTemplate: colActive,
+    cellClass: 'grid-text-align-center',
+    enableSorting: false,
+    dataType: 3
+  },{
     name: ' ',
     cellTemplate: gridCommand,
     cellClass: 'grid-command',
