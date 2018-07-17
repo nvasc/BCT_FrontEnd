@@ -178,19 +178,20 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       $http.get(url).then(function (rep) {
         var results = [];
         var dataResult = rep.data.Data;
+        
         for (var i = 0; i < dataResult.length; i++) {
           var item = {
             id: dataResult[i].Id + '',
             text: dataResult[i].Text,
             level: dataResult[i].Level !== '' ? dataResult[i].Level : '1'
           };
-
+          console.log()
           if (_.isArray($scope.ngModel)) {
             var itemModel = _.findIndex($scope.ngModel, function(val) {
               return item.id === val;
             });
             item.selected = itemModel > -1;  
-          } else if ($scope.ngModel && $scope.ngModel === item.id) {
+          } else if ($scope.ngModel && $scope.ngModel + '' === item.id) {            
             item.selected = true;
           }          
           results.push(item);
