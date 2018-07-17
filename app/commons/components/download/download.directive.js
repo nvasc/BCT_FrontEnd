@@ -8,7 +8,7 @@ function downloadDirective ()  {
     },
     transclude: true,
     template: function (element, attrs) {     
-      return '<a href="javascript:void(0);" ng-click="downloadFile();">' + 
+      return '<a ng-click="downloadFile();">' + 
       '<ng-transclude></ng-transclude></a>';
     },
     controller: controller,

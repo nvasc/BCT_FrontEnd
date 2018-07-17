@@ -6,6 +6,9 @@ function selectController($q, $scope, $element, $attrs, $timeout,
   var msg = {
     SelectTextStart: '--- Chọn ---',
   }
+  if ($scope.ngModel === 0) {
+    $scope.ngModel = '0';
+  }
   var url = oauthDataFactory.urlMain() + $scope.url;
   var _getCondition = function (seachText) {
     var filters = [];
@@ -28,7 +31,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       operation = {
         Condition: 0,
         DataType: 0,
-        Field: 'Secret',
+        Field: 'Text',
         Value: seachText
       };
       clause.Operation = angular.copy(operation);
@@ -123,7 +126,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           },
           processResults: function (data, params) {
             var results = [ {
-              id: 0,
+              id: '0',
               text: msg.SelectTextStart,
               level: '1'
             } ];
@@ -132,7 +135,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
               results.push({
                 id: dataResult[i].Id,
                 text: dataResult[i].Text,
-                level: dataResult[i].Level
+                level: dataResult[i].Level !== '' ? dataResult[i].Level : '1'
               });
             }
             return {
@@ -178,16 +181,17 @@ function selectController($q, $scope, $element, $attrs, $timeout,
     $timeout(function () {
       $http.get(url).then(function (rep) {
         var results = [ {
-          id: 0,
+          id: '0',
           text: msg.SelectTextStart,
-          level: '1'
+          level: '1',
+          selected: $scope.ngModel === '1'
         } ];
         var dataResult = rep.data.Data;
         for (var i = 0; i < dataResult.length; i++) {
           var item = {
             id: dataResult[i].Id + '',
             text: dataResult[i].Text,
-            level: dataResult[i].Level
+            level: dataResult[i].Level !== '' ? dataResult[i].Level : '1'
           };
 
           if (_.isArray($scope.ngModel)) {
@@ -197,8 +201,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             item.selected = itemModel > -1;  
           } else if ($scope.ngModel && $scope.ngModel === item.id) {
             item.selected = true;
-          }
-          
+          }          
           results.push(item);
         }       
         
@@ -212,8 +215,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           data: results
         }).on('change', function (e) {
           onChangeSelect(this);
-        });   
-            
+        });  
       });
     });
   }
@@ -227,7 +229,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           for (var j = 0; j < $(eleThis).select2('data').length; j++) {
             vals.push($(eleThis).select2('data')[j].id)
           }
-          $scope.ngModel = vals  + '';
+          $scope.ngModel = vals;
         } else {
           $scope.ngModel = $(eleThis).select2('data')[0].id;
         }
