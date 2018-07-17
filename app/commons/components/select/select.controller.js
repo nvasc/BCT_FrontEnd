@@ -62,7 +62,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
   };
 
   function initSelection() {
-    if ($scope.ngModel) {
+    if ($scope.ngModel !== '0') {
       var filter = {};
       filter.Skip = 0;
       filter.Take = 50;
@@ -125,11 +125,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             return queryParameters;
           },
           processResults: function (data, params) {
-            var results = [ {
-              id: '0',
-              text: msg.SelectTextStart,
-              level: '1'
-            } ];
+            var results = [];
             var dataResult = data.Data;
             for (var i = 0; i < dataResult.length; i++) {
               results.push({
@@ -180,12 +176,7 @@ function selectController($q, $scope, $element, $attrs, $timeout,
   function initControlOneLoad() {
     $timeout(function () {
       $http.get(url).then(function (rep) {
-        var results = [ {
-          id: '0',
-          text: msg.SelectTextStart,
-          level: '1',
-          selected: $scope.ngModel === '1'
-        } ];
+        var results = [];
         var dataResult = rep.data.Data;
         for (var i = 0; i < dataResult.length; i++) {
           var item = {
@@ -231,7 +222,9 @@ function selectController($q, $scope, $element, $attrs, $timeout,
           }
           $scope.ngModel = vals;
         } else {
-          $scope.ngModel = $(eleThis).select2('data')[0].id;
+          if ($(eleThis).select2('data').length > 0) {
+            $scope.ngModel = $(eleThis).select2('data')[0].id;
+          }          
         }
       } else {
         if ($scope.ciIsMultiple === 'true') {

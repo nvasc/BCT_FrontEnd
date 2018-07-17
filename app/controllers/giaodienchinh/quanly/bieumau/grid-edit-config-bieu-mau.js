@@ -65,21 +65,36 @@ export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
-    type: 'boolean'
+    type: 'boolean',
+    width: 100,
   }, {
     name: 'IsRequired',
     displayName: 'Bắt Buộc',
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
-    type: 'boolean'
+    type: 'boolean',
+    width: 90,
   }, {
     name: 'IsConditionColum',
     displayName: 'Khóa',
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
-    type: 'boolean'
+    type: 'boolean',
+    width: 45,
+  }, {
+    name: 'ProcessName',
+    displayName: 'Phương thức xử lý',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
+  }, {
+    name: 'ValidationSouceName',
+    displayName: 'Phương thức kiểm tra',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
   }, {
     name: 'MappingToName',
     displayName: 'Ánh Xạ',

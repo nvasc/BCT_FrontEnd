@@ -12,7 +12,8 @@ function selectDirective ()  {
       ciFilterDefaultObj: '=',
       ciSetScope: '=',
       ngModel: '=',
-      ciValueType: '@',      
+      ciValueType: '@',     
+      ciDefaulText: '@' 
     },
     require: '^ngModel',
     template: function (element, attrs) {
@@ -21,7 +22,11 @@ function selectDirective ()  {
         isMultiple = 'multiple'
       }
       return '<select id="' + attrs.ciId + '" ' + 
-              isMultiple + ' style="width:100%;"><option></option></select>';
+              isMultiple + ' style="width:100%;">' + 
+              '<option value="0"> ' + 
+              (attrs.ciDefaulText ? attrs.ciDefaulText : '--- Chọn ---') + 
+              '</option>' +
+              '</select>';
     },
     controller: controller,
     controllerAs: 'select'
