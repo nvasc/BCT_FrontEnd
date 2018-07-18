@@ -10,7 +10,7 @@
               ci-filter-default-obj="phanquyenungdung.saveObj.roleObj" 
               url="api/document/GetSelectData" ></ci-select>
           </div>      
-          <div class="row" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+          <div class="row" ng-if="phanquyenungdung.saveObj.IdDocument != '0' && phanquyenungdung.saveObj.role.AllowRead">
             <div class="col-md-3">
               <div class="form-group" >
                 <div class="icheck-primary">
@@ -20,7 +20,7 @@
               </div>  
             </div>
             <div class="col-md-3">
-              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+              <div class="form-group" ng-if="phanquyenungdung.saveObj.IdDocument != '0' && phanquyenungdung.saveObj.role.AllowCreate">
                 <div class="icheck-primary">
                   <input type="checkbox" id="AllowCreate" name="AllowCreate" ng-model="phanquyenungdung.saveObj.AllowCreate"/>
                   <label for="AllowCreate">Tạo</label>
@@ -28,7 +28,7 @@
               </div> 
             </div>
             <div class="col-md-3">
-              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0' && phanquyenungdung.saveObj.role.AllowUpdate">
                 <div class="icheck-primary">
                   <input type="checkbox" id="AllowUpdate" name="AllowUpdate" ng-model="phanquyenungdung.saveObj.AllowUpdate"/>
                   <label for="AllowUpdate">Sửa</label>
@@ -36,7 +36,7 @@
               </div> 
             </div>
             <div class="col-md-3">
-              <div class="form-group" ng-show="phanquyenungdung.saveObj.IdDocument != '0'">
+              <div class="form-group" ng-if="phanquyenungdung.saveObj.IdDocument != '0' && phanquyenungdung.saveObj.role.AllowDelete"">
                 <div class="icheck-primary">
                   <input type="checkbox" id="AllowDelete" name="AllowDelete" ng-model="phanquyenungdung.saveObj.AllowDelete"/>
                   <label for="AllowDelete">Xóa</label>

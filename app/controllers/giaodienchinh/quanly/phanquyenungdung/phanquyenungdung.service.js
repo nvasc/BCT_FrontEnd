@@ -116,6 +116,16 @@ function phanquyenungdungService($q, $rootScope, $timeout, httpProvider,
   };
   service.delete = _delete;
 
+  var _getRoleFunctionByDocument = function (id) {
+    var deferred = $q.defer();    
+
+    httpProvider.get('api/document/GetRoleFunctionByDocument?id=' + id, false)
+    .then(function (result) {
+      deferred.resolve(result);
+    });    
+    return deferred.promise;
+  };
+  service.getRoleFunctionByDocument = _getRoleFunctionByDocument;
   return service
 
 }

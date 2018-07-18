@@ -1,7 +1,7 @@
 function tongiaoRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('giaodienchinh.quantri.tongiao', {
-      url: '/quantri/tongiao',
+    .state('giaodienchinh.quanly.tongiao', {
+      url: '/quanly/tongiao',
       component: 'tongiao'
     })
 }

@@ -1,7 +1,7 @@
 function tinhthanhRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('giaodienchinh.quantri.tinhthanh', {
-      url: '/quantri/tinhthanh',
+    .state('giaodienchinh.quanly.tinhthanh', {
+      url: '/quanly/tinhthanh',
       component: 'tinhthanh'
     })
 }
