@@ -185,7 +185,6 @@ function selectController($q, $scope, $element, $attrs, $timeout,
             text: dataResult[i].Text,
             level: dataResult[i].Level !== '' ? dataResult[i].Level : '1'
           };
-          console.log()
           if (_.isArray($scope.ngModel)) {
             var itemModel = _.findIndex($scope.ngModel, function(val) {
               return item.id === val;
