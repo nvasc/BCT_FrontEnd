@@ -1,7 +1,7 @@
 function dantocRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('giaodienchinh.quantri.dantoc', {
-      url: '/quantri/dantoc',
+    .state('giaodienchinh.quanly.dantoc', {
+      url: '/quanly/dantoc',
       component: 'dantoc'
     })
 }

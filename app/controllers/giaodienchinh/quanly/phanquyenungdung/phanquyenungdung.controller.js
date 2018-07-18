@@ -2,7 +2,7 @@ import colCreate from './col-create.html';
 import colUpdate from './col-update.html';
 import colRead from './col-read.html';
 import colDelete from './col-delete.html';
-
+import _ from 'lodash';
 
 import chucnangTemplete from './chucnangTemplete.html';
 import gridCommandphanquyenungdung from './grid-command-phanquyenungdung.html';
@@ -51,6 +51,34 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
 
   
   vm.saveObj = {};
+  var watchIdDocument = null;
+  function watchDocuemnt() {
+    if (watchIdDocument) {
+      watchIdDocument();
+    }
+     // Check role function
+    watchIdDocument =
+    $scope.$watch(function () {
+      return vm.saveObj.IdDocument;
+    }, function (nval, oval) {
+      if (parseInt(nval) !== parseInt(oval) || _.isString(nval)) {
+        if (_.isNaN(parseInt(nval))) {
+          if (watchIdDocument) {
+            watchIdDocument();
+          }
+          return;
+        }
+        phanquyenungdungService.getRoleFunctionByDocument(parseInt(nval)).then(function (result) {
+          vm.saveObj.role = result;
+          vm.saveObj.AllowRead = result.AllowRead === true ? vm.saveObj.AllowRead : false;
+          vm.saveObj.AllowCreate = result.AllowCreate === true ? vm.saveObj.AllowCreate : false;
+          vm.saveObj.AllowUpdate = result.AllowUpdate === true ? vm.saveObj.AllowUpdate : false;
+          vm.saveObj.AllowDelete = result.AllowDelete === true ? vm.saveObj.AllowDelete : false;
+        });
+      }
+      //
+    }, true);
+  }
   vm.create = function (parentId, type, refreshGridCallBack) {    
     
     var title = '';
@@ -84,6 +112,9 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
       vm.saveObj = obj;
       vm.saveObj.IdRole = parentId;
       vm.saveObj.roleObj = { RoleId: parentId };
+      if (parseInt(parentId) !== 0) {
+        watchDocuemnt();
+      }
       popupFactory.create(function () {
         var deferred = $q.defer();
         phanquyenungdungService.create(type, vm.saveObj).then(function () {
@@ -132,7 +163,10 @@ function phanquyenungdungController($q, $scope, phanquyenungdungService, popupFa
     phanquyenungdungService.get(row.entity.Id, parentId, 
       type).then(function (obj) {
         vm.saveObj = obj;
-        vm.saveObj.roleObj = { QueryId: row.entity.Id, RoleId: row.entity.IdRole };
+        vm.saveObj.roleObj = { RoleId: row.entity.IdRole };
+        if (parseInt(parentId) !== 0) {
+          watchDocuemnt();
+        }
         popupFactory.update(function () {
           var deferred = $q.defer();
           phanquyenungdungService.update(row.entity.Id, vm.saveObj, type)

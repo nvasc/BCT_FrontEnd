@@ -10,12 +10,16 @@ import phanquyenungdung from './phanquyenungdung/phanquyenungdung.module';
 import loaihinhdaotao from './loaihinhdaotao/loaihinhdaotao.module';
 import nganhdaotao from './nganhdaotao/nganhdaotao.module';
 import cauhinhbaocao from './cauhinhbaocao/cauhinhbaocao.module';
+import tinhthanh from './tinhthanh/tinhthanh.module';
+import dantoc from './dantoc/dantoc.module';
+import tongiao from './tongiao/tongiao.module';
 
 /* @ngInject */
 angular
   .module('quanly', [ 
     'bieumau', 'danhsachtruong','taikhoan', 'phanquyennguoidung',
-    'phanquyenungdung', 'loaihinhdaotao', 'nganhdaotao', 'cauhinhbaocao'
+    'phanquyenungdung', 'loaihinhdaotao', 'nganhdaotao', 'cauhinhbaocao',
+    'tinhthanh', 'dantoc', 'tongiao'
   ])
   .component('quanly', component) 
   .config(routing);

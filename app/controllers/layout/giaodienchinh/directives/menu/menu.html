@@ -153,7 +153,18 @@
             <a ui-sref="giaodienchinh.quanly.phanquyennguoidung">
               <i class="fa fa-circle-o"></i>Phân quyền người dùng</a>
           </li>
-
+          <li ui-sref-active="active" ng-if="menu.role.tt.read">
+            <a ui-sref="giaodienchinh.quanly.tinhthanh">
+              <i class="fa fa-circle-o"></i>Tỉnh thành</a>
+          </li>
+          <li ui-sref-active="active" ng-if="menu.role.dt.read">
+            <a ui-sref="giaodienchinh.quanly.dantoc">
+              <i class="fa fa-circle-o"></i>Dân tộc</a>
+          </li>
+          <li ui-sref-active="active" ng-if="menu.role.tg.read">
+            <a ui-sref="giaodienchinh.quanly.tongiao">
+              <i class="fa fa-circle-o"></i>Tôn giáo</a>
+          </li>
           <li ui-sref-active="active" ng-if="menu.role.tttr.read">
             <a ui-sref="giaodienchinh.quanly.danhsachtruong">
               <i class="fa fa-circle-o"></i>Danh sách trường</a>
@@ -177,18 +188,6 @@
             <li ui-sref-active="active" ng-if="menu.role.dcm.read">
               <a ui-sref="giaodienchinh.quantri.chucnang">
                 <i class="fa fa-circle-o"></i>Chức năng</a>
-            </li>
-            <li ui-sref-active="active" ng-if="menu.role.tt.read">
-              <a ui-sref="giaodienchinh.quantri.tinhthanh">
-                <i class="fa fa-circle-o"></i>Tỉnh thành</a>
-            </li>
-            <li ui-sref-active="active" ng-if="menu.role.dt.read">
-              <a ui-sref="giaodienchinh.quantri.dantoc">
-                <i class="fa fa-circle-o"></i>Dân tộc</a>
-            </li>
-            <li ui-sref-active="active" ng-if="menu.role.tg.read">
-              <a ui-sref="giaodienchinh.quantri.tongiao">
-                <i class="fa fa-circle-o"></i>Tôn giáo</a>
             </li>
             <li ui-sref-active="active">
               <a ui-sref="giaodienchinh.quantri.dichvuchayngam" ng-if="menu.role.srts.read">
