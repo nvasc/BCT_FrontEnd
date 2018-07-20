@@ -13,7 +13,7 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory,
   init();
   var rss = {
     ChangePasswordTitle: 'Đổi mật khẩu',
-    ChangeInfoTitle: 'Đổi mật khẩu',
+    ChangeInfoTitle: 'Đổi thông tin cá nhân',
     ChangeButton: 'Cập nhật',
     ConfigButtonClass: 'btn-primary',
 

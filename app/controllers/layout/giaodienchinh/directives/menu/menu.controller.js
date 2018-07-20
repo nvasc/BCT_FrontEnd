@@ -14,7 +14,7 @@ function menuController ($scope, roleFactory, $timeout) {
 
   var _getQuanTri = function () {
     var result = false;   
-    var groupQuanTri = ['clt', 'dcm']
+    var groupQuanTri = ['clt', 'dcm', 'srts', 'ttdn']
     for (var i = 0; i < groupQuanTri.length; i++) {
       result = result || (vm.role[groupQuanTri[i]] && vm.role[groupQuanTri[i]].read);
     }

@@ -5,7 +5,7 @@ import saveTemplate from './save.html';
 import detailTemplate from './detail.html';
 import colStatusTemplate from './col-status.html';
 
-function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFactory) {
+function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFactory, roleFactory) {
   const vm = this;
   //Get Role
   vm.role = nhapkhaubaocaoService.getRole();
@@ -45,12 +45,20 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
   }
 
   // Column Define of Grid Component ------------------
-  vm.colDefs = [{
+  vm.colDefs = [];
+  if (roleFactory.isAllAccess()) {
+    vm.colDefs = [ {
+      name: 'Truong',
+      displayName: 'Trường',
+    } ];
+  }
+
+  vm.colDefs = vm.colDefs.concat([{
     name: 'MaBieuMauChuan',
-    displayName: 'Mã biểu mẫu chuẩn',
+    displayName: 'Mã biểu mẫu',
   }, {
     name: 'TenBieuMauChuan',
-    displayName: 'Tên biểu mẫu chuẩn',
+    displayName: 'Tên biểu mẫu',
   }, {
     name: 'TenFileBieuMau',
     displayName: 'Tập Tin',
@@ -71,7 +79,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     width: 60,
     enableSorting: false,
     enableFiltering: false,
-  }];
+  }]);
 
   // manually Filter in Grid Component ------------------
   vm.isFilter = false;
@@ -118,7 +126,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
       icon: 'fa fa-edit',
       content: detailTemplate,
       scope: $scope,
-      buttons : {        
+      buttons : {
         close: {
           text: rss.CloseButton,
           btnClass: rss.CancelButtonClass,         
