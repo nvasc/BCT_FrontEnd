@@ -13,6 +13,7 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory,
   init();
   var rss = {
     ChangePasswordTitle: 'Đổi mật khẩu',
+    ChangeInfoTitle: 'Đổi mật khẩu',
     ChangeButton: 'Cập nhật',
     ConfigButtonClass: 'btn-primary',
 
@@ -65,15 +66,15 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory,
     var popup = null;
     popupFactory.setOptions({
       rss: rss,
-      title: rss.ChangePasswordTitle,
+      title: rss.ChangeInfoTitle,
       columnClass: 'col-md-offset-4 col-md-4',  
       icon: 'fa fa-cog',
       content: changeThongTinTaiKhoanTemplate,
       scope: $scope,
       buttons: {
         Update: {
-          text: rss.ConfigButtonClass,
-          btnClass: rss.UpdateButtonClass,
+          text: rss.ChangeButton,
+          btnClass: rss.ConfigButtonClass,
           action: function (scope, button) {
             giaodienchinhService.updateTaiKhoanCuaToi(vm.saveObj).then(function (obj) {   
               if (obj && popup) {
