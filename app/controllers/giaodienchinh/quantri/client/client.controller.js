@@ -2,7 +2,8 @@ import gridCommand from './grid-command.html';
 import './style.css';
 import colActive from './col-active.html';
 import saveTemplate from './save.html';
-import GridEditIssuerClient from './grid-edit-issuer-client'
+import GridEditIssuerClient from './grid-edit-issuer-client';
+import _ from 'lodash';
 
 function clientController($q, $scope, clientService, $timeout, popupFactory) {
   const vm = this;
@@ -81,7 +82,27 @@ function clientController($q, $scope, clientService, $timeout, popupFactory) {
   }
   
   // CRUD for this function ------------------
-  
+  var watchAccountType = null;
+  function actionWatchAccountType() {
+    if (watchAccountType) {
+      watchAccountType();
+    }
+    watchAccountType = $scope.$watch(
+      function () {
+        return vm.saveObj.ClientUser.Role.RoleCode;
+      }, 
+      function (nval, oval) {
+        if (!angular.equals(nval, oval)) {
+          var role = _.find(vm.saveObj.ClientUser.RoleDataSource, function (item) {
+            return item.RoleCode === nval;
+          });
+          if (role) {
+            vm.saveObj.ClientUser.Role.RoleName = role.RoleName;
+            vm.saveObj.ClientUser.Role.RoleId = role.RoleId;
+          }
+        }        
+      }, true);
+  }
   vm.saveObj = {};
 
   vm.create = function (id, type, refreshGridCallBack) {    
@@ -97,20 +118,27 @@ function clientController($q, $scope, clientService, $timeout, popupFactory) {
     clientService.get(0).then(function (obj) {      
       vm.saveObj = obj;          
       vm.configs = new GridEditIssuerClient($scope, $timeout, vm.saveObj.Issuers);
+      actionWatchAccountType();
       popupFactory.create(function () { 
         var deferred = $q.defer();
         clientService.create(vm.saveObj).then(function () {
           deferred.resolve(true); 
           if (_scopeGrid.grid && _scopeGrid.grid.refresh) {
-            _scopeGrid.grid.refresh();
+            _scopeGrid.grid.refresh();            
           }        
+          if (watchAccountType) {
+            watchAccountType();
+          }
         }, function () {
           deferred.resolve(false);  
-        }) 
-        
-        deferred.resolve(true);    
+        })  
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { 
+        vm.saveObj = {}; 
+        if (watchAccountType) {
+          watchAccountType();
+        }
+      });
     });    
   }
   vm.update = function (row, type, refreshGridCallBack) {
@@ -125,6 +153,7 @@ function clientController($q, $scope, clientService, $timeout, popupFactory) {
     clientService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
       vm.configs = new GridEditIssuerClient($scope, $timeout, vm.saveObj.Issuers);
+      vm.saveObj.isUpdate = true;
       popupFactory.update(function () { 
         var deferred = $q.defer();
         clientService.update(row.entity.Id, vm.saveObj).then(function () {
