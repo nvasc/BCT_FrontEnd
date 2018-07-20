@@ -29,6 +29,10 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
 
     CancelButton: 'Hủy',
     CancelButtonClass: 'btn-default',
+
+    DetailTitle: 'Chi tiết',
+    CloseButton: 'Đóng',
+    
     Grid: {
       'SoThuTu': 'STT',
       'Ten': 'Tên',

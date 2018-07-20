@@ -1,6 +1,7 @@
 function kiemsoatchungController ($scope, kiemsoatchungService) {
   const vm = this;  
   kiemsoatchungService.init();
+  
 }
 
 /* @ngInject */

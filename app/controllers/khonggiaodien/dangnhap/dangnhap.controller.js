@@ -9,7 +9,7 @@ function dangnhapController ($scope, dangnhapService, $state, httpProvider, data
     RememberMe: false
   };
   vm.dangnhap = function () {
-    dangnhapService.dangnhap(vm.DangNhapModel).then(function (data) {     
+    dangnhapService.dangnhap(vm.DangNhapModel).then(function (data) {
       $state.go('giaodienchinh.kiemsoatchung');
     });
   }

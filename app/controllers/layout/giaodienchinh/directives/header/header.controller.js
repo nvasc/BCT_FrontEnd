@@ -5,9 +5,7 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory, $stat
   vm.LoginName = giaodienchinhService.getLoginName();  
 
   vm.logout = function () {
-    oauthFactory.logOut();
-    
-    $state.go('dangnhap');
+    oauthFactory.logOut();     
   }
   
   vm.test = function () {

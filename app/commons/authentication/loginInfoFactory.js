@@ -56,9 +56,7 @@ function loginInfoFactory(oauthDataFactory, $state) {
       if ('dangnhap' !== $state.current.name && oauthDataFactory.getRememberMe()) {
         console.info('Xử lý kiểm tra token gần hết hạn để re-login');
       }
-    }
-
-    
+    }    
   };
   dataFactory.checkLogin = _checkLogin; 
 

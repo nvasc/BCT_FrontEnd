@@ -42,18 +42,18 @@ function appRun($rootScope, cfpLoadingBar, $timeout, $window, $location, loginIn
     'showMethod': 'fadeIn',
     'hideMethod': 'fadeOut'
   }
-  //$rootScope.toastr.info('<strong>Bộ Công Thương</strong>', {allowHtml: true});
+
   $rootScope.base64 = base64;
-  //console.log($location.port())
 
   function init() {
-    $('#header-thong-bao').slimScroll();
-    $.AdminLTE.init();
+    if ($state.$current.name.indexOf('.') > 0) {
+      $('#header-thong-bao').slimScroll();
+      $.AdminLTE.init();
+    }    
   }
   
   $timeout(function () {
-    init();
-   
+    init();   
     loginInfoFactory.checkLogin();
   });
 }
