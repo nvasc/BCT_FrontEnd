@@ -29,6 +29,10 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
 
     CancelButton: 'Hủy',
     CancelButtonClass: 'btn-default',
+
+    DetailTitle: 'Chi tiết',
+    CloseButton: 'Đóng',
+    
     Grid: {
       'SoThuTu': 'STT',
       'Ten': 'Tên',
@@ -167,6 +171,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
 
   // Grid defined ------------------------
   vm.hedaotaoExpand = {
+    role : vm.role,
     filterDefault: {
       Level: 2,
     },
@@ -208,6 +213,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       }],
     },
     loaidaotaoExpand: {
+      role : vm.role,
       filterDefault: {
         Level: 3,
       },

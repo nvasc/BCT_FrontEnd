@@ -62,7 +62,8 @@ function selectController($q, $scope, $element, $attrs, $timeout,
   };
 
   function initSelection() {
-    if ($scope.ngModel !== '0') {
+    if ($scope.ngModel && $scope.ngModel !== null && 
+      $scope.ngModel !== '' && $scope.ngModel !== '0') {
       var filter = {};
       filter.Skip = 0;
       filter.Take = 50;

@@ -50,7 +50,8 @@ export default function GridEditIssuerClient(scope, timeout, colConfigs) {
   self.deleteColumn = function (row) {
     for (var i = 0; i < self.data.length; i++) {
       var obj = self.data[i];  
-      if (obj.Id === row.entity.Id) {
+      if ((obj.Id !== 0 && obj.Id === row.entity.Id) || 
+        obj['$$hashKey'] === row.entity['$$hashKey']) {
         self.data.splice(i, 1);
         i--;
       }

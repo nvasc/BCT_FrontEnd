@@ -75,6 +75,7 @@ function popupFactory($ngConfirm, $rootScope) {
       };
     }
     else {
+      _options.title =  _options.rss.DetailTitle,
       _options.buttons = {        
         close: {
           text: _options.rss.CloseButton,

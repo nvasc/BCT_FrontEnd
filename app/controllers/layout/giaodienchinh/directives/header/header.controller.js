@@ -24,9 +24,7 @@ function headerController ($scope, giaodienchinhService, oauthDataFactory,
   vm.saveObj = {};
 
   vm.logout = function () {
-    oauthFactory.logOut();
-    
-    $state.go('dangnhap');
+    oauthFactory.logOut();     
   }
 
   vm.changePassword = function() {

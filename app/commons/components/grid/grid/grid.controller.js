@@ -19,6 +19,10 @@ function gridController($scope, $element, $attrs, $timeout, uiGridConstants,
     vm.uiGrid.init();
   }
   
+  if ($scope.ciRole) {
+    vm.role = $scope.ciRole;
+  }
+  
   vm.scopeGridChirent = {};
   vm.setItemScope = function (s, queryId) {
     vm.scopeGridChirent[queryId] = s;
