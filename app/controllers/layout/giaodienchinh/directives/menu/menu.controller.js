@@ -3,22 +3,24 @@
 function menuController ($scope, roleFactory, $timeout) {
   const vm = this;
   vm.role = {}
-  var _getQuanLy = function () {
-    return (vm.role.bmc && vm.role.bmc.read) || 
-      (vm.role.lhdt && vm.role.lhdt.read) ||
-      (vm.role.ndt && vm.role.ndt.read) || 
-      (vm.role.tk && vm.role.tk.read) || 
-      (vm.role.nqud && vm.role.nqud.read) || 
-      (vm.role.pqnd && vm.role.pqnd.read) || 
-      (vm.role.tttr && vm.role.tttr.read)
+  var _getQuanLy = function() { 
+    var result = false;   
+    var groupQuanly = ['bmc', 'lhdt', 'ndt', 'tk', 'nqud', 'pqnd', 'tttr', 'tt', 'dt', 'tg']
+    for (var i = 0; i < groupQuanly.length; i++) {
+      result = result || (vm.role[groupQuanly[i]] && vm.role[groupQuanly[i]].read);
+    }
+    return result;      
   }
+
   var _getQuanTri = function () {
-    return (vm.role.clt && vm.role.clt.read) || 
-      (vm.role.dcm && vm.role.dcm.read) ||
-      (vm.role.tt && vm.role.tt.read) || 
-      (vm.role.dt && vm.role.dt.read) || 
-      (vm.role.tg && vm.role.tg.read)
+    var result = false;   
+    var groupQuanTri = ['clt', 'dcm']
+    for (var i = 0; i < groupQuanTri.length; i++) {
+      result = result || (vm.role[groupQuanTri[i]] && vm.role[groupQuanTri[i]].read);
+    }
+    return result;
   }
+
   function init() {    
     $timeout(function () {
       vm.role = roleFactory.getRoles()
