@@ -167,6 +167,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
 
   // Grid defined ------------------------
   vm.hedaotaoExpand = {
+    role : vm.role,
     filterDefault: {
       Level: 2,
     },
@@ -208,6 +209,7 @@ function loaihinhdaotaoController($q, $scope, loaihinhdaotaoService, popupFactor
       }],
     },
     loaidaotaoExpand: {
+      role : vm.role,
       filterDefault: {
         Level: 3,
       },

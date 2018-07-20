@@ -2,7 +2,7 @@
   <div style="height: 35px; padding-right: 10px;">
     <button class="btn btn-xs btn-primary pull-right" 
       style="margin-top: 5px;" title="Tạo mới"
-      ng-if="grid.appScope.$parent.loaihinhdaotao.role.create" 
+      ng-if="grid.appScope.gridExpand.role.create" 
       ng-click="grid.appScope.gridExpand.create(row.entity.Id, 2)">
       <span class="fa fa-plus"></span>
     </button>
@@ -16,7 +16,8 @@
       ci-set-scope="grid.appScope.gridExpand.setItemScope" 
       ci-grid-command="row.entity.expandObject.action" 
       ci-query-id="{{row.entity.Id}}" ng-if="row.isExpanded"
-      ci-is-inner="true"
+      ci-is-inner="true",
+      ci-role="row.entity.expandObject.role"
     ></ci-grid-expand>
   </div>
 </div>

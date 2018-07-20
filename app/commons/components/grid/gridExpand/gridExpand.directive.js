@@ -15,6 +15,7 @@ function gridExpandDirective ()  {
       ciSetScope: '=',
       ciIsInner: '@',
       ciExpandObject: '=',
+      ciRole: '='
     },
     template: function (element, attrs) {
 

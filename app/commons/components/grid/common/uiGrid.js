@@ -18,7 +18,7 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
     if (expandObject && expandObject.Options) {
       for (var i = 0; i < data.length; i++) {
         data[i].expandObject = expandObject;
-        data[i].expandOptions = expandObject.Options;        
+        data[i].expandOptions = expandObject.Options;           
       }
     }
     scope[dataName] = data;

@@ -15,6 +15,7 @@ function gridDirective ()  {
       ciQueryId: '@',
       ciIsInner: '@',
       ciSetScope: '=',
+      ciRole: '='
     },
     template: function (element, attrs) {
       var multiSelect = attrs.multiSelect === 'true';

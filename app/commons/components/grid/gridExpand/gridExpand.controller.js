@@ -14,6 +14,9 @@ function gridExpandController($scope, $element, $attrs, $timeout, uiGridConstant
   vm.refresh = function () {
     uiGrid.init();
   }
+  if ($scope.ciRole) {
+    vm.role = $scope.ciRole;
+  }
 
   vm.scopeGridChirent = {};
   vm.setItemScope = function (s, queryId) {
