@@ -77,8 +77,9 @@ function oauthInterceptorFactory($q, $injector, $location, $rootScope, oauthData
       if (angular.isDefined(response.data)) {               
         if (angular.isObject(response.data)) {
           if (angular.isDefined(response.data.IsOk)) {
-            if (response.data.IsOk === true) {              
-              $rootScope.toastr.success(response.data.Message);
+            if (response.data.IsOk === true) {       
+              if (response.data.Message !== null && response.data.Message !== '')       
+                $rootScope.toastr.success(response.data.Message);
             }
             else {
               if (response.data.Errors && response.data.Errors.length > 0) {
