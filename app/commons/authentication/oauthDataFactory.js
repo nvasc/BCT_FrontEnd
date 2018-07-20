@@ -106,6 +106,24 @@ function oauthDataFactory(localStorageService, $rootScope, $location) {
   };   
   dataFactory.removeRememberMe = _removeRememberMe;
 
+  var _isAllAccess = function () {
+    var tokenObj = _getToken();
+    if (tokenObj && tokenObj.sat.length === 2 && tokenObj.sat[0] === '1') {
+      return true;
+    }    
+    return false;
+  };
+  dataFactory.isAllAccess = _isAllAccess;
+
+  var _isSystem = function () {
+    var tokenObj = _getToken();
+    if (tokenObj && tokenObj.sat.length === 2 && tokenObj.sat[1] === '1') {
+      return true;
+    }    
+    return false;
+  };
+  dataFactory.isSystem = _isSystem;
+
   return dataFactory;
 }
 

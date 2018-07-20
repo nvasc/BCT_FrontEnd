@@ -39,7 +39,24 @@ function roleFactory(oauthDataFactory) {
   
   dataFactory.getRoleFor = _getRoleFor; 
 
+  var _isAllAccess = function () {
+    var tokenObj =  oauthDataFactory.getTokenDetail();
+    if (tokenObj && tokenObj.sat.length === 2 && tokenObj.sat[0] === '1') {
+      return true;
+    }    
+    return false;
+  };
+  dataFactory.isAllAccess = _isAllAccess;
 
+  var _isSystem = function () {
+    var tokenObj =  oauthDataFactory.getTokenDetail();
+    if (tokenObj && tokenObj.sat.length === 2 && tokenObj.sat[1] === '1') {
+      return true;
+    }    
+    return false;
+  };
+  dataFactory.isSystem = _isSystem;
+  
   return dataFactory;
 }
 
