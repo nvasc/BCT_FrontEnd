@@ -11,6 +11,7 @@ import 'admin-lte/dist/css/AdminLTE.css';
 import 'admin-lte/dist/css/skins/_all-skins.css';
 import 'toastr/build/toastr.css';
 import 'icheck-bootstrap/icheck-bootstrap.css';
+import 'angular-moment-picker/dist/angular-moment-picker.css';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
@@ -25,6 +26,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'fastclick/lib/fastclick.js';
 import 'jquery-sparkline/jquery.sparkline.js';
 import 'jquery-slimscroll';
+import moment from 'moment';
+import  'angular-moment-picker/dist/angular-moment-picker';
 
 import '../customizes/admin-lte-angularjs/admin-lte-angularjs.js';
 
@@ -69,7 +72,7 @@ import quantri from './controllers/giaodienchinh/quantri/quantri.module';
 //'example', 'example2', 
 angular
   .module('app', [
-    uirouter, animate, resource, ngSanitize,
+    uirouter, animate, resource, ngSanitize, 'moment-picker',
     'LocalStorageModule', 'angular-loading-bar',
     'cp.ngConfirm',
     'comps',

@@ -184,3 +184,6 @@ body {
 {
     height: 28px;
 }
+.moment-picker { 
+    z-index: 10000;
+}
