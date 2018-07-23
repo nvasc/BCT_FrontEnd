@@ -3,7 +3,8 @@ import gridCommand from './grid-command.html';
 import colDownload from './col-download.html';
 import saveTemplate from './save.html';
 import configTempate from './config.html';
-import GridEditConfigBieuMau from './grid-edit-config-bieu-mau'
+import GridEditConfigBieuMau from './grid-edit-config-bieu-mau';
+import loaibieumauTemplate from './loaibieumau-templete.html';
 
 
 function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) {
@@ -49,8 +50,14 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
 
   // Column Define of Grid Component ------------------
   vm.colDefs = [{
+    name: 'LoaiBieuMau',
+    displayName: 'Loại',
+    cellTemplate: loaibieumauTemplate,
+    width: 100,
+  },{
     name: 'Ma',
     displayName: 'Mã',
+    width: 100,
   }, {
     name: 'Ten',
     displayName: 'Tên',
@@ -90,6 +97,7 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
 
     bieumauService.get(0).then(function (obj) {      
       vm.saveObj = obj;
+      vm.saveObj.LoaiBieuMau += '';
       popupFactory.create(function () { 
         var deferred = $q.defer();
         bieumauService.create(vm.saveObj).then(function () {
@@ -116,6 +124,7 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
     });
     bieumauService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
+      vm.saveObj.LoaiBieuMau += '';
       popupFactory.update(function () { 
         var deferred = $q.defer();
         bieumauService.update(row.entity.Id, vm.saveObj).then(function () {

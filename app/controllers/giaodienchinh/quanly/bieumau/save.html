@@ -16,6 +16,17 @@
             <label for="Ten">Tên</label>
             <input type="text" class="form-control" id="Ten" ng-model="bieumau.saveObj.Ten">
           </div>
+          <div class="form-group">
+            <label for="LoaiBieuMau">Loại biểu mẫu</label>
+            <div class="icheck-primary">
+              <input type="radio" id="LoaiBieuMau-1" name="LoaiBieuMau" value="1" ng-model="bieumau.saveObj.LoaiBieuMau" />
+              <label for="LoaiBieuMau-1">Nhập khẩu</label>
+            </div>
+            <div class="icheck-primary">
+              <input type="radio" id="LoaiBieuMau-2" name="LoaiBieuMau" value="2" ng-model="bieumau.saveObj.LoaiBieuMau" />
+              <label for="LoaiBieuMau-2">Xuất khẩu</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
