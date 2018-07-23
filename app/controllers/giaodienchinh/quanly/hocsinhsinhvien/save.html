@@ -1,0 +1,185 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Thông tin cơ bản</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="Ma">Mã</label>
+            <input type="text" class="form-control" id="Ma" placeholder="" ng-model="hocsinhsinhvien.saveObj.Ma">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Ho">Họ</label>
+                <input type="text" class="form-control" id="Ho" ng-model="hocsinhsinhvien.saveObj.Ho">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Ho">Tên</label>
+                <input type="text" class="form-control" id="Ho" ng-model="hocsinhsinhvien.saveObj.Ten">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <ul class="list-inline">
+              <li>
+                <label for="gioitinh">Giới tính</label>
+              </li>
+              <li>
+                <div class="icheck-primary">
+                  <input type="radio" id="gioitinh-1" name="gioitinh" ng-value="0" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
+                  <label for="gioitinh-1">Nam</label>
+                </div>
+              </li>
+              <li>
+                <div class="icheck-primary">
+                  <input type="radio" id="gioitinh-2" name="gioitinh" ng-value="1" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
+                  <label for="gioitinh-2">Nữ</label>
+                </div>
+              </li>
+              <li style="padding-right: 10px">
+                <div class="icheck-primary icheck-inline">
+                  <input type="checkbox" id="sinhviennuocngoai" ng-model="hocsinhsinhvien.saveObj.IsSinhVienNuocNgoai" />
+                  <label for="sinhviennuocngoai">Sinh viên nước ngoài</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="NgaySinh">Ngày sinh</label>
+                    <input type="date" class="form-control" id="NgaySinh" placeholder="" ng-model="hocsinhsinhvien.saveObj.NgaySinh">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="SoChungMinhNhanDan">Số CMND</label>
+                    <input type="text" class="form-control" id="SoChungMinhNhanDan" placeholder="" ng-model="hocsinhsinhvien.saveObj.SoChungMinhNhanDan">
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Thông tin cá nhân và địa chỉ</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div role="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="Ten">Thường trú</label>
+            <input type="text" class="form-control" id="thuongtru" ng-model="hocsinhsinhvien.saveObj.DiaChiThuongTru">
+          </div>
+          <div class="form-group">
+            <label for="TinhThanhThuongTru">Tỉnh thành thường trú</label>
+            <ci-select 
+              ci-Id="TinhThanhThuongTru"
+              ci-one-load="true"
+              ng-model="hocsinhsinhvien.saveObj.TinhThanhThuongTru"
+              url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
+          </div>
+          <div class="form-group">
+            <label for="DiaChiTamTru">Địa chỉ tạm trú</label>
+            <input type="text" class="form-control" id="DiaChiTamTru" ng-model="hocsinhsinhvien.saveObj.DiaChiTamTru">
+          </div>
+          <div class="form-group">
+            <label for="TinhThanhTamTru">Tỉnh thành tạm trú</label>
+              <ci-select 
+              ci-Id="TinhThanhTamTru"
+              ci-one-load="true"
+              ng-model="hocsinhsinhvien.saveObj.TinhThanhTamTru"
+              url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="DanToc">Dân tộc</label>
+                <ci-select 
+                  ci-Id="DanDoc"
+                  ci-one-load="true"
+                  ng-model="hocsinhsinhvien.saveObj.DanToc"
+                  url="api/dantoc/GetAllDtoSelectIdTextData"></ci-select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="TonGiao">Tôn giáo</label>
+                <ci-select 
+                  ci-Id="TonGiao"
+                  ci-one-load="true"
+                  ng-model="hocsinhsinhvien.saveObj.TonGiao"
+                  url="api/tongiao/GetAllDtoSelectIdTextData"></ci-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Thông tin học tập</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div role="form">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Ma">Ngành học</label>
+                <ci-select 
+                ci-Id="IdNganhDaoTaoChuan"
+                ci-one-load="true"
+                ng-model="hocsinhsinhvien.saveObj.IdLoaiHinhDaoTao"
+                url="api/nganhdaotao/GetSelectData"></ci-select>
+              </div>
+              <div class="form-group">
+                <label for="Ma">Hệ Đào tạo</label>
+                <input type="text" class="form-control" id="TenHeDaoTao" placeholder=""  readonly="readonly" ng-model="hocsinhsinhvien.saveObj.TenHeDaoTao">
+              </div>
+              <div class="form-group">
+                <label for="Ma">Loại hình đào tạo</label>
+                <ci-select 
+                  ci-Id="IdLoaiHinhDaoTao"
+                  ci-one-load="true"
+                  ng-model="hocsinhsinhvien.saveObj.IdLoaiHinhDaoTao"
+                  url="api/loaihinhdaotao/GetSelectData"></ci-select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Ma">Ngày nhập học</label>
+                <input type="date" class="form-control" id="NgayNhapHoc" placeholder="" ng-model="hocsinhsinhvien.saveObj.NgayNhapHoc">
+              </div>
+              <div class="form-group">
+                <label for="Ma">Ngày tốt nghiệp</label>
+                <input type="date" class="form-control" id="NgayTotNghiep" placeholder="" ng-model="hocsinhsinhvien.saveObj.NgayTotNghiep">
+              </div>
+              <div class="form-group">
+                <label for="Ma">Ngày nghỉ học</label>
+                <input type="date" class="form-control" id="NgayNghiHoc" placeholder="" ng-model="hocsinhsinhvien.saveObj.NgayNghiHoc">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

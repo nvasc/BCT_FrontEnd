@@ -13,13 +13,15 @@ import cauhinhbaocao from './cauhinhbaocao/cauhinhbaocao.module';
 import tinhthanh from './tinhthanh/tinhthanh.module';
 import dantoc from './dantoc/dantoc.module';
 import tongiao from './tongiao/tongiao.module';
+import hocsinhsinhvien from './hocsinhsinhvien/hocsinhsinhvien.module';
 
 /* @ngInject */
 angular
   .module('quanly', [ 
     'bieumau', 'danhsachtruong','taikhoan', 'phanquyennguoidung',
     'phanquyenungdung', 'loaihinhdaotao', 'nganhdaotao', 'cauhinhbaocao',
-    'tinhthanh', 'dantoc', 'tongiao'
+    'tinhthanh', 'dantoc', 'tongiao',
+    'hocsinhsinhvien'
   ])
   .component('quanly', component) 
   .config(routing);

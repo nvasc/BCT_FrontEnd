@@ -1,23 +1,24 @@
 
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
+import colTrangThai from './col-trang-thai.html';
 
-function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
+function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFactory, roleFactory) {
   const vm = this;
   //Get Role
-  vm.role = tongiaoService.getRole();
+  vm.role = hocsinhsinhvienService.getRole();
   // Message ------------------
   var rss = {
-    CreateTitle: 'Tạo mới tôn giáo',
+    CreateTitle: 'Tạo mới học sinh - sinh viên',
     CreateButton: 'Tạo mới',
     CreateButtonClass: 'btn-primary',
 
-    UpdateTitle: 'Cập nhật một tôn giáo',
+    UpdateTitle: 'Cập nhật một học sinh - sinh viên',
     UpdateButton: 'Cập nhật',
     UpdateButtonClass: 'btn-primary',
 
-    DeleteConfirm: 'Bạn có chắc chắn muốn xóa tôn giáo này?',
-    DeleteTitle: 'Xóa một tôn giáo',
+    DeleteConfirm: 'Bạn có chắc chắn muốn xóa học sinh - sinh viên này?',
+    DeleteTitle: 'Xóa một học sinh - sinh viên',
     DeleteButton: 'Xóa',
     DeleteButtonClass: 'btn-danger',
 
@@ -26,7 +27,7 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
   }
 
   // Initial in screen ------------------
-  tongiaoService.init();
+  hocsinhsinhvienService.init();
   var _scopeGrid = null;
   // Scope of Grid
   vm.setScopeGrid = function (s) {
@@ -40,9 +41,36 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
   }
 
   // Column Define of Grid Component ------------------
-  vm.colDefs = [{
-    name: 'Ten',
-    displayName: 'Tên',
+  vm.colDefs = [];
+  if (roleFactory.isAllAccess()) {
+    vm.colDefs = [ {
+      name: 'TenTruong',
+      displayName: 'Trường',
+    } ];
+  }
+  vm.colDefs = vm.colDefs.concat([{
+    name: 'Ma',
+    displayName: 'Mã',
+  },{
+    name: 'HoVaTen',
+    displayName: 'Họ tên',
+  },{
+    name: 'TenHeDaoTao',
+    displayName: 'Hệ đào tạo',
+  },
+  {
+    name: 'NgayNhapHoc',
+    displayName: 'Năm học',
+  },
+  {
+    width: 90,
+    name: ' ',
+    displayName: 'Trạng Thái',
+    cellTemplate: colTrangThai,
+    cellClass: 'grid-text-align-center',
+    enableSorting: false,
+    enableFiltering: false,
+    dataType: 3
   }, {
     name: ' ',
     cellTemplate: gridCommand,
@@ -50,7 +78,7 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
     width: 60,
     enableSorting: false,
     enableFiltering: false,
-  }];
+  }]);
 
   // manually Filter in Grid Component ------------------
   vm.isFilter = false;
@@ -66,17 +94,17 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
     popupFactory.setOptions({
       rss: rss,
       title: rss.CreateTitle,
-      columnClass: 'col-md-offset-3 col-md-6',        
+      columnClass: 'col-md-offset-2 col-md-8',        
       icon: 'fa fa-plus', 
       content: saveTemplate,
       scope: $scope,
     });
 
-    tongiaoService.get(0).then(function (obj) {      
+    hocsinhsinhvienService.get(0).then(function (obj) {      
       vm.saveObj = obj;
       popupFactory.create(function () { 
         var deferred = $q.defer();
-        tongiaoService.create(vm.saveObj).then(function () {
+        hocsinhsinhvienService.create(vm.saveObj).then(function () {
           deferred.resolve(true);
           if (_scopeGrid) {
             _scopeGrid.grid.refresh();            
@@ -98,11 +126,11 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
       content: saveTemplate,
       scope: $scope,
     });
-    tongiaoService.get(row.entity.Id).then(function (obj) {      
+    hocsinhsinhvienService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
       popupFactory.update(function () { 
         var deferred = $q.defer();
-        tongiaoService.update(row.entity.Id, vm.saveObj).then(function () {
+        hocsinhsinhvienService.update(row.entity.Id, vm.saveObj).then(function () {
           deferred.resolve(true);
           if (refreshGridCallBack) {
             refreshGridCallBack();
@@ -127,7 +155,7 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
     });
     popupFactory.delete(function () { 
       var deferred = $q.defer();
-      tongiaoService.delete(row.entity.Id).then(function () {
+      hocsinhsinhvienService.delete(row.entity.Id).then(function () {
         deferred.resolve(true);
         if (refreshGridCallBack) {          
           refreshGridCallBack();
@@ -142,4 +170,4 @@ function tongiaoController ($q, $scope, tongiaoService, popupFactory) {
 }
 
 /* @ngInject */
-export default tongiaoController;
+export default hocsinhsinhvienController;

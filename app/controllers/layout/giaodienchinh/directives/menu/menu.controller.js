@@ -5,7 +5,7 @@ function menuController ($scope, roleFactory, $timeout) {
   vm.role = {}
   var _getQuanLy = function() { 
     var result = false;   
-    var groupQuanly = ['bmc', 'lhdt', 'ndt', 'tk', 'nqud', 'pqnd', 'tttr', 'tt', 'dt', 'tg']
+    var groupQuanly = ['bmc', 'lhdt', 'ndt', 'tk', 'nqud', 'pqnd', 'tttr', 'tt', 'dt', 'tg','hssv']
     for (var i = 0; i < groupQuanly.length; i++) {
       result = result || (vm.role[groupQuanly[i]] && vm.role[groupQuanly[i]].read);
     }

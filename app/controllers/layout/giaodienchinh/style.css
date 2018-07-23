@@ -179,3 +179,8 @@ body {
         background: transparent;
     }  
 }
+
+.form-control
+{
+    height: 28px;
+}
