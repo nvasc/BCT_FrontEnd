@@ -27,6 +27,21 @@
               <label for="LoaiBieuMau-2">Xuất khẩu</label>
             </div>
           </div>
+          <div class="form-group" ng-if="bieumau.saveObj.LoaiBieuMau == 1">
+              <label for="LoaiBieuMau">Loại Import</label>
+              <div class="icheck-primary">
+                  <input type="radio" id="ImportType-1" name="ImportType" ng-value="0" ng-model="bieumau.saveObj.ImportType" />
+                  <label for="ImportType-1">Không</label>
+                </div>
+              <div class="icheck-primary">
+                <input type="radio" id="ImportType-1" name="ImportType" ng-value="1" ng-model="bieumau.saveObj.ImportType" />
+                <label for="ImportType-1">Chi tiết</label>
+              </div>
+              <div class="icheck-primary">
+                <input type="radio" id="ImportType-2" name="ImportType" ng-value="2" ng-model="bieumau.saveObj.ImportType" />
+                <label for="ImportType-2">Tổng hợp</label>
+              </div>
+            </div>
         </div>
       </div>
     </div>

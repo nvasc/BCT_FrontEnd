@@ -99,7 +99,6 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
 
     bieumauService.get(0).then(function (obj) {      
       vm.saveObj = obj;
-      vm.saveObj.LoaiBieuMau += '';
       popupFactory.create(function () { 
         var deferred = $q.defer();
         bieumauService.create(vm.saveObj).then(function () {
@@ -126,7 +125,6 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
     });
     bieumauService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
-      vm.saveObj.LoaiBieuMau += '';
       popupFactory.update(function () { 
         var deferred = $q.defer();
         bieumauService.update(row.entity.Id, vm.saveObj).then(function () {

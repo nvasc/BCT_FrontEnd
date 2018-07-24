@@ -1,3 +1,3 @@
-
-<i class="fa" ng-class="{'fa-check text-success': row.entity.IsActive, 'fa-times text-danger': !row.entity.IsActive}"></i>
-  
+<span ng-bind="
+    grid.appScope.$parent.hocsinhsinhvien.getTrangThai(row.entity)
+"></span>  
