@@ -2,6 +2,7 @@
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
 import colTrangThai from './col-trang-thai.html';
+import _ from 'lodash';
 
 function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFactory, roleFactory) {
   const vm = this;
@@ -39,7 +40,7 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
       _scopeGrid.refresh();
     }
   }
-
+  vm.saveObj = {};
   // Column Define of Grid Component ------------------
   vm.colDefs = [];
   if (roleFactory.isAllAccess()) {
@@ -90,6 +91,27 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
   vm.saveObj = {};
   vm.action = {};
 
+  var watchIdLoaiHinhDaoTao = null;
+  function watchLoaiHinhDaoTao() {
+    if (watchIdLoaiHinhDaoTao) {
+      watchIdLoaiHinhDaoTao();
+    }
+     // Check role function
+    watchIdLoaiHinhDaoTao =
+    $scope.$watch(function () {
+      return vm.saveObj.IdLoaiHinhDaoTao;
+    }, function (nval, oval) {
+      
+      if (parseInt(nval) !== parseInt(oval) || parseInt(nval) !== 0) { 
+        console.log(nval, oval)       
+        hocsinhsinhvienService.getHeDaoTaoByLoaiHinhDaoTao(parseInt(nval)).then(function (result) {
+          vm.saveObj.TenHeDaoTao = result.Text;
+        });
+      }
+      //
+    }, true);
+  }
+
   vm.create = function (id, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
@@ -102,6 +124,7 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
 
     hocsinhsinhvienService.get(0).then(function (obj) {      
       vm.saveObj = obj;
+      watchLoaiHinhDaoTao();
       popupFactory.create(function () { 
         var deferred = $q.defer();
         hocsinhsinhvienService.create(vm.saveObj).then(function () {
@@ -126,8 +149,10 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
       content: saveTemplate,
       scope: $scope,
     });
-    hocsinhsinhvienService.get(row.entity.Id).then(function (obj) {      
-      vm.saveObj = obj;
+    hocsinhsinhvienService.get(row.entity.Id).then(function (obj) { 
+          
+      vm.saveObj = obj;      
+      watchLoaiHinhDaoTao(); 
       popupFactory.update(function () { 
         var deferred = $q.defer();
         hocsinhsinhvienService.update(row.entity.Id, vm.saveObj).then(function () {
@@ -167,6 +192,8 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     }, function () { vm.saveObj = {} });
   };
   vm.action.delete = vm.delete;
+
+  
 }
 
 /* @ngInject */

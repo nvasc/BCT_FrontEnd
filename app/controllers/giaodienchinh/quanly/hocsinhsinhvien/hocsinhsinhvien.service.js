@@ -1,5 +1,5 @@
 function hocsinhsinhvienService($q, $rootScope, $timeout, nonceProvider, 
-  dataProvider, roleFactory) {
+  dataProvider, roleFactory, httpProvider) {
   var service = {};
 
   var _init = function () {
@@ -67,6 +67,16 @@ function hocsinhsinhvienService($q, $rootScope, $timeout, nonceProvider,
   };
   service.delete = _delete;
 
+  var _getHeDaoTaoByLoaiHinhDaoTao = function (id) {
+    var deferred = $q.defer();    
+
+    httpProvider.get('api/loaihinhdaotao/GetCapBacDaoTaoByLoaiHinhDaoTaoId?id=' + id, false)
+    .then(function (result) {
+      deferred.resolve(result);
+    });    
+    return deferred.promise;
+  }
+  service.getHeDaoTaoByLoaiHinhDaoTao = _getHeDaoTaoByLoaiHinhDaoTao;
   return service
 }
 /* @ngInject */
