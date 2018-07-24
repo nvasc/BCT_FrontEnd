@@ -52,6 +52,8 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
   vm.colDefs = [{
     name: 'LoaiBieuMau',
     displayName: 'Loại',
+    enableSorting: false,
+    enableFiltering: false,
     cellTemplate: loaibieumauTemplate,
     width: 100,
   },{

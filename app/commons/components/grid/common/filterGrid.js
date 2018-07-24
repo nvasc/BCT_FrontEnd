@@ -55,6 +55,7 @@ export default function FilterGrid() {
   }
 
   function getConditionByDataType(datatype) {
+    
     switch (datatype) {
       case 1:
       case 2:

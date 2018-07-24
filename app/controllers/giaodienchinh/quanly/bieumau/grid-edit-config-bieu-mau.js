@@ -170,12 +170,18 @@ export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
   };
   
   self.deleteColumn = function (row) {
+    var dataLength = self.data.length;
     for (var i = 0; i < self.data.length; i++) {
       var obj = self.data[i];  
-      if (obj.Id === row.entity.Id) {
-        self.data.splice(i, 1);
-        i--;
-      }
+      if (obj['$$hashKey'] === row.entity['$$hashKey']) {
+        self.data.splice(i, 1);        
+        i--; 
+        if (self.data.length === i + 1) {
+          self.data[i].IsLast = true; 
+        }            
+      }      
+      obj.IsLast = self.data.length === i + 1; 
+      obj.Index = (i + 1);           
     }
   };
 }
