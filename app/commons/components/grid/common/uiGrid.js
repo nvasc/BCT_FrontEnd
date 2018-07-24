@@ -13,7 +13,7 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
   var pagingGrid = new PagingGrid();
   var filterGrid = new FilterGrid();
   var orderByGrid = new OrderByGrid(uiGridConstants);
-  var handleDataGrid = new HandleDataGrid(timeout, http, self.url, filterDefaultObject);
+  var handleDataGrid = new HandleDataGrid(timeout, http, self.url, filterDefaultObject, scope);
   function setDataResult (data) {
     if (expandObject && expandObject.Options) {
       for (var i = 0; i < data.length; i++) {
@@ -66,11 +66,11 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
 
   function getDataDown() {
     handleDataGrid.getDataDown(pagingGrid, self.gridApi, orderByGrid, filterGrid, 
-      setDataResult, scope[dataName]);
+      setDataResult, dataName);
   }
   function getDataUp() {
     handleDataGrid.getDataUp(pagingGrid, self.gridApi, orderByGrid, filterGrid, 
-      setDataResult, scope[dataName]);
+      setDataResult, dataName);
   }
 
   //Map enter
@@ -78,7 +78,7 @@ export default function UiGrid(scope, timeout, uiGridConstants, http, oauthDataF
     var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;    
     if (key === 13) {
       handleDataGrid.runFirst(pagingGrid, self.gridApi, orderByGrid, filterGrid, 
-        setDataResult, scope[dataName]);              
+        setDataResult, dataName);              
     }    
   }
   self.init = function() {

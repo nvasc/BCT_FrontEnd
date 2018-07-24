@@ -48,22 +48,34 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     vm.colDefs = [ {
       name: 'TenTruong',
       displayName: 'Trường',
+      cellTooltip: function(row, col) {
+        return row.entity.TenTruong;
+      }
     } ];
   }
   vm.colDefs = vm.colDefs.concat([{
     name: 'Ma',
     displayName: 'Mã',
+    width: 100,
   },{
-    name: 'HoVaTen',
-    displayName: 'Họ tên',
+    name: 'Ho',
+    displayName: 'Họ',
+  },{
+    name: 'Ten',
+    displayName: 'Tên',
+    width: 75,
   },{
     name: 'TenHeDaoTao',
     displayName: 'Hệ đào tạo',
+    width: 100,
   },
   {
     name: 'NgayNhapHoc',
-    displayName: 'Năm học',
-    cellFilter: 'date:\'yyyy\''
+    displayName: 'Ngày nhập học',
+    cellFilter: 'date:\'dd/MM/yyyy\'',
+    enableSorting: false,
+    enableFiltering: false,
+    width: 110,
   },
   {
     width: 90,

@@ -23,7 +23,7 @@ function menuController ($scope, roleFactory, $timeout) {
 
   function init() {    
     $timeout(function () {
-      vm.role = roleFactory.getRoles()
+      vm.role = roleFactory.getRoles();
       vm.role.quanly = _getQuanLy();
       vm.role.quantri = _getQuanTri();
       $scope.$apply();

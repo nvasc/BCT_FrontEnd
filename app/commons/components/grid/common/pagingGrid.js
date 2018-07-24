@@ -25,7 +25,7 @@ function PagingGrid() {
 
   self.handleNextSkip = function(s) {
     if (s === 0) {
-      self.skip = self.take + 1;
+      self.skip = self.take;
     } else {
       self.skip = s + self.take;
     }
@@ -37,7 +37,7 @@ function PagingGrid() {
 
   self.handlePageDown = function () {
     if (self.lastPage !== 0) {
-      self.skip = (self.lastPage * self.take) + 1;
+      self.skip = (self.lastPage * self.take);
     }
     self.handleNextSkip(self.skip);
   }
@@ -50,7 +50,7 @@ function PagingGrid() {
 
   self.handlePageUp = function() {
     if (self.firstPage !== 0) {
-      self.skip = (self.firstPage * self.take) + 1;
+      self.skip = (self.firstPage * self.take);
     }
     self.handlePreviousSkip(self.skip);
   }

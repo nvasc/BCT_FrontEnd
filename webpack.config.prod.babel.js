@@ -5,8 +5,8 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 var folderOutput = 'Scripts';
-var destinationPath = 'D:/Sources/WEB_ORG/03_SOURCECODE/ASC.BCT_ORG.BACKEND/' + 
-//var destinationPath = 'D:/Projects/WEB_ORG/03_SOURCECODE/ASC.BCT_ORG.BACKEND/' + 
+// var destinationPath = 'D:/Sources/WEB_ORG/03_SOURCECODE/ASC.BCT_ORG.BACKEND/' + 
+var destinationPath = 'D:/Projects/WEB_ORG/03_SOURCECODE/ASC.BCT_ORG.BACKEND/' + 
 'ASC.BCT_ORG.SOLUTION/ASC.Presentation/BCT_ORG.WEB_APP_API';
 var pathResource = '&outputPath=../Scripts/&publicPath=Scripts/';
 

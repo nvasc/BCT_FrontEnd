@@ -1,4 +1,4 @@
-export default function HandleDataGrid(timeout, http, url, filterDefault) {   
+export default function HandleDataGrid(timeout, http, url, filterDefault, scope) {   
          
   var self = this;
   self.count = 0;
@@ -23,10 +23,10 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
   }; 
 
   self.getDataDown = function(pagingGrid, gridApi, orderGrid, filterGrid, 
-    setDataResult, dataResult) {       
-    if (!pagingGrid.isNext()) {
-      return;
-    }
+    setDataResult, dataName) {       
+    // if (!pagingGrid.isNext()) {
+    //   return;
+    // }
     pagingGrid.handlePageDown();
     var filter = {};
     if (filterDefault) {
@@ -42,12 +42,12 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
         pagingGrid.lastPage++;
         var data = response.data.Data;
         gridApi.infiniteScroll.saveScrollPercentage();
-        data = dataResult.concat(data);
+        scope[dataName] = scope[dataName].concat(data);
         pagingGrid.total = response.data.Count;
         return gridApi.infiniteScroll.dataLoaded(pagingGrid.firstPage > 0,
           pagingGrid.lastPage < pagingGrid.numberPage()).
         then(function () {
-          checkDataLength(pagingGrid, gridApi, setDataResult, dataResult, 'up');
+          checkDataLength(pagingGrid, gridApi, setDataResult, scope[dataName], 'up');
         });
       })
       .catch(function (error) {
@@ -55,7 +55,7 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
       });
   };  
 
-  self.getDataUp = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult, dataResult) {
+  self.getDataUp = function(pagingGrid, gridApi, orderGrid, filterGrid, setDataResult, dataName) {
     pagingGrid.handlePageUp();
     var filter = {};
     if (filterDefault) {
@@ -71,12 +71,12 @@ export default function HandleDataGrid(timeout, http, url, filterDefault) {
         var data = response.data.Data;
         pagingGrid.firstPage--;
         gridApi.infiniteScroll.saveScrollPercentage();
-        dataResult = data.concat(dataResult);
+        scope[dataName] = data.concat(scope[dataName]);
         pagingGrid.total = response.data.Count;
         return gridApi.infiniteScroll.dataLoaded(pagingGrid.firstPage > 0, 
           pagingGrid.lastPage < pagingGrid.numberPage())
           .then(function () {
-            checkDataLength(pagingGrid, gridApi, setDataResult, dataResult, 'down');
+            checkDataLength(pagingGrid, gridApi, setDataResult, scope[dataName], 'down');
           });
       })
       .catch(function (error) {
