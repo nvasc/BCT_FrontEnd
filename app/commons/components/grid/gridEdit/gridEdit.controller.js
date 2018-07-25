@@ -11,22 +11,32 @@ function gridEditController($scope, $element, $attrs, $timeout, uiGridConstants,
     columnDefs : $scope.colDefs,        
     onRegisterApi: function(gridApi) {
       vm.gridApi = gridApi;
+      
     },
-    data: 'data',
     enableColumnMenus: false,    
   }
   //----------------------init----------------- 
   
   function init() {
     if ($scope.ciData) {
-      vm.gridOptions.data = $scope.ciData;      
+      vm.gridOptions.data = $scope.ciData;
     }
-    
     if ($scope.ciSetScope) {
       $scope.ciSetScope($scope);
     } 
+    $timeout(function () {      
+      if ($scope.ciHeight) {
+        $('#' + $scope.ciId).css('height', $scope.ciHeight);
+        vm.gridApi.core.handleWindowResize();
+        $timeout(function () {      
+          vm.gridApi.core.refresh();
+        }, 520);        
+      }      
+    })
   }
   init();
+
+ 
 }
 
 /* @ngInject */

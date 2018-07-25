@@ -9,6 +9,7 @@ function gridEditDirective ()  {
       colDefs: '=',    
       ciData: '=',  
       ciSetScope: '=',
+      ciHeight: '@'
     },
     template: function (element, attrs) {
       var multiSelect = attrs.multiSelect === 'true';
