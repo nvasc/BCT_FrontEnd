@@ -28,11 +28,9 @@ function gridEditController($scope, $element, $attrs, $timeout, uiGridConstants,
       if ($scope.ciHeight) {
         $('#' + $scope.ciId).css('height', $scope.ciHeight);
         vm.gridApi.core.handleWindowResize();
-        $timeout(function () {      
-          vm.gridApi.core.refresh();
-        }, 520);        
+        //vm.gridApi.core.refresh();       
       }      
-    })
+    }, 120)
   }
   init();
 

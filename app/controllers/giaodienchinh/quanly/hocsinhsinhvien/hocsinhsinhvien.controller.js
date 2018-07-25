@@ -2,6 +2,7 @@
 import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
 import colTrangThai from './col-trang-thai.html';
+import colHedaotao from './col-he-dao-tao.html';
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -60,14 +61,36 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
   },{
     name: 'Ho',
     displayName: 'Họ',
+    width: 125,
   },{
     name: 'Ten',
     displayName: 'Tên',
     width: 75,
+  }, {
+    name: 'GioiTinhStr',
+    displayName: 'Giới tính',
+    enableSorting: false,
+    enableFiltering: false,
+    width: 75,
+  }, {
+    name: 'NgaySinh',
+    displayName: 'Ngày Sinh',
+    cellFilter: 'date:\'dd/MM/yyyy\'',
+    enableSorting: false,
+    enableFiltering: false,
+    width: 90,    
   },{
+    name: 'TenNganhHoc',
+    displayName: 'Ngành học',
+    cellTooltip: function(row, col) {
+      return row.entity.TenNganhHoc;
+    },
+    width: 125,
+  }, {
     name: 'TenHeDaoTao',
     displayName: 'Hệ đào tạo',
-    width: 100,
+    cellTemplate: colHedaotao,
+    width: 150,    
   },
   {
     name: 'NgayNhapHoc',
@@ -82,7 +105,6 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     name: 'NgayTotNghiep',
     displayName: 'Trạng Thái',
     cellTemplate: colTrangThai,
-    cellClass: 'grid-text-align-center',
     enableSorting: false,
     enableFiltering: false,
   }, {
