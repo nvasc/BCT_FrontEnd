@@ -26,7 +26,7 @@ function bieumauService($q, $rootScope, $timeout, nonceProvider, dataProvider, h
       _setKey(key);
       var bieumauProvider = dataProvider.provider(modelName);
       var obj = bieumauProvider.get({id: id}, function () {
-        obj.ApplicationType = obj.ApplicationType + '';
+        obj.LoaiBieuMau += '';
         deferred.resolve(obj);
       });       
     });

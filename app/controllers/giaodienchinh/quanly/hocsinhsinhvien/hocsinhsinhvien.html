@@ -26,7 +26,9 @@
                   ng-click="hocsinhsinhvien.create()">
                     <span class="fa fa-plus"></span>
                   </button>
-                <button class="btn btn-xs" ng-class="{'btn-success': !hocsinhsinhvien.isFilter, 'btn-danger': hocsinhsinhvien.isFilter}" ng-click="hocsinhsinhvien.filter()" title="Lọc dữ liệu">
+                <button class="btn btn-xs" ng-click="hocsinhsinhvien.filter()" title="Lọc dữ liệu"
+                  ng-class="{'btn-success': !hocsinhsinhvien.isFilter, 'btn-danger': hocsinhsinhvien.isFilter}"
+                  >
                   <span class="fa" ng-class="{'fa-filter': !hocsinhsinhvien.isFilter, 'fa-times': hocsinhsinhvien.isFilter}"></span>
                 </button>
               </div>

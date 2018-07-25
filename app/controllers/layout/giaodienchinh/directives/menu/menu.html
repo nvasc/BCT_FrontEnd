@@ -127,6 +127,10 @@
             <a ui-sref="giaodienchinh.quanly.bieumau">
               <i class="fa fa-circle-o"></i>Biểu mẫu</a>
           </li>
+          <li ui-sref-active="active" ng-if="menu.role.hssv.read">
+            <a ui-sref="giaodienchinh.quanly.hocsinhsinhvien">
+              <i class="fa fa-circle-o"></i>Học sinh sinh viên</a>
+          </li>
           <li ui-sref-active="active" ng-if="menu.role.lhdt.read">
             <a ui-sref="giaodienchinh.quanly.loaihinhdaotao">
               <i class="fa fa-circle-o"></i>Loại hình đào tạo</a>
@@ -164,10 +168,6 @@
           <li ui-sref-active="active" ng-if="menu.role.tg.read">
             <a ui-sref="giaodienchinh.quanly.tongiao">
               <i class="fa fa-circle-o"></i>Tôn giáo</a>
-          </li>
-          <li ui-sref-active="active" ng-if="menu.role.hssv.read">
-            <a ui-sref="giaodienchinh.quanly.hocsinhsinhvien">
-              <i class="fa fa-circle-o"></i>Học sinh sinh viên</a>
           </li>
           <li ui-sref-active="active" ng-if="menu.role.tttr.read">
             <a ui-sref="giaodienchinh.quanly.danhsachtruong">

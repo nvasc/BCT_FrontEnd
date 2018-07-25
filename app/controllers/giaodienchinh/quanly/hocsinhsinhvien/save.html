@@ -26,31 +26,36 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <ul class="list-inline">
-              <li>
-                <label for="gioitinh">Giới tính</label>
-              </li>
-              <li>
-                <div class="icheck-primary">
-                  <input type="radio" id="gioitinh-1" name="gioitinh" ng-value="0" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
-                  <label for="gioitinh-1">Nam</label>
-                </div>
-              </li>
-              <li>
-                <div class="icheck-primary">
-                  <input type="radio" id="gioitinh-2" name="gioitinh" ng-value="1" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
-                  <label for="gioitinh-2">Nữ</label>
-                </div>
-              </li>
-              <li style="padding-right: 10px">
-                <div class="icheck-primary icheck-inline">
-                  <input type="checkbox" id="sinhviennuocngoai" ng-model="hocsinhsinhvien.saveObj.IsSinhVienNuocNgoai" />
-                  <label for="sinhviennuocngoai">Sinh viên nước ngoài</label>
-                </div>
-              </li>
-            </ul>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <ul class="list-inline">
+                  <li>
+                    <label for="gioitinh">Giới tính</label>
+                  </li>
+                  <li>
+                    <div class="icheck-primary">
+                      <input type="radio" id="gioitinh-1" name="gioitinh" ng-value="0" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
+                      <label for="gioitinh-1">Nam</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icheck-primary">
+                      <input type="radio" id="gioitinh-2" name="gioitinh" ng-value="1" ng-model="hocsinhsinhvien.saveObj.GioiTinh" />
+                      <label for="gioitinh-2">Nữ</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="icheck-primary icheck-inline">
+                <input type="checkbox" id="sinhviennuocngoai" ng-model="hocsinhsinhvien.saveObj.IsSinhVienNuocNgoai" />
+                <label for="sinhviennuocngoai">Sinh viên nước ngoài</label>
+              </div>
+            </div>
           </div>
+          
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -59,6 +64,7 @@
                       locale="vi"
                       format="DD/MM/YYYY"
                       class="form-control"
+                      min-view="month"
                       ng-model="hocsinhsinhvien.saveObj.NgaySinh"
                       ng-model-options="{ updateOn: 'blur' }" />
                   </div>
@@ -84,29 +90,41 @@
       <!-- form start -->
       <div role="form">
         <div class="box-body">
-          <div class="form-group">
-            <label for="Ten">Thường trú</label>
-            <input type="text" class="form-control" id="thuongtru" ng-model="hocsinhsinhvien.saveObj.DiaChiThuongTru">
+          <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="Ten">Thường trú</label>
+                    <input type="text" class="form-control" id="thuongtru" ng-model="hocsinhsinhvien.saveObj.DiaChiThuongTru">
+                  </div>
+            </div>
+            <div class="col-md-4">  
+                <div class="form-group">
+                    <label for="TinhThanhThuongTru">Tỉnh thành thường trú</label>
+                    <ci-select 
+                      ci-Id="TinhThanhThuongTru"
+                      ci-one-load="true"
+                      ng-model="hocsinhsinhvien.saveObj.TinhThanhThuongTru"
+                      url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
+                  </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="TinhThanhThuongTru">Tỉnh thành thường trú</label>
-            <ci-select 
-              ci-Id="TinhThanhThuongTru"
-              ci-one-load="true"
-              ng-model="hocsinhsinhvien.saveObj.TinhThanhThuongTru"
-              url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
-          </div>
-          <div class="form-group">
-            <label for="DiaChiTamTru">Địa chỉ tạm trú</label>
-            <input type="text" class="form-control" id="DiaChiTamTru" ng-model="hocsinhsinhvien.saveObj.DiaChiTamTru">
-          </div>
-          <div class="form-group">
-            <label for="TinhThanhTamTru">Tỉnh thành tạm trú</label>
-              <ci-select 
-              ci-Id="TinhThanhTamTru"
-              ci-one-load="true"
-              ng-model="hocsinhsinhvien.saveObj.TinhThanhTamTru"
-              url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
+          <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="DiaChiTamTru">Địa chỉ tạm trú</label>
+                    <input type="text" class="form-control" id="DiaChiTamTru" ng-model="hocsinhsinhvien.saveObj.DiaChiTamTru">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="TinhThanhTamTru">Tỉnh thành tạm trú</label>
+                      <ci-select 
+                      ci-Id="TinhThanhTamTru"
+                      ci-one-load="true"
+                      ng-model="hocsinhsinhvien.saveObj.TinhThanhTamTru"
+                      url="api/tinhthanh/GetAllDtoSelectIdTextData"></ci-select>
+                  </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -166,7 +184,6 @@
                   url="api/loaihinhdaotao/GetSelectData"></ci-select>
               </div>
             </div>
-
             <div class="col-md-6">
               <div class="form-group">
                 <label for="Ma">Ngày nhập học</label>
@@ -174,6 +191,7 @@
                   locale="vi"
                   format="DD/MM/YYYY"
                   class="form-control"
+                  min-view="month"
                   ng-model="hocsinhsinhvien.saveObj.NgayNhapHoc"
                   ng-model-options="{ updateOn: 'blur' }" />
               </div>
@@ -183,6 +201,7 @@
                   locale="vi"
                   format="DD/MM/YYYY"
                   class="form-control"
+                  min-view="month"
                   ng-model="hocsinhsinhvien.saveObj.NgayTotNghiep"
                   ng-model-options="{ updateOn: 'blur' }" />
               </div>
@@ -191,6 +210,7 @@
                 <input moment-picker
                 locale="vi"
                 format="DD/MM/YYYY"
+                min-view="month"
                 class="form-control"
                 ng-model="hocsinhsinhvien.saveObj.NgayNghiHoc"
                 ng-model-options="{ updateOn: 'blur' }" />

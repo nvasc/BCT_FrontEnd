@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 function hocsinhsinhvienService($q, $rootScope, $timeout, nonceProvider, 
   dataProvider, roleFactory, httpProvider) {
   var service = {};
@@ -25,7 +27,10 @@ function hocsinhsinhvienService($q, $rootScope, $timeout, nonceProvider,
       _setKey(key);
       var hocsinhsinhvienProvider = dataProvider.provider('hocsinhsinhvien');
       var obj = hocsinhsinhvienProvider.get({id: id}, function () {
-        obj.ApplicationType = obj.ApplicationType + '';
+        obj.NgaySinh = moment(obj.NgaySinh);
+        obj.NgayNhapHoc = moment(obj.NgayNhapHoc);
+        obj.NgayTotNghiep = moment(obj.NgayTotNghiep);
+        obj.NgayNghiHoc = moment(obj.NgayNghiHoc);
         deferred.resolve(obj);
       });       
     });

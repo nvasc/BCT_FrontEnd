@@ -136,10 +136,15 @@ function popupFactory($ngConfirm, $rootScope) {
   }  
   factory.delete = _delete;
 
-  var _custom = function () {
+  var _custom = function (opts) {
     var popup = null; 
-    popup = $ngConfirm(_options);
-    return popup;    
+    if (opts) {
+      popup = $ngConfirm(opts);
+    } else {
+      popup = $ngConfirm(_options); 
+    }
+
+    return popup;  
   }
   factory.custom = _custom;
 

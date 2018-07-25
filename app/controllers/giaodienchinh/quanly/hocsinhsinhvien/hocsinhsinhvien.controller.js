@@ -3,6 +3,7 @@ import gridCommand from './grid-command.html';
 import saveTemplate from './save.html';
 import colTrangThai from './col-trang-thai.html';
 import _ from 'lodash';
+import moment from 'moment';
 
 function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFactory, roleFactory) {
   const vm = this;
@@ -47,31 +48,43 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     vm.colDefs = [ {
       name: 'TenTruong',
       displayName: 'Trường',
+      cellTooltip: function(row, col) {
+        return row.entity.TenTruong;
+      }
     } ];
   }
   vm.colDefs = vm.colDefs.concat([{
     name: 'Ma',
     displayName: 'Mã',
+    width: 100,
   },{
-    name: 'HoVaTen',
-    displayName: 'Họ tên',
+    name: 'Ho',
+    displayName: 'Họ',
+  },{
+    name: 'Ten',
+    displayName: 'Tên',
+    width: 75,
   },{
     name: 'TenHeDaoTao',
     displayName: 'Hệ đào tạo',
+    width: 100,
   },
   {
     name: 'NgayNhapHoc',
-    displayName: 'Năm học',
+    displayName: 'Ngày nhập học',
+    cellFilter: 'date:\'dd/MM/yyyy\'',
+    enableSorting: false,
+    enableFiltering: false,
+    width: 110,
   },
   {
     width: 90,
-    name: ' ',
+    name: 'NgayTotNghiep',
     displayName: 'Trạng Thái',
     cellTemplate: colTrangThai,
     cellClass: 'grid-text-align-center',
     enableSorting: false,
     enableFiltering: false,
-    dataType: 3
   }, {
     name: ' ',
     cellTemplate: gridCommand,
@@ -101,9 +114,8 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     $scope.$watch(function () {
       return vm.saveObj.IdLoaiHinhDaoTao;
     }, function (nval, oval) {
-      
-      if (parseInt(nval) !== parseInt(oval) || parseInt(nval) !== 0) { 
-        console.log(nval, oval)       
+      var val = parseInt(nval);
+      if ((val !== parseInt(oval) || parseInt(nval) !== 0) && !_.isNaN(val)) {      
         hocsinhsinhvienService.getHeDaoTaoByLoaiHinhDaoTao(parseInt(nval)).then(function (result) {
           vm.saveObj.TenHeDaoTao = result.Text;
         });
@@ -116,10 +128,10 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     popupFactory.setOptions({
       rss: rss,
       title: rss.CreateTitle,
-      columnClass: 'col-md-offset-2 col-md-8',        
+      columnClass: 'col-md-offset-1 col-md-10',        
       icon: 'fa fa-plus', 
       content: saveTemplate,
-      scope: $scope,
+      scope: $scope
     });
 
     hocsinhsinhvienService.get(0).then(function (obj) {      
@@ -144,14 +156,14 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
     popupFactory.setOptions({
       rss: rss,
       title: rss.UpdateTitle,
-      columnClass: 'col-md-offset-3 col-md-6',  
+      columnClass: 'col-md-offset-1 col-md-10',  
       icon: 'fa fa-edit',
       content: saveTemplate,
       scope: $scope,
     });
     hocsinhsinhvienService.get(row.entity.Id).then(function (obj) { 
-          
-      vm.saveObj = obj;      
+      vm.saveObj = obj;     
+      //vm.saveObj.NgaySinh = 'NgaySinh'  
       watchLoaiHinhDaoTao(); 
       popupFactory.update(function () { 
         var deferred = $q.defer();
@@ -193,7 +205,28 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
   };
   vm.action.delete = vm.delete;
 
-  
+  vm.getTrangThai = function(obj) {
+    if (obj.NgayNghiHoc !== null) {
+      var namnghihoc = moment(obj.NgayNghiHoc).year();
+      return 'Đã nghỉ học năm ' + namnghihoc
+    }
+
+    if (obj.NgayTotNghiep !== null) {
+      var namtotnghiep = moment(obj.NgayTotNghiep).year();
+      return 'Đã nghỉ học năm ' + namtotnghiep
+    }
+
+    if (obj.NgayNhapHoc !== null) {
+      var namHocHienTai = moment();
+      var ngayNhapHoc = moment(obj.NgayNhapHoc);
+      var soNamHoc = namHocHienTai.diff(ngayNhapHoc, 'years');;
+      if (soNamHoc < 1) {
+        return 'Tuyển sinh mới';
+      } else {
+        return 'Đã học năm ' + (soNamHoc - 1);
+      }
+    }
+  }  
 }
 
 /* @ngInject */
