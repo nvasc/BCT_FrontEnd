@@ -4,6 +4,7 @@ import colDownload from './col-download.html';
 import saveTemplate from './save.html';
 import configTempate from './config.html';
 import GridEditConfigBieuMau from './grid-edit-config-bieu-mau';
+import GridEditConfigBieuMauThamSo from './grid-edit-config-bieu-mau-tham-so';
 import loaibieumauTemplate from './loaibieumau-templete.html';
 
 
@@ -25,6 +26,9 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
     DeleteTitle: 'Xóa một biểu mẫu',
     DeleteButton: 'Xóa',
     DeleteButtonClass: 'btn-danger',
+
+    DetailTitle: 'Chi tiết biểu mẫu',
+    CloseButton: 'Đóng',
 
     ConfigTitle: 'Cấu hình một biểu mẫu(chức năng chỉ dành cho người quản trị)',
     ConfigButton: 'Cấu hình',
@@ -206,6 +210,12 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
         vm.saveObj.ExcelConfig.ColConfigs[length - 1].IsLast = true;
       }      
       vm.configs = new GridEditConfigBieuMau($scope, $timeout, vm.saveObj.ExcelConfig.ColConfigs);
+      length = vm.saveObj.ExcelConfig.ColConfigParams.length
+      if (length > 0) {
+        vm.saveObj.ExcelConfig.ColConfigParams[length - 1].IsLast = true;
+      }      
+      vm.configParams = new GridEditConfigBieuMauThamSo($scope, $timeout, 
+          vm.saveObj.ExcelConfig.ColConfigParams);
       popup = popupFactory.custom();
     });
   }
