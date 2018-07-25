@@ -210,6 +210,15 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
     });
   }
 
+  vm.changeLoaiBieuMau = function () {
+    var loaiBieuMau = parseInt(vm.saveObj.LoaiBieuMau);
+    if (loaiBieuMau === 1) {
+      vm.saveObj.ImportType = 1;
+    } else {
+      vm.saveObj.ImportType = 0;
+    }
+    console.log(vm.saveObj);
+  }
   
 }
 

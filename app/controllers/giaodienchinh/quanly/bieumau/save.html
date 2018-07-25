@@ -19,20 +19,20 @@
           <div class="form-group">
             <label for="LoaiBieuMau">Loại biểu mẫu</label>
             <div class="icheck-primary">
-              <input type="radio" id="LoaiBieuMau-1" name="LoaiBieuMau" value="1" ng-model="bieumau.saveObj.LoaiBieuMau" />
+              <input type="radio" id="LoaiBieuMau-1" name="LoaiBieuMau" value="1" 
+                ng-model="bieumau.saveObj.LoaiBieuMau"
+                ng-change="bieumau.changeLoaiBieuMau()" />
               <label for="LoaiBieuMau-1">Nhập khẩu</label>
             </div>
             <div class="icheck-primary">
-              <input type="radio" id="LoaiBieuMau-2" name="LoaiBieuMau" value="2" ng-model="bieumau.saveObj.LoaiBieuMau" />
+              <input type="radio" id="LoaiBieuMau-2" name="LoaiBieuMau" value="2" 
+                ng-model="bieumau.saveObj.LoaiBieuMau"
+                ng-change="bieumau.changeLoaiBieuMau()" />
               <label for="LoaiBieuMau-2">Xuất khẩu</label>
             </div>
           </div>
           <div class="form-group" ng-if="bieumau.saveObj.LoaiBieuMau == 1">
               <label for="LoaiBieuMau">Loại Import</label>
-              <div class="icheck-primary">
-                  <input type="radio" id="ImportType-1" name="ImportType" ng-value="0" ng-model="bieumau.saveObj.ImportType" />
-                  <label for="ImportType-1">Không</label>
-                </div>
               <div class="icheck-primary">
                 <input type="radio" id="ImportType-1" name="ImportType" ng-value="1" ng-model="bieumau.saveObj.ImportType" />
                 <label for="ImportType-1">Chi tiết</label>
