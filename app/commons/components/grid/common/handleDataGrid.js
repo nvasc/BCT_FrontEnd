@@ -7,11 +7,12 @@ export default function HandleDataGrid(timeout, http, url, filterDefault, scope)
     if (filterDefault) {
       filter = angular.copy(filterDefault)
     }
+    pagingGrid.defaultData();
     filter.Skip = pagingGrid.skip;
     filter.Take = pagingGrid.take;
     filter.OrderBys = orderGrid.getOrderBy();
     filter.Filters = filterGrid.getCondition(gridApi);
-
+    
     return http.post(url, filter)
       .then(function (response) {
         var data = response.data.Data;

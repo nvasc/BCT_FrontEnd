@@ -1,4 +1,5 @@
-function nhapkhaubaocaoService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory) {
+function nhapkhaubaocaoService($q, $rootScope, $timeout, nonceProvider, dataProvider, roleFactory, 
+  httpProvider) {
   var service = {};
   var modelName = 'xulyimportbieumau';
   var _init = function () {
@@ -25,7 +26,7 @@ function nhapkhaubaocaoService($q, $rootScope, $timeout, nonceProvider, dataProv
       _setKey(key);
       var nhapkhaubaocaoProvider = dataProvider.provider(modelName);
       var obj = nhapkhaubaocaoProvider.get({id: id}, function () {
-        obj.ApplicationType = obj.ApplicationType + '';
+        obj.IdBieuMauChuan += '';
         deferred.resolve(obj);
       });       
     });
@@ -66,6 +67,15 @@ function nhapkhaubaocaoService($q, $rootScope, $timeout, nonceProvider, dataProv
     return deferred.promise; 
   };
   service.delete = _delete;
+
+  var _getDataFirstImport = function (id) { 
+    var deferred = $q.defer();
+    httpProvider.get('api/bieumauchuan/GetDataFirstImport?id=' + id, false).then(function (result) {
+      deferred.resolve(result);
+    })
+    return deferred.promise;
+  };
+  service.getDataFirstImport = _getDataFirstImport;
 
   return service
 }

@@ -17,8 +17,25 @@
               ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau"  accept=".xlsx"
               ci-file-name="nhapkhaubaocao.saveObj.TenFileBieuMau">Chọn tập tin</ci-upload>
           </div>
+          
         </div>
       </div>        
     </div>
   </div>
+  <div class="col-md-12" ng-if="nhapkhaubaocao.saveObj.DataFirstImports && nhapkhaubaocao.saveObj.DataFirstImports != null">
+      <div class="box box-primary">
+        <div role="form">
+          <div class="box-body">            
+            <div class="row">
+              <div class="col-md-6" ng-if="item.DefaultValue == null || item.DefaultValue == ''" ng-repeat="item in nhapkhaubaocao.saveObj.DataFirstImports">
+                  <div class="form-group">
+                      <label for="{{item.Name}}">{{item.Lable}}</label>
+                      <input type="{{item.DataType == 3 || item.DataType == 4 ? 'number': 'text'}}" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
+                    </div>
+              </div>             
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
 </div>

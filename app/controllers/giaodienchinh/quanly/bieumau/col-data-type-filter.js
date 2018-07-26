@@ -7,7 +7,9 @@ export default function colDataTypeFilter () {
     3: 'Interger',
     4: 'Double',
     5: 'Date',
-    6: 'DateTime'
+    6: 'DateTime',
+    7: 'Boolean',
+    100: 'Table',
   };
   return function(input) {
     if (angular.isUndefined(input)) {

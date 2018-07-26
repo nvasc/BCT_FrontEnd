@@ -1,7 +1,7 @@
-import gridEditCommand from './grid-edit-command.html';
+import gridEditCommand from './grid-edit-command-data-first-import.html';
 import _ from 'lodash';
 
-export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
+export default function GridEditConfigBieuMauDataFirstImport(scope, timeout, colConfigs) {
   var self = this;
 
   self.data = colConfigs;
@@ -13,13 +13,19 @@ export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
     enableFiltering: false,
     width: 30,
   }, {
+    name: 'Lable',
+    displayName: 'Tên hiển thị',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
+  },{
     name: 'Name',
-    displayName: 'Tên',
+    displayName: 'Tên thuộc tính',
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
   }, {
-    name: 'ColDataType',
+    name: 'DataType',
     displayName: 'Kiểu dữ liệu',
     cellFilter: 'colDataTypeFilter',
     editableCellTemplate: 'ui-grid/dropdownEditor',
@@ -49,55 +55,17 @@ export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
     },{
       id: 7,
       text: 'Boolean'
+    },{
+      id: 100,
+      text: 'Table'
     }]
   }, {
-    name: 'DateFormat',
-    displayName: 'Định dạng',
+    name: 'DefaultValue',
+    displayName: 'Giá trị mặc định',
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
-  }, {
-    name: 'IsNotUnicode',
-    displayName: 'Không Unicode',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
-    type: 'boolean',
     width: 100,
-  }, {
-    name: 'IsRequired',
-    displayName: 'Bắt Buộc',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
-    type: 'boolean',
-    width: 90,
-  }, {
-    name: 'IsConditionColum',
-    displayName: 'Khóa',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
-    type: 'boolean',
-    width: 45,
-  }, {
-    name: 'ProcessName',
-    displayName: 'Phương thức xử lý',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
-  }, {
-    name: 'ValidationSouceName',
-    displayName: 'Phương thức kiểm tra',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
-  }, {
-    name: 'MappingToName',
-    displayName: 'Ánh Xạ',
-    enableCellEdit: true,
-    enableSorting: false,
-    enableFiltering: false,
   }, {
     name: ' ',
     displayName: ' ',
@@ -122,12 +90,10 @@ export default function GridEditConfigBieuMau(scope, timeout, colConfigs) {
     self.data.push({
       Index: index,
       Name: '',
-      ColDataType: 0,
-      DateFormat: '',
-      IsNotUnicode: true,
-      IsRequired: false,
-      IsConditionColum: false,
-      MappingToName: '',
+      Lable: '',
+      DataType: 0,
+      DefaultValue: '',
+      Value: '',
       IsLast: true,
     });    
   };

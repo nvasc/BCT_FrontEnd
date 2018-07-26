@@ -91,6 +91,25 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
   vm.saveObj = {};
   vm.action = {};
 
+  var watchDataFirstImport = null;
+  function watchGetDataFirstImport() {
+    if (watchDataFirstImport) {
+      watchDataFirstImport();
+    }
+    if (vm.saveObj.IdBieuMauChuan) {
+      watchDataFirstImport = $scope.$watch(function () {
+        return vm.saveObj.IdBieuMauChuan
+      }, function (nval, oval) {
+        if (!angular.equals(nval, oval) || parseInt(nval) !== 0) {
+          
+          nhapkhaubaocaoService.getDataFirstImport(nval).then(function (result) {
+            vm.saveObj.DataFirstImports = result;                     
+          })
+        }
+      }, true);
+    }    
+  }
+
   vm.create = function (id, type, refreshGridCallBack) {
     popupFactory.setOptions({
       rss: rss,
@@ -103,8 +122,12 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
 
     nhapkhaubaocaoService.get(0).then(function (obj) {      
       vm.saveObj = obj;
+      watchGetDataFirstImport();
       popupFactory.create(function () { 
         var deferred = $q.defer();
+        if (vm.saveObj.DataFirstImports !== null) {
+          vm.saveObj.DataFirstImport = angular.toJson(vm.saveObj.DataFirstImports)
+        }   
         nhapkhaubaocaoService.create(vm.saveObj).then(function () {
           deferred.resolve(true);
           if (_scopeGrid) {
@@ -114,7 +137,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
           deferred.resolve(false);  
         })    
         return deferred.promise;
-      }, function () { vm.saveObj = {}; });
+      }, function () { vm.saveObj = {}; watchGetDataFirstImport(); });
     });    
   }
 
@@ -136,6 +159,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;   
       vm.saveObj.IsDetail = true;
+      watchGetDataFirstImport();
       popupFactory.custom();
     });
   };
@@ -151,9 +175,12 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     });
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
-      vm.saveObj.IdBieuMauChuan = vm.saveObj.IdBieuMauChuan + ''; 
+      watchGetDataFirstImport();
       popupFactory.update(function () { 
         var deferred = $q.defer();
+        if (vm.saveObj.DataFirstImports !== null) {
+          vm.saveObj.DataFirstImport = angular.toJson(vm.saveObj.DataFirstImports)
+        }  
         nhapkhaubaocaoService.update(row.entity.Id, vm.saveObj).then(function () {
           deferred.resolve(true);
           if (refreshGridCallBack) {
@@ -163,7 +190,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
           deferred.resolve(false);  
         })              
         return deferred.promise;
-      }, function () { vm.saveObj = {}; }, vm.role);
+      }, function () { vm.saveObj = {}; watchGetDataFirstImport();}, vm.role);
     });
   };
   vm.action.update = vm.update;
@@ -188,7 +215,7 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
         deferred.resolve(false);  
       })    
       return deferred.promise;
-    }, function () { vm.saveObj = {} });
+    }, function () { vm.saveObj = {};watchGetDataFirstImport(); });
   };
   vm.action.delete = vm.delete;
 }

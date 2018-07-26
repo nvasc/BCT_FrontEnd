@@ -89,8 +89,9 @@ function hocsinhsinhvienController ($q, $scope, hocsinhsinhvienService, popupFac
   }, {
     name: 'TenHeDaoTao',
     displayName: 'Hệ đào tạo',
-    cellTemplate: colHedaotao,
-    width: 150,    
+    cellTemplate: colHedaotao,    
+    enableSorting: false,
+    enableFiltering: false,
   },
   {
     name: 'NgayNhapHoc',

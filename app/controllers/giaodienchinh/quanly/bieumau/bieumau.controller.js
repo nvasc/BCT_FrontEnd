@@ -5,6 +5,7 @@ import saveTemplate from './save.html';
 import configTempate from './config.html';
 import GridEditConfigBieuMau from './grid-edit-config-bieu-mau';
 import GridEditConfigBieuMauThamSo from './grid-edit-config-bieu-mau-tham-so';
+import GridEditConfigBieuMauDataFirstImport from './grid-edit-config-bieu-mau-data-first-import';
 import loaibieumauTemplate from './loaibieumau-templete.html';
 
 
@@ -216,6 +217,13 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
       }      
       vm.configParams = new GridEditConfigBieuMauThamSo($scope, $timeout, 
           vm.saveObj.ExcelConfig.ColConfigParams);
+
+      length = vm.saveObj.ExcelConfig.ColConfigDataFirstImports.length
+      if (length > 0) {
+        vm.saveObj.ExcelConfig.ColConfigDataFirstImports[length - 1].IsLast = true;
+      }      
+      vm.configDataFirstImports = new GridEditConfigBieuMauDataFirstImport($scope, $timeout, 
+          vm.saveObj.ExcelConfig.ColConfigDataFirstImports);
       popup = popupFactory.custom();
     });
   }
