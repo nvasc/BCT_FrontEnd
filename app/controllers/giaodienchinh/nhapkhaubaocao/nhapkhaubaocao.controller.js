@@ -98,19 +98,21 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     if (watchCollectionDataFirstImport) {
       watchCollectionDataFirstImport();
     }
-    watchCollectionDataFirstImport = $scope.
-    $watch(function() {return vm.saveObj.DataFirstImports}, 
-    function (nval, oval) {       
-      if (!angular.equals(nval, oval)) {      
-        for (var i = 0; i < vm.saveObj.DataFirstImports.length; i++) {
-          var obj = vm.saveObj.DataFirstImports[i];
-          if (obj.ProcessName !== null && 
-            obj.ProcessName !== '') {
-            obj.Value = vm.processData(obj.ProcessName, vm.saveObj.DataFirstImports);
-          }
-        }        
-      }         
-    }, true);
+    if (vm.saveObj.DataFirstImports) {
+      watchCollectionDataFirstImport = $scope.
+      $watch(function() {return vm.saveObj.DataFirstImports}, 
+      function (nval, oval) {       
+        if (!angular.equals(nval, oval)) {      
+          for (var i = 0; i < vm.saveObj.DataFirstImports.length; i++) {
+            var obj = vm.saveObj.DataFirstImports[i];
+            if (obj.ProcessName !== null && 
+              obj.ProcessName !== '') {
+              obj.Value = vm.processData(obj.ProcessName, vm.saveObj.DataFirstImports);
+            }
+          }        
+        }         
+      }, true);
+    }    
   }
   var watchDataFirstImport = null;
   function watchGetDataFirstImport() {
