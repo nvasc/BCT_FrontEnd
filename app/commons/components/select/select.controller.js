@@ -63,7 +63,8 @@ function selectController($q, $scope, $element, $attrs, $timeout,
 
   function initSelection() {
     if ($scope.ngModel && $scope.ngModel !== null && 
-      $scope.ngModel !== '' && $scope.ngModel !== '0') {
+      $scope.ngModel !== '' && $scope.ngModel !== '0' && 
+      $scope.ngModel !== '00000000-0000-0000-0000-000000000000') {
       var filter = {};
       filter.Skip = 0;
       filter.Take = 50;
@@ -71,15 +72,26 @@ function selectController($q, $scope, $element, $attrs, $timeout,
       filter.Filters = [];    
       
       if (_.isArray($scope.ngModel)) {
-        var result = [];
-        for (var i = 0; i < $scope.ngModel.length; i++) {
-          result.push($scope.ngModel[i] + '');
-        }
-        filter.QueryIds = result;
+        if ($scope.ciQueryIdName === 'QueryString') {
+          filter.QueryString = '';
+          for (var i = 0; i < $scope.ngModel.length; i++) {
+            filter.QueryString += $scope.ngModel[i] + ',';
+          }
+        } else {
+          var result = [];
+          for (var i = 0; i < $scope.ngModel.length; i++) {
+            result.push($scope.ngModel[i] + '');
+          }
+          filter.QueryIds = result;
+        }       
       } else {
-        filter.QueryId = $scope.ngModel;
+        if ($scope.ciQueryIdName === 'QueryString') {
+          filter.QueryString = $scope.ngModel;
+        }
+        else {
+          filter.QueryId = $scope.ngModel;
+        }        
       }
-           
       $http.post(url, filter).then(function (resp) {
         var datas = resp.data.Data;
         for (var j = 0; j < datas.length; j++) {

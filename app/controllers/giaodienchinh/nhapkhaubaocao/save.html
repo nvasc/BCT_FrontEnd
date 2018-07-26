@@ -3,41 +3,49 @@
     <div class="box box-primary">
       <div role="form">
         <div class="box-body">
-          <div class="form-group">
-            <label for="Ma">Biểu mẫu chuẩn</label>
-            <ci-select ci-Id="IdBieuMauChuan"
-              ng-model="nhapkhaubaocao.saveObj.IdBieuMauChuan"
-              ci-one-load="true"
-              ci-filter-default-obj="nhapkhaubaocao.defaultFilter" 
-              url="api/bieumauchuan/GetSelectData"></ci-select>
-          </div>
-          <div class="form-group">
-            <label for="FileBieuMau" style="display: block;">Tập tin</label>
-            <ci-upload ci-id="FileBieuMau" 
-              ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau" accept=".xlsx"
-              ci-file-name="nhapkhaubaocao.saveObj.TenFileBieuMau">Chọn tập tin</ci-upload>
-          </div>
-          
-        </div>
-      </div>        
-    </div>
-  </div>
-  <div class="col-md-12" ng-if="nhapkhaubaocao.saveObj.DataFirstImports && nhapkhaubaocao.saveObj.DataFirstImports != null">
-      <div class="box box-primary">
-        <div role="form">
-          <div class="box-body">            
-            <div class="row">
-              <div class="col-md-6" ng-if="item.IsInput" ng-repeat="item in nhapkhaubaocao.saveObj.DataFirstImports">
-                  <div class="form-group">
-                      <label for="{{item.Name}}">{{item.Lable}}</label>
-
-                      <input ng-if="item.DataType == 3 || item.DataType == 4" ci-string-to-number type="number" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
-                      <input ng-if="item.DataType != 3 && item.DataType != 4" type="text" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
-                    </div>
-              </div>             
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Ma">Biểu mẫu chuẩn</label>
+                <ci-select ci-Id="IdBieuMauChuan" ng-model="nhapkhaubaocao.saveObj.IdBieuMauChuan" ci-one-load="true" ci-filter-default-obj="nhapkhaubaocao.defaultFilter"
+                  url="api/bieumauchuan/GetSelectData"></ci-select>
+              </div>
+              <div class="form-group" ng-if="nhapkhaubaocao.isAllAccess">
+                <label for="IdTenant">Trường</label>
+                <ci-select ci-Id="IdTenant" ng-model="nhapkhaubaocao.saveObj.IdTenant" url="api/thongtintruong/GetDtoSelectIdTextData" placeholder="Trường"
+                  ci-query-id-name="QueryString"></ci-select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="FileBieuMau">Tập tin nhập khẩu</label>
+                <br/>
+                <ci-upload ci-id="FileBieuMau" ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau" ci-file-name="nhapkhaubaocao.saveObj.TenFileBieuMau">Chọn tập tin</ci-upload>
+              </div>
             </div>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
+  </div>
+  <div class="col-md-12" ng-if="nhapkhaubaocao.saveObj.DataFirstImports && nhapkhaubaocao.saveObj.DataFirstImports != null && nhapkhaubaocao.saveObj.DataFirstImports.length > 0">
+    <div class="box box-primary">      
+      <div role="form">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6" ng-if="item.IsInput" ng-repeat="item in nhapkhaubaocao.saveObj.DataFirstImports">
+              <div class="form-group">
+                <label for="{{item.Name}}">{{item.Lable}}</label>
+
+                <input ng-if="item.DataType == 3 || item.DataType == 4" ng-readonly="item.ProcessName != null && item.ProcessName != ''"
+                  ci-string-to-number type="number" class="form-control" id="{{item.Name}}" ng-model="item.Value" ng-value="item.Value">
+                <input ng-if="item.DataType != 3 && item.DataType != 4" ng-readonly="item.ProcessName != null && item.ProcessName != ''"
+                  type="text" class="form-control" id="{{item.Name}}" ng-model="item.Value" ng-value="item.Value">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

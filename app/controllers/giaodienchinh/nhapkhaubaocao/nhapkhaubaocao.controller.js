@@ -4,11 +4,13 @@ import colDownload from './col-download.html';
 import saveTemplate from './save.html';
 import detailTemplate from './detail.html';
 import colStatusTemplate from './col-status.html';
+import processData from './data-first-import-utility'
 
 function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFactory, roleFactory) {
   const vm = this;
   //Get Role
   vm.role = nhapkhaubaocaoService.getRole();
+  vm.isAllAccess = roleFactory.isAllAccess();
   // Message ------------------
   var rss = {
     CreateTitle: 'Tạo mới nhập khẩu báo cáo',
@@ -88,9 +90,28 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
   }
 
   // CRUD for this function ------------------
+  vm.processData = processData;
   vm.saveObj = {};
   vm.action = {};
-
+  var watchCollectionDataFirstImport = null;
+  function watchGetCollectionDataFirstImport() {
+    if (watchCollectionDataFirstImport) {
+      watchCollectionDataFirstImport();
+    }
+    watchCollectionDataFirstImport = $scope.
+    $watch(function() {return vm.saveObj.DataFirstImports}, 
+    function (nval, oval) {       
+      if (!angular.equals(nval, oval)) {      
+        for (var i = 0; i < vm.saveObj.DataFirstImports.length; i++) {
+          var obj = vm.saveObj.DataFirstImports[i];
+          if (obj.ProcessName !== null && 
+            obj.ProcessName !== '') {
+            obj.Value = vm.processData(obj.ProcessName, vm.saveObj.DataFirstImports);
+          }
+        }        
+      }         
+    }, true);
+  }
   var watchDataFirstImport = null;
   function watchGetDataFirstImport() {
     if (watchDataFirstImport) {
@@ -102,7 +123,10 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
       }, function (nval, oval) {
         if (!angular.equals(nval, oval) && !vm.saveObj.isUpdate) {          
           nhapkhaubaocaoService.getDataFirstImportInsert(nval).then(function (result) {
-            vm.saveObj.DataFirstImports = result;                     
+            vm.saveObj.DataFirstImports = result;  
+            if (result !== null) {
+              watchGetCollectionDataFirstImport();
+            }                   
           })
         }        
       }, true);

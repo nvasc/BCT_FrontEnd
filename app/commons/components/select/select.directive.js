@@ -12,8 +12,9 @@ function selectDirective ()  {
       ciFilterDefaultObj: '=',
       ciSetScope: '=',
       ngModel: '=',
-      ciValueType: '@',     
-      ciDefaulText: '@' 
+      ciValueType: '@',
+      ciDefaulText: '@',
+      ciQueryIdName: '@'
     },
     require: '^ngModel',
     template: function (element, attrs) {
