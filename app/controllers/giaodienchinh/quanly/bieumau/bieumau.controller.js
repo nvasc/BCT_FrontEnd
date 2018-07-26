@@ -56,8 +56,7 @@ function bieumauController ($q, $scope, $timeout, bieumauService, popupFactory) 
   // Column Define of Grid Component ------------------
   vm.colDefs = [{
     name: 'LoaiBieuMau',
-    displayName: 'Loại',
-    enableSorting: false,
+    displayName: 'Loại',    
     enableFiltering: false,
     cellTemplate: loaibieumauTemplate,
     width: 100,
