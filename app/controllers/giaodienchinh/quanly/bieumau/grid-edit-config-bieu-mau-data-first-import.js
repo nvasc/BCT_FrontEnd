@@ -30,6 +30,7 @@ export default function GridEditConfigBieuMauDataFirstImport(scope, timeout, col
     cellFilter: 'colDataTypeFilter',
     editableCellTemplate: 'ui-grid/dropdownEditor',
     editDropdownValueLabel: 'text',
+    width: 100,
     editDropdownOptionsArray: [{
       id: 0,
       text: 'None'
@@ -61,11 +62,33 @@ export default function GridEditConfigBieuMauDataFirstImport(scope, timeout, col
     }]
   }, {
     name: 'DefaultValue',
-    displayName: 'Giá trị mặc định',
+    displayName: 'Mặc định',
     enableCellEdit: true,
     enableSorting: false,
     enableFiltering: false,
-    width: 100,
+    width: 75,
+  }, {
+    name: 'ProcessName',
+    displayName: 'Phương thức xử lý',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
+  }, {
+    name: 'IsRefer',
+    displayName: 'Tham chiếu',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
+    type: 'boolean',
+    width: 90,
+  },{
+    name: 'IsInput',
+    displayName: 'Nhập liệu',
+    enableCellEdit: true,
+    enableSorting: false,
+    enableFiltering: false,
+    type: 'boolean',
+    width: 75,
   }, {
     name: ' ',
     displayName: ' ',

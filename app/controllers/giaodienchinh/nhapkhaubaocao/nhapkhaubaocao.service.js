@@ -68,14 +68,24 @@ function nhapkhaubaocaoService($q, $rootScope, $timeout, nonceProvider, dataProv
   };
   service.delete = _delete;
 
-  var _getDataFirstImport = function (id) { 
+  var _getDataFirstImportInsert = function (id) { 
     var deferred = $q.defer();
     httpProvider.get('api/bieumauchuan/GetDataFirstImport?id=' + id, false).then(function (result) {
       deferred.resolve(result);
     })
     return deferred.promise;
   };
-  service.getDataFirstImport = _getDataFirstImport;
+  service.getDataFirstImportInsert = _getDataFirstImportInsert;
+
+  var _getDataFirstImportUpdate = function (id) { 
+    var deferred = $q.defer();
+    httpProvider.get('api/xulyimportbieumau/GetDataFirstImport?id=' + id, false)
+      .then(function (result) {
+        deferred.resolve(result);
+      })
+    return deferred.promise;
+  };
+  service.getDataFirstImportUpdate = _getDataFirstImportUpdate;
 
   return service
 }

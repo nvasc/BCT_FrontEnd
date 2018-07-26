@@ -100,12 +100,11 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
       watchDataFirstImport = $scope.$watch(function () {
         return vm.saveObj.IdBieuMauChuan
       }, function (nval, oval) {
-        if (!angular.equals(nval, oval) || parseInt(nval) !== 0) {
-          
-          nhapkhaubaocaoService.getDataFirstImport(nval).then(function (result) {
+        if (!angular.equals(nval, oval) && !vm.saveObj.isUpdate) {          
+          nhapkhaubaocaoService.getDataFirstImportInsert(nval).then(function (result) {
             vm.saveObj.DataFirstImports = result;                     
           })
-        }
+        }        
       }, true);
     }    
   }
@@ -159,7 +158,9 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;   
       vm.saveObj.IsDetail = true;
-      watchGetDataFirstImport();
+      nhapkhaubaocaoService.getDataFirstImportUpdate(vm.saveObj.Id).then(function (result) {
+        vm.saveObj.DataFirstImports = result;                     
+      })
       popupFactory.custom();
     });
   };
@@ -175,10 +176,16 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     });
     nhapkhaubaocaoService.get(row.entity.Id).then(function (obj) {      
       vm.saveObj = obj;
-      watchGetDataFirstImport();
+      vm.saveObj.isUpdate = true;
+      nhapkhaubaocaoService.getDataFirstImportUpdate(vm.saveObj.Id).then(function (result) {
+        vm.saveObj.DataFirstImports = result;      
+      })
       popupFactory.update(function () { 
         var deferred = $q.defer();
         if (vm.saveObj.DataFirstImports !== null) {
+          for (var i = 0; i < vm.saveObj.DataFirstImports.length; i++) {
+            vm.saveObj.DataFirstImports.Value += '';
+          }
           vm.saveObj.DataFirstImport = angular.toJson(vm.saveObj.DataFirstImports)
         }  
         nhapkhaubaocaoService.update(row.entity.Id, vm.saveObj).then(function () {

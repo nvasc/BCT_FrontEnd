@@ -9,12 +9,12 @@
               ng-model="nhapkhaubaocao.saveObj.IdBieuMauChuan"
               ci-one-load="true"
               ci-filter-default-obj="nhapkhaubaocao.defaultFilter" 
-              url="api/bieumauchuan/GetSelectData" ></ci-select>
+              url="api/bieumauchuan/GetSelectData"></ci-select>
           </div>
           <div class="form-group">
             <label for="FileBieuMau" style="display: block;">Tập tin</label>
             <ci-upload ci-id="FileBieuMau" 
-              ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau"  accept=".xlsx"
+              ci-store-file-name="nhapkhaubaocao.saveObj.FileBieuMau" accept=".xlsx"
               ci-file-name="nhapkhaubaocao.saveObj.TenFileBieuMau">Chọn tập tin</ci-upload>
           </div>
           
@@ -27,10 +27,12 @@
         <div role="form">
           <div class="box-body">            
             <div class="row">
-              <div class="col-md-6" ng-if="item.DefaultValue == null || item.DefaultValue == ''" ng-repeat="item in nhapkhaubaocao.saveObj.DataFirstImports">
+              <div class="col-md-6" ng-if="item.IsInput" ng-repeat="item in nhapkhaubaocao.saveObj.DataFirstImports">
                   <div class="form-group">
                       <label for="{{item.Name}}">{{item.Lable}}</label>
-                      <input type="{{item.DataType == 3 || item.DataType == 4 ? 'number': 'text'}}" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
+
+                      <input ng-if="item.DataType == 3 || item.DataType == 4" ci-string-to-number type="number" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
+                      <input ng-if="item.DataType != 3 && item.DataType != 4" type="text" class="form-control" id="{{item.Name}}"  ng-model="item.Value" ng-value="item.Value">
                     </div>
               </div>             
             </div>

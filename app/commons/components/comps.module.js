@@ -15,6 +15,7 @@ import select from './select/select.directive';
 import popupFactory from './popup/popupFactory';
 import upload from './upload/upload.directive';
 import download from './download/download.directive';
+import stringToNumber from './common/stringToNumber';
 
 import pie from './charts/pie/pie.directive';
 import combo from './charts/combo/combo.directive';
@@ -41,6 +42,7 @@ angular
   .directive('ciSelect', select)
   .directive('ciUpload', upload)
   .directive('ciDownload', download)
+  .directive('ciStringToNumber', stringToNumber)
   .directive('ciPie', pie)
   .directive('ciCombo', combo)
   .directive('ciBar', bar)
