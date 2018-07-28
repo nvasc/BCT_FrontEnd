@@ -52,6 +52,9 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
     vm.colDefs = [ {
       name: 'Truong',
       displayName: 'Trường',
+      cellTooltip: function(row, col) {
+        return row.entity.Truong;
+      }
     } ];
   }
 
@@ -61,6 +64,9 @@ function nhapkhaubaocaoController ($q, $scope, nhapkhaubaocaoService, popupFacto
   }, {
     name: 'TenBieuMauChuan',
     displayName: 'Tên biểu mẫu',
+    cellTooltip: function(row, col) {
+      return row.entity.TenBieuMauChuan;
+    }
   }, {
     name: 'TenFileBieuMau',
     displayName: 'Tập Tin',
